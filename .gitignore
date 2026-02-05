@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ========== DO NOT UPLOAD: Datasets ==========
+datasets/
+*.csv
+*.npy
+*.npz
+*.parquet
+*.h5
+*.hdf5
+!results/*.csv
+
+# ========== DO NOT UPLOAD: Models & checkpoints ==========
+models/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.pb
+*.h5
+*.keras
+!checkpoints/.gitkeep
+
+# Logs
+*.log
+logs/
+runs/
+results/logs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Results (optional: uncomment to ignore)
+# results/*.json
+# results/*.txt
+
+# Scalers / pickles (trained scalers, encoders)
+*.pkl
+
+# Environment / secrets (OpenRouter API key)
+.env
+.env.local
+
+# Temporary
+temp/
+tmp/
+*.tmp

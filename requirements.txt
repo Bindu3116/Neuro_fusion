@@ -1,0 +1,35 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Machine Learning & Metrics
+scikit-learn>=1.3.0
+imbalanced-learn>=0.11.0  # For SMOTE
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tensorboard>=2.13.0
+
+# LLM Integration (OpenRouter / Grok)
+requests>=2.28.0
+
+# Optional: load OPENROUTER_API_KEY from .env
+python-dotenv>=1.0.0
+
+# Legacy LLM (local)
+transformers>=4.30.0
+sentencepiece>=0.1.99
+
+# Configuration
+pyyaml>=6.0
+omegaconf>=2.3.0
+
+# Utilities
+tqdm>=4.65.0
+joblib>=1.3.0
+
+# Optional: MNE for EEG processing (if needed)
+# mne>=1.4.0

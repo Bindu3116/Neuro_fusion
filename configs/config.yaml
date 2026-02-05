@@ -1,0 +1,135 @@
+# NeuroFusionGPT Configuration
+
+# Data paths
+data:
+  eeg_train: "eeg_train.csv"
+  eeg_test: "eeg_test.csv"
+  ecg: "ecg_dataset.csv"
+  
+  # Data split
+  val_ratio: 0.1  # 10% of train for validation
+  random_seed: 42
+  
+  # Feature extraction
+  eeg_feature_cols: [0, 177]  # columns 0-177 (178 features)
+  eeg_label_col: 187
+  eeg_skip_cols: [178, 186]  # skip metadata columns
+  
+  ecg_feature_cols: [1, 179]  # X1-X178
+  ecg_label_col: 179
+  ecg_normalize: true
+  ecg_align_labels: true  # Subtract 1 to convert 1-5 to 0-4
+
+# Model architecture
+model:
+  # EEG Transformer Encoder
+  eeg_encoder:
+    input_dim: 178
+    d_model: 128
+    nhead: 8
+    num_layers: 4
+    dim_feedforward: 512
+    dropout: 0.1
+    pooling: "mean"  # mean, max, or cls
+  
+  # ECG MLP Encoder
+  ecg_encoder:
+    input_dim: 178
+    hidden_dims: [256, 128]
+    dropout: 0.3
+  
+  # Classifier
+  classifier:
+    num_classes: 5
+    hidden_dim: 256  # Optional MLP layer before output
+    dropout: 0.2
+  
+  # Fusion (for multimodal)
+  fusion:
+    type: "cross_attention"  # cross_attention or concat
+    d_model: 128
+
+# Training
+training:
+  batch_size: 128
+  epochs: 50
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  optimizer: "adamw"
+  
+  # Scheduler
+  scheduler:
+    type: "plateau"  # plateau or cosine
+    factor: 0.5
+    patience: 5
+    min_lr: 0.00001
+  
+  # Early stopping
+  early_stopping:
+    patience: 10
+    metric: "macro_f1"  # macro_f1 or balanced_acc
+    mode: "max"
+  
+  # Loss function
+  loss:
+    type: "focal"  # focal or weighted_ce
+    focal_gamma: 2.0
+    use_class_weights: true
+  
+  # Class imbalance handling
+  class_weights:
+    # Computed from EEG train data: [72471, 2223, 5788, 641, 6431]
+    # weights = total / (n_classes * count)
+    class_0: 0.242
+    class_1: 7.863
+    class_2: 3.019
+    class_3: 27.275
+    class_4: 2.718
+
+# Logging
+logging:
+  log_dir: "results/logs"
+  tensorboard: true
+  save_interval: 5  # Save metrics every N epochs
+  
+  # Metrics to track
+  metrics:
+    - accuracy
+    - balanced_accuracy
+    - macro_f1
+    - weighted_f1
+    - per_class_precision
+    - per_class_recall
+    - per_class_f1
+
+# Checkpointing
+checkpointing:
+  checkpoint_dir: "checkpoints"
+  save_best: true
+  save_last: true
+  monitor: "macro_f1"  # metric to monitor for best model
+  mode: "max"
+
+# LLM Feedback
+llm:
+  model_name: "gpt2"  # gpt2, gpt2-medium, or t5-small
+  max_length: 100
+  temperature: 0.7
+  top_p: 0.9
+  num_return_sequences: 1
+  
+  # Class name mapping
+  class_names:
+    0: "Calm"
+    1: "Mild Stress"
+    2: "Moderate Stress"
+    3: "High Stress"
+    4: "Severe Stress"
+
+# Evaluation
+evaluation:
+  batch_size: 256
+  save_predictions: true
+  generate_visualizations: true
+  save_attention_maps: true
+  num_attention_samples: 10  # Number of samples to visualize
