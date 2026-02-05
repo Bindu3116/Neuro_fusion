@@ -2,17 +2,17 @@
 
 A deep learning framework with **cross-attention fusion** of EEG and ECG for stress detection. **Designed to run in Google Colab** with data on Google Drive.
 
-## 🎯 Quick Start
+## Quick Start
 
 **Use the fusion notebook**: `notebook/neurofusiongpt_fusion_training.ipynb`
 
 This implements the complete proposal architecture:
-- ✅ Cross-attention fusion between EEG and ECG
-- ✅ Single stress-level prediction output
-- ✅ Ready for LLM integration at application level
-- ✅ Comprehensive visualizations (6 plots)
+- Cross-attention fusion between EEG and ECG
+- Single stress-level prediction output
+- Ready for LLM integration at application level
+- Comprehensive visualizations (6 plots)
 
-📖 **Read**: [`IMPLEMENTATION_SUMMARY.md`](IMPLEMENTATION_SUMMARY.md) for full details.
+**Read**: [`HOW_TO_RUN.md`](HOW_TO_RUN.md) for setup, downloading artifacts from Colab, and running the project locally.
 
 ## Run in Google Colab
 
@@ -148,7 +148,7 @@ advice = llm_api.generate(prompt)
 display(advice)
 ```
 
-See [`FUSION_IMPLEMENTATION.md`](FUSION_IMPLEMENTATION.md) for complete examples.
+See [HOW_TO_RUN.md](HOW_TO_RUN.md) for environment setup, where to place datasets and models, and how to run the project.
 
 ## Requirements
 
