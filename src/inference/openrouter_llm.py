@@ -74,7 +74,6 @@ Respond in 2–4 short sentences: (1) one line interpreting the result, (2) one 
     headers = {
         "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/bindu-neurofusiongpt",
     }
 
     resp = requests.post(OPENROUTER_BASE, json=payload, headers=headers, timeout=60)
@@ -102,7 +101,7 @@ def generate_feedback_stream(
     *,
     model: str = DEFAULT_MODEL,
     api_key: Optional[str] = None,
-    max_tokens: int = 250,
+    max_tokens: int = 500,
     temperature: float = 0.7,
 ):
     """
@@ -131,7 +130,6 @@ Respond in 2–4 short sentences: (1) one line interpreting the result, (2) one 
     headers = {
         "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/bindu-neurofusiongpt",
     }
 
     with requests.post(
