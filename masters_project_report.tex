@@ -49,10 +49,10 @@
     linkcolor=black,
     citecolor=black,
     urlcolor=blue,
-    pdftitle={A Scalable Deep Learning Framework for Real-Time Network Intrusion Detection in Internet of Things Environments},
-    pdfauthor={Jane A. Smith},
+    pdftitle={NeuroFusionGPT: A Multimodal Transformer Framework for Stress-Level Classification via Cross-Attention Fusion of EEG and ECG Signals},
+    pdfauthor={Bindu},
     pdfsubject={Master's Project Report},
-    pdfkeywords={Deep Learning, Intrusion Detection, IoT, Network Security, LSTM, CNN},
+    pdfkeywords={Deep Learning, Multimodal Fusion, EEG, ECG, Stress Detection, Transformer, Cross-Attention},
     pdfcreator={LaTeX},
     pdflang={en-US}
 }
@@ -118,7 +118,7 @@
 \begin{center}
 \vspace*{1in}
 
-{\Large\bfseries A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS}
+{\Large\bfseries NEUROFUSIONGPT: A MULTIMODAL TRANSFORMER FRAMEWORK FOR STRESS-LEVEL CLASSIFICATION VIA CROSS-ATTENTION FUSION OF EEG AND ECG SIGNALS}
 
 \vspace{1.5in}
 
@@ -146,7 +146,7 @@ Computer Science
 
 by
 
-Jane A. Smith
+Bindu
 
 \vspace{0.5in}
 
@@ -164,7 +164,7 @@ Spring 2026
 \begin{center}
 \textcopyright\ 2026
 
-Jane A. Smith
+Bindu
 
 ALL RIGHTS RESERVED
 \end{center}
@@ -178,7 +178,7 @@ ALL RIGHTS RESERVED
 \begin{center}
 \vspace*{0.5in}
 
-{\large\bfseries A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS}
+{\large\bfseries NEUROFUSIONGPT: A MULTIMODAL TRANSFORMER FRAMEWORK FOR STRESS-LEVEL CLASSIFICATION VIA CROSS-ATTENTION FUSION OF EEG AND ECG SIGNALS}
 
 \vspace{0.5in}
 
@@ -186,7 +186,7 @@ A Project
 
 by
 
-Jane A. Smith
+Bindu
 
 \vspace{1in}
 
@@ -196,7 +196,7 @@ Approved by:
 
 \rule{3.5in}{0.5pt}
 
-Dr.\ Robert J. Williams, Committee Chair
+Committee Chair
 
 Department of Computer Science
 
@@ -204,7 +204,7 @@ Department of Computer Science
 
 \rule{3.5in}{0.5pt}
 
-Dr.\ Emily K. Chen, Second Reader
+Second Reader
 
 Department of Computer Science
 
@@ -229,7 +229,7 @@ of
 
 \vspace{0.25in}
 
-A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS
+NEUROFUSIONGPT: A MULTIMODAL TRANSFORMER FRAMEWORK FOR STRESS-LEVEL CLASSIFICATION VIA CROSS-ATTENTION FUSION OF EEG AND ECG SIGNALS
 
 \vspace{0.25in}
 
@@ -237,19 +237,19 @@ by
 
 \vspace{0.25in}
 
-Jane A. Smith
+Bindu
 
 \end{center}
 
 \vspace{0.5in}
 
-The proliferation of Internet of Things (IoT) devices across industrial, commercial, and residential domains has introduced an unprecedented attack surface for malicious actors seeking to exploit vulnerabilities in networked systems. Traditional intrusion detection systems rely on signature-based methods or shallow machine learning classifiers that struggle to generalize across the heterogeneous traffic patterns characteristic of IoT ecosystems. This project addresses the critical need for a scalable, adaptive, and computationally efficient intrusion detection framework capable of operating in real-time across diverse IoT network topologies.
+Psychological stress is a pervasive health concern linked to cardiovascular disease, cognitive impairment, and mental health disorders. Accurate, automated stress assessment from physiological signals can enable timely interventions and continuous mental wellness monitoring. However, existing approaches often rely on a single biosignal modality, failing to capture the rich interplay between the central and autonomic nervous systems that characterizes the stress response. This project presents NeuroFusionGPT, a multimodal deep learning framework that fuses electroencephalogram (EEG) and electrocardiogram (ECG) signals through a bidirectional cross-attention mechanism to classify five stress levels: Calm, Mild Stress, Moderate Stress, High Stress, and Severe Stress.
 
-The proposed framework integrates a hybrid deep learning architecture combining one-dimensional Convolutional Neural Networks (1D-CNN) for spatial feature extraction with Long Short-Term Memory (LSTM) networks for capturing temporal dependencies in network traffic sequences. The system incorporates a modular preprocessing pipeline that normalizes heterogeneous IoT traffic data, performs automated feature engineering, and employs stratified sampling to address severe class imbalance. The framework was evaluated using the CIC-IoT2023 dataset, a comprehensive benchmark containing over 33 million labeled network flows across 33 distinct attack categories spanning seven major attack families.
+The proposed architecture employs a Transformer encoder for EEG data, treating the 16 EEG channels as a sequence of tokens with sinusoidal positional encoding to capture inter-channel dependencies. ECG data, represented as a 187-dimensional feature vector, is processed through a multi-layer perceptron (MLP) with batch normalization. Both modality encoders produce 128-dimensional embeddings that are fused via a bidirectional cross-attention module, where EEG attends to ECG and ECG attends to EEG, enabling the model to learn complementary brain--heart coupling patterns. The fused representation is classified by a two-layer MLP head. Training employs focal loss with inverse-frequency class weights to address severe class imbalance, the AdamW optimizer with learning rate reduction on plateau, and early stopping on the validation macro F1-score.
 
-Experimental results demonstrate that the proposed CNN-LSTM hybrid architecture achieves a macro-averaged F1-score of 0.9641 and an overall detection accuracy of 97.83\%, surpassing baseline models including standalone CNN (F1: 0.9312), standalone LSTM (F1: 0.9287), Random Forest (F1: 0.9198), and gradient-boosted decision trees (F1: 0.9401). The framework achieves an average inference latency of 2.3 milliseconds per flow on commodity edge hardware, meeting real-time processing requirements for IoT gateway deployment.
+The framework was trained and evaluated using the Bangalore EEG Epilepsy Dataset (BEED) for EEG features and a publicly available ECG stress dataset, with the ECG stress labels serving as the unified classification target. Experimental results demonstrate that the fusion model achieves a test accuracy of 93.15\%, balanced accuracy of 91.33\%, and macro F1-score of 0.783 over 37 training epochs with the best model selected at epoch 27. Per-class analysis reveals strong performance on Calm (F1: 0.960) and Severe Stress (F1: 0.956) classes, with lower performance on minority classes Mild Stress (F1: 0.501) and High Stress (F1: 0.614), reflecting the inherent class imbalance. An optional application-layer integration with a large language model (LLM) via the OpenRouter API generates personalized wellness feedback from the model's predictions.
 
-\keywords{Deep Learning, Intrusion Detection System, Internet of Things, CNN, LSTM, Network Security, CIC-IoT2023, Real-Time Classification}
+\keywords{Multimodal Fusion, EEG, ECG, Stress Classification, Transformer, Cross-Attention, Deep Learning, Focal Loss, Wellness Feedback}
 
 % -------------------------------------------------------------------------
 % ACKNOWLEDGEMENTS
@@ -261,15 +261,13 @@ Experimental results demonstrate that the proposed CNN-LSTM hybrid architecture 
 
 \vspace{0.5in}
 
-I wish to express my deepest gratitude to my project advisor, Dr.\ Robert J. Williams, whose unwavering guidance, scholarly insight, and patient mentorship have been instrumental throughout every phase of this project. His expertise in network security and machine learning provided the intellectual foundation upon which this work was built, and his thoughtful feedback consistently challenged me to pursue higher standards of rigor in both my experimental methodology and technical writing.
+I wish to express my sincere gratitude to my project advisor, whose guidance, scholarly insight, and patient mentorship were instrumental throughout every phase of this project. The expertise in deep learning architectures and biomedical signal processing provided the intellectual foundation upon which this work was built, and the consistent encouragement to pursue rigor in both experimentation and technical writing shaped the quality of the final deliverable.
 
-I am equally indebted to Dr.\ Emily K. Chen, who graciously served as the second reader for this project. Her extensive knowledge of deep learning architectures and meticulous attention to methodological detail significantly improved the quality of the experimental design and the clarity of the results presented herein.
+I extend my appreciation to the second reader for offering constructive criticism during our review sessions, which improved both the methodological soundness and the clarity of the results presented in this report. The faculty and staff of the Department of Computer Science at California State University, Sacramento, deserve recognition for cultivating an academic environment that fosters intellectual curiosity and professional growth.
 
-I extend my sincere appreciation to the faculty and staff of the Department of Computer Science at California State University, Sacramento. The computational resources provided by the department's High-Performance Computing Laboratory were essential for training and evaluating the deep learning models central to this project.
+I also acknowledge the computational resources provided by Google Colab, which enabled the GPU-accelerated training central to this project. The open-source communities behind PyTorch, Scikit-learn, and the many other libraries used throughout this work have made research of this nature accessible and reproducible, and their contributions are deeply valued.
 
-I would also like to acknowledge the contributions of my fellow graduate students in the Network Security and Intelligent Systems research groups, particularly Michael Torres and Priya Ramaswamy, whose collaborative spirit and willingness to engage in substantive technical discussions enriched my understanding of the problem domain.
-
-Finally, I owe an immeasurable debt of gratitude to my family for their steadfast support and encouragement throughout my academic journey. My parents, whose sacrifices and belief in the transformative power of education made this opportunity possible, deserve recognition far beyond what words can convey.
+Finally, I owe an immeasurable debt of gratitude to my family for their steadfast support and encouragement throughout my academic journey. Their sacrifices and unwavering belief in the transformative power of education made this opportunity possible.
 
 % -------------------------------------------------------------------------
 % TABLE OF CONTENTS
@@ -304,37 +302,47 @@ Finally, I owe an immeasurable debt of gratitude to my family for their steadfas
 \section{Purpose of the Study}
 \label{sec:purpose}
 
-The rapid expansion of the Internet of Things (IoT) has fundamentally transformed the landscape of modern computing, connecting billions of devices that range from simple environmental sensors to complex industrial control systems. According to recent estimates, the global number of connected IoT devices surpassed 15 billion in 2023 and is projected to exceed 29 billion by 2030~\cite{statista2023}. This exponential growth has generated enormous value across virtually every sector, enabling automation, data-driven decision-making, and remote operational control. However, this connectivity has simultaneously introduced a vast and continuously evolving attack surface that presents formidable challenges for network security professionals.
+Psychological stress has emerged as one of the most significant public health challenges of the twenty-first century. Chronic stress is associated with a wide range of adverse outcomes including cardiovascular disease, weakened immune function, cognitive decline, anxiety, depression, and reduced quality of life~\cite{mcewen2008}. The World Health Organization has identified workplace stress alone as a contributor to an estimated 120,000 deaths annually in the United States and projected global economic costs exceeding \$300 billion per year in lost productivity~\cite{who2022}. Despite the well-established health consequences, accurate and objective assessment of stress levels remains a difficult problem, as subjective self-report instruments such as the Perceived Stress Scale are prone to recall bias, social desirability effects, and limited temporal resolution~\cite{cohen1983}.
 
-The purpose of this project is to design, implement, and evaluate a scalable deep learning framework for real-time network intrusion detection specifically tailored to the unique characteristics of IoT environments. Unlike traditional enterprise networks, IoT ecosystems are characterized by extreme heterogeneity in device capabilities, communication protocols, and traffic patterns. Many IoT devices operate under severe resource constraints that preclude the deployment of heavyweight security solutions directly on endpoints. Network-based intrusion detection deployed at IoT gateways and edge nodes therefore represents the most viable approach for comprehensive security coverage.
+Physiological signals offer an objective window into the body's stress response. The electroencephalogram (EEG) captures electrical activity generated by cortical neurons and reflects the central nervous system's response to stress, including changes in alpha, beta, and theta band power that are associated with cognitive load, arousal, and emotional regulation~\cite{alberdi2016}. The electrocardiogram (ECG) measures the electrical activity of the heart and captures autonomic nervous system markers of stress, including heart rate variability (HRV), which reflects the balance between sympathetic and parasympathetic activity~\cite{kim2018}. By combining these two modalities, a stress detection system can capture both the brain's cognitive-emotional processing and the body's autonomic physiological response, providing a more complete picture of the stress state than either modality alone.
 
-This study proposes a hybrid deep learning architecture that combines the spatial feature extraction capabilities of one-dimensional Convolutional Neural Networks (1D-CNN) with the temporal sequence modeling strengths of Long Short-Term Memory (LSTM) networks. Network traffic exhibits both local spatial correlations within individual flow features and longer-range temporal dependencies across sequential flow records. By integrating these complementary learning paradigms, the proposed framework captures a richer representation of both normal and malicious traffic patterns than either approach could achieve independently.
+The purpose of this project is to design, implement, and evaluate NeuroFusionGPT, a multimodal deep learning framework that fuses EEG and ECG signals through a cross-attention mechanism for five-level stress classification. The framework additionally integrates an optional large language model at the application layer to translate numerical stress predictions into personalized wellness feedback, creating an end-to-end pipeline from raw biosignals to actionable health guidance.
 
 \section{Problem Statement}
 \label{sec:problem}
 
-The security of IoT networks represents one of the most pressing challenges in contemporary computer science. The scale and diversity of IoT deployments create a threat landscape that differs qualitatively from traditional network security scenarios. The volume of traffic generated by billions of devices demands intrusion detection solutions that can process thousands of flows per second without unacceptable latency. The heterogeneous nature of IoT protocols means that static detection rules are fundamentally inadequate. The continuous emergence of novel attack vectors requires detection systems that can generalize beyond previously observed signatures.
+Existing approaches to physiological stress detection suffer from several limitations that this project seeks to address. First, the majority of prior work operates on a single biosignal modality, typically ECG-derived HRV features or EEG power spectral features, and fails to exploit the complementary information available from simultaneous brain and heart monitoring. Single-modality classifiers are inherently limited by the information content of their input; for instance, ECG alone cannot capture the cognitive appraisal component of stress, while EEG alone may miss autonomic changes that manifest primarily in cardiac activity.
 
-Traditional intrusion detection systems fall into two broad categories. Signature-based IDS, such as Snort~\cite{roesch1999}, rely on known attack pattern databases and achieve high precision for known threats but cannot detect novel attacks. Anomaly-based systems construct models of normal behavior and flag deviations, but conventional approaches based on statistical methods or shallow classifiers suffer from high false positive rates and limited modeling capacity.
+Second, approaches that do consider multiple modalities typically employ simple fusion strategies such as early concatenation of feature vectors or late fusion through majority voting of independent classifiers. These methods do not model the interactions between modalities explicitly and therefore cannot learn the complex, bidirectional relationships between brain activity and cardiac function that characterize the stress response. For example, increased cognitive load as measured by EEG may predict a subsequent increase in sympathetic cardiac activation, and elevated heart rate as measured by ECG may feed back to alter cortical arousal patterns. A fusion mechanism that can model such interactions stands to produce a richer and more discriminative joint representation.
 
-Deep learning has shown considerable promise in addressing these limitations through automatic hierarchical feature learning~\cite{bengio2013}. However, challenges remain: many existing proposals use outdated benchmarks that do not reflect modern IoT traffic, computational demands constrain real-time deployment, and severe class imbalance in realistic datasets continues to challenge model training. This project addresses these challenges by developing a framework that integrates state-of-the-art deep learning with careful preprocessing, evaluates on a modern IoT-specific benchmark, and explicitly considers computational efficiency for real-time deployment.
+Third, stress datasets are characteristically imbalanced, with certain stress levels substantially underrepresented. Standard classification models trained on imbalanced data tend to develop a systematic bias toward majority classes, achieving high overall accuracy while performing poorly on the minority classes that may represent the most clinically significant stress states.
+
+Fourth, most existing systems produce a categorical label as output without providing interpretable, actionable guidance to the end user. A stress classification of ``High Stress'' is meaningful to a clinician but offers limited value to an individual seeking to understand and manage their stress unless accompanied by context-sensitive recommendations.
+
+This project addresses these four challenges by developing a cross-attention-based multimodal fusion architecture, employing focal loss with class weights for imbalance handling, and integrating a large language model to generate personalized wellness feedback.
 
 \section{Scope and Objectives}
 \label{sec:scope}
 
-This project encompasses the complete pipeline from raw network traffic to real-time intrusion detection classification. The first objective is to develop a comprehensive data preprocessing and feature engineering pipeline handling the heterogeneous, high-dimensional, and imbalanced nature of IoT traffic data. The second objective is to design and implement a hybrid CNN-LSTM architecture that effectively captures both spatial and temporal features while maintaining computational efficiency. The third objective is to conduct rigorous empirical evaluation using the CIC-IoT2023 dataset~\cite{neto2023}, employing metrics that account for class imbalance and including baseline comparisons. The fourth objective is to characterize computational performance to assess deployment suitability on IoT gateway and edge platforms.
+The scope of this project encompasses the complete pipeline from raw EEG and ECG data to stress-level prediction with optional LLM-generated feedback. The specific objectives are as follows.
+
+The first objective is to design and implement modality-specific encoders that transform heterogeneous biosignal inputs into a shared embedding space. The EEG encoder must capture inter-channel dependencies in the 16-channel EEG signal, while the ECG encoder must learn a compact representation of the 187-dimensional ECG feature vector.
+
+The second objective is to develop a bidirectional cross-attention fusion mechanism that learns the interactions between the EEG and ECG embeddings, producing a unified representation that captures brain--heart coupling patterns relevant to stress classification.
+
+The third objective is to train the fusion model for five-class stress classification (Calm, Mild Stress, Moderate Stress, High Stress, Severe Stress) using focal loss with inverse-frequency class weights and evaluate its performance using metrics appropriate for imbalanced multi-class classification, including balanced accuracy, macro F1-score, and per-class precision, recall, and F1-score.
+
+The fourth objective is to integrate the trained model with a large language model through the OpenRouter API to generate natural-language wellness feedback based on the predicted stress level and confidence scores.
 
 \section{Collaboration and Institutional Context}
 \label{sec:collaboration}
 
-This project was conducted within the Department of Computer Science at California State University, Sacramento, under the supervision of Dr.\ Robert J. Williams, director of the Network Security and Intelligent Systems Laboratory. The laboratory provided access to a computing cluster equipped with NVIDIA A100 GPU accelerators essential for training deep learning models. The research benefited from collaboration with the university's Information Security Office, which provided domain expertise regarding real-world IoT deployment scenarios.
-
-The project leveraged the CIC-IoT2023 dataset developed by the Canadian Institute for Cybersecurity at the University of New Brunswick, generated using a testbed comprising 105 real IoT devices to ensure authentic traffic patterns. The LSTM architecture design was informed by consultations with Dr.\ Emily K. Chen, and the statistical analysis was conducted in collaboration with the university's Statistical Consulting Center.
+This project was conducted within the Department of Computer Science at California State University, Sacramento. Training was performed primarily in Google Colab with GPU acceleration, with data stored on Google Drive. The project leverages the Bangalore EEG Epilepsy Dataset (BEED) for EEG features and a publicly available ECG stress dataset. The codebase is implemented in Python using PyTorch as the primary deep learning framework, with Scikit-learn for preprocessing and evaluation metrics.
 
 \section{Organization of the Report}
 \label{sec:organization}
 
-The remainder of this report is organized as follows. Chapter~\ref{ch:background} provides a comprehensive literature review covering intrusion detection systems, IoT security challenges, and deep learning for traffic analysis. Chapter~\ref{ch:methodology} presents the methodology and system design. Chapter~\ref{ch:results} describes implementation details and experimental results. Chapter~\ref{ch:conclusion} concludes with a summary of findings and future research directions.
+The remainder of this report is organized as follows. Chapter~\ref{ch:background} provides a comprehensive review of the literature on stress detection, multimodal biosignal fusion, and deep learning architectures for physiological signal classification. Chapter~\ref{ch:methodology} presents the methodology and system design, including the data pipeline, the NeuroFusionGPT architecture, and the training procedure. Chapter~\ref{ch:results} describes the implementation details and experimental results. Chapter~\ref{ch:conclusion} concludes with a summary of findings, limitations, and directions for future work.
 
 
 % =========================================================================
@@ -344,130 +352,99 @@ The remainder of this report is organized as follows. Chapter~\ref{ch:background
 \chapter{Background and Literature Review}
 \label{ch:background}
 
-This chapter examines the theoretical foundations and prior research informing the proposed intrusion detection framework, organized into four thematic areas: intrusion detection taxonomy, IoT security challenges, machine learning and deep learning for traffic classification, and benchmark datasets.
+This chapter examines the theoretical foundations and prior research informing the design of NeuroFusionGPT. The review covers the physiology of the stress response, biosignal modalities for stress detection, machine learning and deep learning approaches, multimodal fusion strategies, and class imbalance handling techniques.
 
-\section{Intrusion Detection Systems: Taxonomy and Evolution}
-\label{sec:ids_taxonomy}
+\section{Physiology of the Stress Response}
+\label{sec:stress_physiology}
 
-The concept of automated intrusion detection was first articulated by Anderson in 1980~\cite{anderson1980}, who proposed analyzing computer system audit trails to identify unauthorized access. Denning formalized this in her seminal 1987 paper~\cite{denning1987}, introducing a general-purpose intrusion detection model based on statistical profiling of system behavior.
+The human stress response involves a coordinated activation of the central nervous system (CNS) and the autonomic nervous system (ANS). When the brain perceives a stressor, the hypothalamic-pituitary-adrenal (HPA) axis initiates a cascade of hormonal and neural changes that prepare the body for action~\cite{mcewen2008}. At the cortical level, stress is associated with decreased alpha-band (8--13 Hz) power, reflecting reduced relaxation, and increased beta-band (13--30 Hz) power, reflecting heightened arousal and cognitive engagement~\cite{alberdi2016}. Frontal asymmetry, the relative difference in alpha power between the left and right frontal regions, has been linked to emotional valence, with rightward asymmetry associated with negative affect and stress~\cite{davidson2004}.
 
-Intrusion detection systems are classified along two axes: detection methodology and data source. Regarding methodology, signature-based systems maintain databases of known attack patterns and flag matching traffic, achieving high precision for known attacks. Snort~\cite{roesch1999} exemplifies this approach. Anomaly-based systems model normal behavior and flag deviations, offering theoretical capability to detect zero-day attacks but historically suffering from elevated false positive rates.
+At the cardiac level, stress activates the sympathetic branch of the ANS, increasing heart rate and decreasing heart rate variability. Specific HRV metrics, including the standard deviation of normal-to-normal intervals (SDNN), the root mean square of successive differences (RMSSD), and the low-frequency to high-frequency power ratio (LF/HF), serve as established biomarkers of autonomic balance and stress~\cite{kim2018}. The interplay between cortical and cardiac responses is bidirectional: cognitive appraisal of a stressor triggers autonomic changes, and peripheral physiological states feed back to modulate cortical processing through interoceptive pathways~\cite{critchley2013}.
 
-A third category, specification-based detection~\cite{ko1997}, relies on manually defined behavioral specifications. While achieving low false positive rates, the manual effort required limits scalability in heterogeneous IoT environments.
+This bidirectional brain--heart coupling provides the physiological rationale for multimodal fusion of EEG and ECG in stress detection. A model that can learn the co-variation patterns between cortical and cardiac signals is theoretically positioned to achieve more accurate and robust stress classification than one operating on either modality in isolation.
 
-Regarding data sources, host-based systems (HIDS) monitor individual device activity, while network-based systems (NIDS) monitor traffic at strategic observation points. In IoT environments, network-based detection is strongly preferred due to the resource constraints of IoT devices, which generally preclude installation of host-based monitoring agents.
+\section{EEG-Based Stress Detection}
+\label{sec:eeg_stress}
 
-\section{Security Challenges in Internet of Things Environments}
-\label{sec:iot_security}
+Electroencephalography records the summated postsynaptic potentials of cortical neurons through electrodes placed on the scalp according to standardized montages such as the International 10-20 system~\cite{jasper1958}. EEG signals are characterized by frequency bands: delta (0.5--4 Hz), theta (4--8 Hz), alpha (8--13 Hz), beta (13--30 Hz), and gamma (30--100 Hz). Stress-related changes in EEG have been documented across multiple bands. Subhani et al.~\cite{subhani2017} reported that stressed subjects exhibited significantly higher beta power and lower alpha power compared to relaxed subjects, consistent with increased cortical arousal. Al-Shargie et al.~\cite{alshargie2016} demonstrated that frontal theta-beta ratios could distinguish stressed from non-stressed states with accuracies exceeding 85\% using support vector machines.
 
-The Internet of Things extends network connectivity to a vast array of physical objects embedded with sensors, actuators, and communication interfaces~\cite{atzori2010}. IoT security is complicated by several distinguishing characteristics. First, devices typically operate under severe resource constraints in processing power, memory, and energy, making it impractical to deploy conventional security software directly on endpoints. Second, IoT communication protocols are highly heterogeneous, encompassing MQTT, CoAP, ZigBee, Bluetooth Low Energy, LoRaWAN, and various proprietary protocols, complicating uniform traffic analysis.
+More recently, deep learning approaches have been applied to EEG-based stress detection. Arpaia et al.~\cite{arpaia2022} used convolutional neural networks on EEG spectrograms to classify stress levels, achieving accuracy of 89.7\% on a two-class problem. Li et al.~\cite{li2022} applied an attention-based recurrent neural network to EEG time series and showed that the attention mechanism could identify stress-relevant temporal patterns in the signal. These studies demonstrate the feasibility of EEG-based stress detection but also highlight the challenge of multi-class stress-level discrimination, which remains considerably more difficult than binary stress/no-stress classification.
 
-Third, many IoT devices lack robust update mechanisms. The Mirai botnet~\cite{antonakakis2017} demonstrated the consequences by compromising hundreds of thousands of devices through default credentials and known firmware vulnerabilities, launching some of history's largest DDoS attacks. Fourth, the scale of IoT deployments creates visibility and management challenges, with enterprise deployments encompassing thousands of devices across distributed locations.
+\section{ECG-Based Stress Detection}
+\label{sec:ecg_stress}
 
-Kolias et al.~\cite{kolias2017} categorized IoT attacks along the protocol stack, identifying threats at every layer from physical jamming to application-layer malware. Neshenko et al.~\cite{neshenko2019} found the most prevalent attack categories include DDoS, unauthorized credential exploitation, man-in-the-middle attacks, and firmware compromises. These findings underscore the need for network-based intrusion detection as a critical defense component.
+The electrocardiogram captures the electrical activity of the heart and provides a rich set of features for stress assessment. Time-domain HRV features (SDNN, RMSSD, pNN50), frequency-domain features (LF power, HF power, LF/HF ratio), and non-linear features (sample entropy, detrended fluctuation analysis) have all been used as inputs to stress classifiers~\cite{kim2018}. Healey and Picard~\cite{healey2005} conducted a landmark study demonstrating that ECG-derived HRV features could classify driver stress into three levels with 97\% accuracy using linear discriminant analysis. Subsequent work by Gjoreski et al.~\cite{gjoreski2017} applied random forests to a comprehensive set of HRV features for continuous stress monitoring, achieving 92\% accuracy in a binary setting.
 
-\section{Machine Learning for Network Intrusion Detection}
-\label{sec:ml_ids}
+Deep learning approaches to ECG-based stress detection have emerged more recently. Sarkar and Etemad~\cite{sarkar2020} proposed a self-supervised learning approach for ECG-based stress detection using contrastive learning and achieved state-of-the-art results on the WESAD dataset. The ECG stress dataset used in this project provides 187 pre-extracted features for each heartbeat record across five stress levels, offering a richer feature space than raw waveform approaches while preserving clinically meaningful information.
 
-Machine learning has been applied to intrusion detection for over two decades. Decision tree algorithms, particularly C4.5~\cite{quinlan1993}, were among the first techniques applied, offering interpretable classification rules. Ensemble methods subsequently addressed overfitting: Random Forest~\cite{breiman2001} demonstrated superior accuracy and generalization~\cite{zhang2008}, while gradient boosting algorithms including XGBoost~\cite{chen2016xgboost} and LightGBM~\cite{ke2017} achieved state-of-the-art performance on several benchmarks by sequentially correcting predecessor errors.
+\section{Multimodal Fusion for Biosignal Classification}
+\label{sec:multimodal}
 
-Support Vector Machines~\cite{cortes1995} attracted attention due to their effectiveness in high-dimensional spaces~\cite{mukkamala2002}, though quadratic training complexity limits scalability. All traditional approaches depend heavily on manual feature engineering, which is labor-intensive, domain-specific, and may miss subtle correlations that could improve detection.
+Multimodal fusion combines information from multiple data sources to improve classification performance beyond what any single modality can achieve. Fusion strategies are generally categorized as early fusion (feature-level), late fusion (decision-level), and intermediate or hybrid fusion~\cite{baltrusaitis2019}.
 
-\section{Deep Learning Approaches to Intrusion Detection}
-\label{sec:dl_ids}
+Early fusion concatenates features from all modalities into a single feature vector before classification. While simple to implement, this approach treats modalities as independent and does not model cross-modal interactions. Furthermore, when modalities have very different dimensionalities or statistical properties, concatenation can lead to one modality dominating the learned representation.
 
-Deep learning offers automatic hierarchical feature learning from raw data~\cite{bengio2013}, reducing dependence on manual feature engineering and enabling discovery of complex non-linear relationships.
+Late fusion trains independent classifiers for each modality and combines their predictions, typically through voting or averaging. This approach preserves modality-specific representations but cannot learn cross-modal patterns that emerge from the interaction between modalities.
 
-\subsection{Convolutional Neural Networks}
+Attention-based fusion has emerged as a powerful intermediate approach that explicitly models cross-modal interactions. The multi-head attention mechanism, introduced by Vaswani et al.~\cite{vaswani2017} in the Transformer architecture, allows one modality to attend to another, computing a weighted combination of the attended modality's representation where the weights reflect relevance to the querying modality. Cross-attention, where the query comes from one modality and the key-value pairs come from another, has been successfully applied to vision-language tasks~\cite{lu2019} and audio-visual tasks~\cite{tsai2019}.
 
-CNNs, originally developed for image recognition~\cite{lecun1998}, have been adapted for traffic classification by treating flow features as one-dimensional signals. The 1D convolution operation is:
+In the biosignal domain, multimodal fusion of EEG and peripheral physiological signals has been explored for emotion recognition. Tao et al.~\cite{tao2020} combined EEG and ECG using a hierarchical attention network for valence-arousal prediction and showed that the cross-modal attention mechanism captured physiologically meaningful brain--body relationships. However, the application of cross-attention fusion specifically to multi-level stress classification from EEG and ECG remains underexplored, which this project addresses.
 
-\begin{equation}
-\label{eq:conv1d}
-y_i = \sigma\left(\sum_{k=0}^{K-1} w_k \cdot x_{i+k} + b\right)
-\end{equation}
+\section{Transformer Architecture}
+\label{sec:transformer}
 
-\noindent where $x$ is the input, $w$ is a filter of size $K$, $b$ is bias, and $\sigma(\cdot)$ is the activation function. Wang et al.~\cite{wang2017} demonstrated that 1D-CNNs effectively learn discriminative features from raw traffic without manual feature engineering.
-
-\subsection{Long Short-Term Memory Networks}
-
-Standard RNNs suffer from the vanishing gradient problem~\cite{hochreiter1991}. The LSTM architecture~\cite{hochreiter1997} addresses this through a gating mechanism with forget, input, and output gates:
-
-\begin{align}
-\label{eq:lstm_forget}
-\mathbf{f}_t &= \sigma\left(\mathbf{W}_f[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_f\right) \\
-\label{eq:lstm_input}
-\mathbf{i}_t &= \sigma\left(\mathbf{W}_i[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_i\right) \\
-\label{eq:lstm_candidate}
-\tilde{\mathbf{c}}_t &= \tanh\left(\mathbf{W}_c[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_c\right) \\
-\label{eq:lstm_cell}
-\mathbf{c}_t &= \mathbf{f}_t \odot \mathbf{c}_{t-1} + \mathbf{i}_t \odot \tilde{\mathbf{c}}_t \\
-\label{eq:lstm_output}
-\mathbf{o}_t &= \sigma\left(\mathbf{W}_o[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_o\right) \\
-\label{eq:lstm_hidden}
-\mathbf{h}_t &= \mathbf{o}_t \odot \tanh(\mathbf{c}_t)
-\end{align}
-
-\noindent where $\odot$ represents element-wise multiplication. Kim et al.~\cite{kim2016} and Yin et al.~\cite{yin2017} demonstrated that LSTMs capture sequential patterns in network traffic inaccessible to feedforward architectures.
-
-\subsection{Hybrid Architectures}
-
-Hybrid CNN-LSTM architectures combine CNNs for local feature extraction with LSTMs for temporal modeling. Li et al.~\cite{li2019} demonstrated that this combination outperformed standalone models on CICIDS2017 with 98.67\% accuracy and improved minority class detection. Khan et al.~\cite{khan2019} corroborated these findings on UNSW-NB15. Attention mechanisms~\cite{bahdanau2015} have been incorporated to enable selective focus on informative features:
+The Transformer architecture~\cite{vaswani2017} has become the dominant paradigm for sequence modeling across natural language processing, computer vision, and increasingly, biosignal analysis. The core mechanism is scaled dot-product attention:
 
 \begin{equation}
 \label{eq:attention}
-\mathbf{a} = \sum_{t=1}^{T} \alpha_t \mathbf{h}_t, \quad \alpha_t = \frac{\exp(e_t)}{\sum_{k=1}^{T}\exp(e_k)}
+\text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}
 \end{equation}
 
-\noindent where $\alpha_t$ are learned attention weights. Zhang et al.~\cite{zhang2019} showed attention-enhanced LSTMs improved detection of subtle, low-volume attacks.
-
-\section{Benchmark Datasets}
-\label{sec:datasets}
-
-The KDD Cup 1999 dataset~\cite{kddcup1999} was the most widely used benchmark but has been criticized for redundant records, outdated attacks, and unrealistic conditions~\cite{mchugh2000, tavallaee2009}. NSL-KDD~\cite{tavallaee2009} addressed some deficiencies but remains limited by its 1998 origin. More recent datasets include UNSW-NB15~\cite{moustafa2015} with nine modern attack categories and CICIDS2017~\cite{sharafaldin2018} with realistic traffic profiles.
-
-Most relevant is the CIC-IoT2023 dataset~\cite{neto2023}, the most comprehensive IoT-specific benchmark available. Generated using 105 real IoT devices, it contains over 33 million labeled flows across 33 attack types in seven families: DDoS, DoS, Reconnaissance, Web-based attacks, Brute Force, Spoofing, and Mirai variants.
-
-\begin{table}[H]
-\centering
-\caption[Comparison of intrusion detection benchmark datasets]{Comparison of major intrusion detection benchmark datasets. The CIC-IoT2023 dataset provides the most comprehensive IoT-specific evaluation benchmark with realistic traffic from 105 real devices.}
-\label{tab:dataset_comparison}
-\begin{tabularx}{\textwidth}{>{\raggedright}p{2.5cm} c r c c}
-\toprule
-\textbf{Dataset} & \textbf{Year} & \textbf{Records} & \textbf{Attack Types} & \textbf{IoT-Specific} \\
-\midrule
-KDD Cup 1999 & 1999 & 4,898,431 & 4 categories & No \\
-NSL-KDD & 2009 & 148,517 & 4 categories & No \\
-UNSW-NB15 & 2015 & 2,540,044 & 9 categories & No \\
-CICIDS2017 & 2017 & 2,830,743 & 14 categories & No \\
-CIC-IoT2023 & 2023 & 33,440,896 & 33 types (7 families) & Yes \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Class Imbalance in Intrusion Detection}
-\label{sec:imbalance}
-
-A persistent challenge is the severe class imbalance in realistic datasets, where benign traffic overwhelmingly dominates. Standard classifiers exhibit systematic bias toward majority classes. Data-level approaches include SMOTE~\cite{chawla2002}, which generates synthetic minority instances by interpolation:
+\noindent where $\mathbf{Q}$, $\mathbf{K}$, and $\mathbf{V}$ are the query, key, and value matrices, and $d_k$ is the key dimension. Multi-head attention extends this by projecting $\mathbf{Q}$, $\mathbf{K}$, and $\mathbf{V}$ into $h$ different subspaces and computing attention in parallel:
 
 \begin{equation}
-\label{eq:smote}
-\mathbf{x}_{\text{new}} = \mathbf{x}_i + \lambda \cdot (\mathbf{x}_{nn} - \mathbf{x}_i)
+\label{eq:multihead}
+\text{MultiHead}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)\mathbf{W}^O
 \end{equation}
 
-\noindent where $\mathbf{x}_{nn}$ is a nearest neighbor and $\lambda \in [0,1]$. Algorithm-level approaches include cost-sensitive learning and focal loss~\cite{lin2017}:
+\noindent where $\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)$ and $\mathbf{W}^O$ is the output projection. This allows different heads to capture different types of relationships in the data.
+
+For EEG data, Transformers offer a natural modeling framework when channels or time steps are treated as tokens in a sequence. Song et al.~\cite{song2022} demonstrated that Transformers applied to EEG achieved state-of-the-art results on emotion recognition benchmarks by capturing long-range dependencies between EEG channels. Positional encoding injects sequence order information into the model, as the attention mechanism is otherwise permutation-invariant. Sinusoidal positional encoding~\cite{vaswani2017} uses:
+
+\begin{align}
+\label{eq:posenc_sin}
+PE_{(pos, 2i)} &= \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right) \\
+\label{eq:posenc_cos}
+PE_{(pos, 2i+1)} &= \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
+\end{align}
+
+\noindent where $pos$ is the position and $i$ is the dimension index.
+
+\section{Handling Class Imbalance}
+\label{sec:imbalance}
+
+Class imbalance is a persistent challenge in physiological signal classification, where certain conditions or states are naturally more prevalent than others. Standard cross-entropy loss treats all classes equally and produces classifiers biased toward majority classes. Two principal strategies address this problem.
+
+Cost-sensitive learning modifies the loss function to assign higher penalties for misclassifying minority classes. The weighted cross-entropy loss scales each class's contribution by an inverse-frequency weight $w_c = N / (C \cdot n_c)$, where $N$ is the total number of samples, $C$ is the number of classes, and $n_c$ is the count for class $c$.
+
+Focal loss~\cite{lin2017} extends this by additionally down-weighting easy, well-classified examples to focus training on hard, misclassified samples:
 
 \begin{equation}
 \label{eq:focal}
-\mathcal{L}_{\text{focal}} = -\sum_{i=1}^{N}\sum_{c=1}^{C} \alpha_c (1-\hat{y}_{i,c})^{\gamma} \cdot y_{i,c} \cdot \log(\hat{y}_{i,c})
+\mathcal{L}_{\text{focal}} = -\sum_{i=1}^{N}\sum_{c=1}^{C} \alpha_c (1 - p_{t,i})^{\gamma} \log(p_{t,i})
 \end{equation}
 
-\noindent where $\gamma$ controls down-weighting of easily classified examples.
+\noindent where $p_{t,i}$ is the predicted probability of the true class for sample $i$, $\alpha_c$ is the class weight, and $\gamma \geq 0$ is the focusing parameter. When $\gamma = 0$, focal loss reduces to weighted cross-entropy. As $\gamma$ increases, the contribution of easy examples (high $p_t$) is increasingly suppressed, directing the model's learning effort toward difficult boundary cases.
+
+\section{Large Language Models for Health Feedback}
+\label{sec:llm}
+
+Large language models (LLMs) such as GPT-4, Grok, and LLaMA have demonstrated remarkable capabilities in generating contextually appropriate, coherent natural language text~\cite{brown2020}. In healthcare applications, LLMs have been explored for clinical note summarization, patient communication, and health coaching~\cite{singhal2023}. The integration of an LLM at the application layer of a biosignal classification system represents a novel approach to bridging the gap between numerical model outputs and actionable health guidance. By providing the LLM with the predicted stress level, confidence score, and probability distribution, the system can generate personalized wellness recommendations that account for the severity and certainty of the assessment.
 
 \section{Summary of Literature Review}
 \label{sec:lit_summary}
 
-The literature reveals that IoT security demands solutions handling heterogeneous, high-volume traffic with low latency; hybrid CNN-LSTM architectures show particular promise; the CIC-IoT2023 dataset provides unprecedented evaluation opportunity; and addressing class imbalance is essential. The proposed framework integrates these insights into a cohesive system evaluated on realistic IoT data.
+The literature reviewed in this chapter establishes several key insights. First, the stress response involves coordinated brain--heart activity that motivates multimodal EEG+ECG approaches. Second, deep learning has shown strong results for both EEG and ECG stress detection individually, but cross-attention fusion for multi-level stress classification remains underexplored. Third, Transformers provide a natural framework for modeling EEG channel dependencies. Fourth, focal loss with class weights addresses the severe imbalance in stress datasets. Fifth, LLMs can translate classification outputs into actionable wellness feedback. The NeuroFusionGPT framework proposed in this project synthesizes these insights into a unified architecture.
 
 
 % =========================================================================
@@ -477,228 +454,300 @@ The literature reveals that IoT security demands solutions handling heterogeneou
 \chapter{Methodology and System Design}
 \label{ch:methodology}
 
-This chapter describes the methodology and system architecture of the proposed intrusion detection framework, including the data preprocessing pipeline, the hybrid CNN-LSTM architecture, training procedures, and the evaluation framework.
+This chapter presents the design of the NeuroFusionGPT framework, covering the datasets, preprocessing pipeline, model architecture, training procedure, evaluation framework, and LLM integration.
 
 \section{System Architecture Overview}
 \label{sec:system_arch}
 
-The framework consists of four principal stages: data ingestion and preprocessing, feature engineering and transformation, deep learning classification, and post-processing with alert generation. Figure~\ref{fig:system_arch} presents the system architecture.
+NeuroFusionGPT is a modular, pipeline-based system with four stages: data preprocessing, modality-specific encoding, cross-attention fusion with classification, and optional LLM feedback generation. Figure~\ref{fig:system_arch} presents the high-level architecture.
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    node distance=1.5cm,
-    block/.style={rectangle, draw, fill=blue!10, text width=3.5cm, text centered, minimum height=1.2cm, rounded corners},
+    node distance=1.2cm and 2cm,
+    block/.style={rectangle, draw, fill=blue!10, text width=3cm, text centered, minimum height=1cm, rounded corners, font=\small},
     arrow/.style={->, thick, >=stealth}
 ]
-\node[block] (input) {Raw Network Traffic\\(CIC-IoT2023)};
-\node[block, right=of input] (preprocess) {Data Preprocessing\\Pipeline};
-\node[block, right=of preprocess] (feature) {Feature Engineering\\\& Transformation};
-\node[block, below=of feature] (model) {CNN-LSTM Hybrid\\Classifier};
-\node[block, left=of model] (output) {Classification Output\\\& Alert Generation};
-\node[block, left=of output] (eval) {Performance\\Evaluation};
+\node[block] (eeg) {EEG Data\\(16 channels)};
+\node[block, below=of eeg] (ecg) {ECG Data\\(187 features)};
+\node[block, right=2.5cm of eeg] (eeg_enc) {Transformer\\Encoder};
+\node[block, right=2.5cm of ecg] (ecg_enc) {MLP\\Encoder};
+\node[block, right=2cm of eeg_enc, yshift=-1.2cm] (fusion) {Cross-Attention\\Fusion};
+\node[block, right=2cm of fusion] (cls) {Classifier\\Head};
+\node[block, below=of cls] (llm) {LLM Feedback\\(OpenRouter)};
 
-\draw[arrow] (input) -- (preprocess);
-\draw[arrow] (preprocess) -- (feature);
-\draw[arrow] (feature) -- (model);
-\draw[arrow] (model) -- (output);
-\draw[arrow] (output) -- (eval);
+\draw[arrow] (eeg) -- node[above, font=\scriptsize]{Scale} (eeg_enc);
+\draw[arrow] (ecg) -- node[above, font=\scriptsize]{Scale} (ecg_enc);
+\draw[arrow] (eeg_enc) -- node[above right, font=\scriptsize]{128-d} (fusion);
+\draw[arrow] (ecg_enc) -- node[below right, font=\scriptsize]{128-d} (fusion);
+\draw[arrow] (fusion) -- (cls);
+\draw[arrow] (cls) -- node[right, font=\scriptsize]{P(stress)} (llm);
 \end{tikzpicture}
-\caption[High-level system architecture diagram]{High-level architecture of the proposed intrusion detection framework. Each stage is implemented as an independent module to facilitate maintenance and extensibility.}
+\caption[NeuroFusionGPT system architecture]{High-level architecture of the NeuroFusionGPT framework. EEG and ECG inputs are processed by modality-specific encoders, fused via bidirectional cross-attention, classified into five stress levels, and optionally translated to wellness feedback by an LLM.}
 \label{fig:system_arch}
 \end{figure}
 
-The data ingestion stage receives raw network flow records from the CIC-IoT2023 dataset stored in CSV format with 46 features per flow record plus a class label. The preprocessing pipeline performs cleaning, imputation, outlier treatment, and type conversion. The feature engineering stage applies normalization, encoding, dimensionality reduction, and temporal windowing. The CNN-LSTM classifier produces probability distributions over target classes, which are converted to discrete predictions and security alerts.
+\section{Datasets}
+\label{sec:datasets}
+
+Two publicly available datasets are used in this project, summarized in Table~\ref{tab:datasets}.
+
+\begin{table}[H]
+\centering
+\caption[Dataset descriptions]{Summary of the EEG and ECG datasets used in the NeuroFusionGPT framework. The ECG stress labels serve as the unified classification target for the fusion model.}
+\label{tab:datasets}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Modality} & \textbf{Source} & \textbf{Features} & \textbf{Classes} & \textbf{Labels} \\
+\midrule
+EEG & BEED (Bangalore EEG Epilepsy) & 16 channels & 4 (original) & Seizure types \\
+ECG & Stress dataset & 187 features & 5 & Stress levels (0--4) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The EEG dataset is the Bangalore EEG Epilepsy Dataset (BEED), which provides 16-channel EEG recordings. Although the BEED dataset was originally collected for epilepsy classification with four seizure-type labels, this project uses the EEG signals as an auxiliary neurological modality to enrich the stress representation. The 16 EEG channel values are treated as a sequence of tokens in the Transformer encoder. The original EEG labels are not used for the fusion target; instead, the ECG stress labels serve as the unified target for both modalities.
+
+The ECG dataset contains 187 pre-extracted features per heartbeat record with five stress levels: 0 (Calm), 1 (Mild Stress), 2 (Moderate Stress), 3 (High Stress), and 4 (Severe Stress). These features represent a comprehensive characterization of cardiac morphology and rhythm derived from the ECG waveform.
+
+Multimodal pairing is performed by row index alignment between the EEG and ECG datasets. This pairing approach is a known limitation, as it does not guarantee that matched records originate from the same individual or temporal window. However, it provides a proof-of-concept for the cross-attention fusion architecture, which can be applied directly when synchronized, co-registered EEG and ECG recordings from the same subjects become available.
 
 \section{Data Preprocessing Pipeline}
 \label{sec:preprocessing}
 
-\subsection{Data Cleaning and Validation}
-\label{subsec:cleaning}
+\subsection{EEG Preprocessing}
+\label{subsec:eeg_preprocess}
 
-The cleaning stage standardizes column names to lowercase with underscores, replaces infinite values (arising from zero-division in flow statistics) with $\text{NaN}$ markers for subsequent imputation, removes duplicate flow records, and excludes records with critical missing fields such as source IP, destination IP, or protocol type.
+The EEG features are loaded from CSV format with 178 columns (features) plus metadata and label columns. For the deployed fusion model, the first 16 columns represent the EEG channel values used as input. The EEG features are normalized to the $[0, 1]$ range as provided in the source dataset, and a StandardScaler is fitted on the training split for additional standardization. The scaler is saved as a serialized pickle file (\texttt{scaler\_eeg.pkl}) for consistent preprocessing during inference.
 
-\subsection{Feature Selection and Engineering}
-\label{subsec:feature_selection}
+\subsection{ECG Preprocessing}
+\label{subsec:ecg_preprocess}
 
-Feature selection proceeds in two stages. First, features with near-zero variance (below $10^{-6}$ after normalization) are removed. Second, for feature pairs with Pearson correlation exceeding 0.95, the feature with lower mutual information with the class label is removed. This reduces the feature set from 46 to 38 features. Four additional engineered features are constructed: the ratio of forward to backward packets, the coefficient of variation of packet sizes, the entropy of destination port distributions, and binary indicators for TCP flag combinations associated with scanning activities, yielding a final dimensionality of 42 features.
-
-\subsection{Normalization and Encoding}
-\label{subsec:normalization}
-
-Numerical features are normalized using robust scaling:
+The ECG data is loaded as a CSV file with an ID column, 187 feature columns (X1--X187 corresponding to heartbeat waveform samples), and a label column. The labels are aligned from a 1--5 scale to a 0--4 scale by subtracting 1. Features are normalized using a StandardScaler fitted exclusively on the training split to prevent data leakage:
 
 \begin{equation}
-\label{eq:robust_scaling}
-x_{\text{scaled}} = \frac{x - \text{median}(x)}{Q_3(x) - Q_1(x)}
+\label{eq:standard_scaling}
+x_{\text{scaled}} = \frac{x - \mu_{\text{train}}}{\sigma_{\text{train}}}
 \end{equation}
 
-\noindent which is less sensitive to outliers than standard $z$-score normalization. Categorical features are one-hot encoded; class labels receive integer encoding.
+\noindent where $\mu_{\text{train}}$ and $\sigma_{\text{train}}$ are the mean and standard deviation computed from the training data. The fitted scaler is saved as \texttt{scaler\_ecg.pkl} for deployment.
 
-\subsection{Temporal Windowing and Class Balancing}
-\label{subsec:windowing}
+\subsection{Dataset Splitting and Class Distribution}
+\label{subsec:splitting}
 
-Flow records are organized into sequential windows of length $T = 20$ ordered by timestamp, enabling the LSTM to model temporal dependencies. Overlapping windows (stride 1) maximize training examples; non-overlapping windows ensure unique predictions during evaluation.
+The data is partitioned with a 90\%/10\% train/validation split using stratified sampling to preserve class distributions. A separate held-out test set is used for final evaluation. Table~\ref{tab:class_dist} presents the class distribution from the training data, illustrating the severe imbalance.
 
-For class balancing, a combination of undersampling majority classes and SMOTE oversampling of minority classes targets a square-root frequency scaling distribution:
+\begin{table}[H]
+\centering
+\caption[Training data class distribution]{Class distribution in the EEG training data, showing the severe imbalance between classes. Class 0 (Calm) and Class 4 (Severe Stress) dominate, while Class 3 (High Stress) is extremely underrepresented with only 641 samples.}
+\label{tab:class_dist}
+\begin{tabular}{llrr}
+\toprule
+\textbf{Class} & \textbf{Label} & \textbf{Count} & \textbf{Weight} \\
+\midrule
+0 & Calm & 72,471 & 0.242 \\
+1 & Mild Stress & 2,223 & 7.863 \\
+2 & Moderate Stress & 5,788 & 3.019 \\
+3 & High Stress & 641 & 27.275 \\
+4 & Severe Stress & 6,431 & 2.718 \\
+\midrule
+\textbf{Total} & & \textbf{87,554} & \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\begin{equation}
-\label{eq:sqrt_scaling}
-n_c^{\text{target}} = \alpha \cdot \sqrt{n_c^{\text{original}}}
-\end{equation}
+The class weights are computed using the inverse-frequency formula $w_c = N / (C \cdot n_c)$, resulting in weights that range from 0.242 for the majority class (Calm) to 27.275 for the extreme minority class (High Stress). These weights are incorporated into the focal loss function to counteract the class imbalance during training.
 
-\noindent producing approximately 5 million balanced training instances. The class-weighted focal loss (Equation~\ref{eq:focal}) with $\gamma = 2.0$ is used as the training objective.
-
-\section{Hybrid CNN-LSTM Architecture}
+\section{NeuroFusionGPT Architecture}
 \label{sec:architecture}
 
-The architecture processes windowed sequences of $T = 20$ flows, each with $F = 42$ features. Input tensors have dimensions $(B \times T \times F)$ where $B$ is the batch size.
+The NeuroFusionGPT model comprises four components: the EEG Transformer Encoder, the ECG MLP Encoder, the Cross-Attention Fusion module, and the Classifier Head. The total architecture contains 679,557 trainable parameters.
 
-\subsection{Convolutional Feature Extraction Module}
+\subsection{EEG Transformer Encoder}
+\label{subsec:eeg_encoder}
 
-Three convolutional blocks extract spatial features from each flow record. The first block applies 64 filters (kernel size 3) with batch normalization, ReLU activation, and max-pooling (pool size 2). The second applies 128 filters with the same structure. The third applies 256 filters with batch normalization and ReLU but without pooling, producing 256-dimensional feature vectors:
+The EEG encoder treats the 16 EEG channel values as a sequence of tokens and processes them with a Transformer encoder to capture inter-channel dependencies. Each channel value $x_j$ is first projected from a scalar to a $d_{\text{model}}$-dimensional vector through a linear embedding:
 
 \begin{equation}
-\label{eq:cnn_module}
-\mathbf{z}_t = f_{\text{CNN}}(\mathbf{x}_t) = \text{Flatten}\left(\text{Conv}_{256} \circ \text{Pool} \circ \text{Conv}_{128} \circ \text{Pool} \circ \text{Conv}_{64}(\mathbf{x}_t)\right)
+\label{eq:eeg_embed}
+\mathbf{e}_j = \mathbf{W}_{\text{emb}} x_j + \mathbf{b}_{\text{emb}}, \quad \mathbf{e}_j \in \mathbb{R}^{d_{\text{model}}}
 \end{equation}
 
-\subsection{LSTM Temporal Modeling Module}
+\noindent where $\mathbf{W}_{\text{emb}} \in \mathbb{R}^{d_{\text{model}} \times 1}$. Sinusoidal positional encoding (Equations~\ref{eq:posenc_sin}--\ref{eq:posenc_cos}) is added to provide sequence order information, yielding input tokens $\mathbf{z}_j = \mathbf{e}_j + PE_j$.
 
-The CNN feature vectors $\{\mathbf{z}_1, \ldots, \mathbf{z}_T\}$ pass through two stacked LSTM layers with 128 hidden units each and dropout of 0.3:
+The positional-encoded sequence is processed by a Transformer encoder consisting of 3 layers, each with 8 attention heads, a feed-forward dimension of 256, GELU activation, and dropout of 0.1. Each Transformer encoder layer applies multi-head self-attention followed by a position-wise feed-forward network, with residual connections and layer normalization:
 
 \begin{align}
-\label{eq:lstm_stack}
-\mathbf{h}_t^{(1)}, \mathbf{c}_t^{(1)} &= \text{LSTM}^{(1)}(\mathbf{z}_t, \mathbf{h}_{t-1}^{(1)}, \mathbf{c}_{t-1}^{(1)}) \\
-\mathbf{h}_t^{(2)}, \mathbf{c}_t^{(2)} &= \text{LSTM}^{(2)}(\mathbf{h}_t^{(1)}, \mathbf{h}_{t-1}^{(2)}, \mathbf{c}_{t-1}^{(2)})
+\label{eq:transformer_sa}
+\mathbf{h}_{\text{attn}} &= \text{LayerNorm}(\mathbf{z} + \text{MultiHead}(\mathbf{z}, \mathbf{z}, \mathbf{z})) \\
+\label{eq:transformer_ff}
+\mathbf{h}_{\text{out}} &= \text{LayerNorm}(\mathbf{h}_{\text{attn}} + \text{FFN}(\mathbf{h}_{\text{attn}}))
 \end{align}
 
-\noindent The final hidden state $\mathbf{h}_T^{(2)} \in \mathbb{R}^{128}$ feeds the classification head.
+The output sequence is aggregated by mean pooling across the sequence dimension and normalized by a final LayerNorm layer, producing a single 128-dimensional EEG embedding vector $\mathbf{v}_{\text{EEG}} \in \mathbb{R}^{128}$.
 
-\subsection{Classification Head}
+\subsection{ECG MLP Encoder}
+\label{subsec:ecg_encoder}
 
-Two fully connected layers (64 units with ReLU and dropout 0.2) followed by a softmax output over $C = 34$ classes:
+The ECG encoder processes the 187-dimensional ECG feature vector through a two-layer MLP with batch normalization, ReLU activation, and dropout:
 
 \begin{equation}
-\label{eq:softmax}
-P(y = c \mid \mathbf{x}) = \frac{\exp(\mathbf{w}_c^T \mathbf{h} + b_c)}{\sum_{j=1}^{C} \exp(\mathbf{w}_j^T \mathbf{h} + b_j)}
+\label{eq:ecg_enc}
+\mathbf{v}_{\text{ECG}} = \text{Dropout}\left(\text{ReLU}\left(\text{BN}\left(\mathbf{W}_2 \cdot \text{Dropout}\left(\text{ReLU}\left(\text{BN}\left(\mathbf{W}_1 \mathbf{x}_{\text{ECG}} + \mathbf{b}_1\right)\right)\right) + \mathbf{b}_2\right)\right)\right)
 \end{equation}
 
-Figure~\ref{fig:architecture} presents the complete architecture.
+\noindent where $\mathbf{W}_1 \in \mathbb{R}^{256 \times 187}$ and $\mathbf{W}_2 \in \mathbb{R}^{128 \times 256}$. Batch normalization stabilizes training and acts as a regularizer. The dropout rate is 0.3 for the ECG encoder, higher than the EEG encoder's 0.1, reflecting the higher dimensionality and potential redundancy in the ECG feature space. The output is a 128-dimensional ECG embedding $\mathbf{v}_{\text{ECG}} \in \mathbb{R}^{128}$.
+
+\subsection{Bidirectional Cross-Attention Fusion}
+\label{subsec:fusion}
+
+The cross-attention fusion module models the interactions between the EEG and ECG embeddings through two parallel multi-head attention operations. In the first, the EEG embedding queries the ECG embedding; in the second, the ECG embedding queries the EEG embedding. This bidirectional design allows the model to learn both how brain activity informs cardiac interpretation and how cardiac activity informs brain signal interpretation.
+
+Formally, each embedding is unsqueezed to add a sequence dimension of length 1 for compatibility with the attention interface. The bidirectional attention is:
+
+\begin{align}
+\label{eq:eeg_to_ecg}
+\hat{\mathbf{v}}_{\text{EEG}} &= \text{LayerNorm}\left(\mathbf{v}_{\text{EEG}} + \text{MultiHead}(\mathbf{v}_{\text{EEG}}, \mathbf{v}_{\text{ECG}}, \mathbf{v}_{\text{ECG}})\right) \\
+\label{eq:ecg_to_eeg}
+\hat{\mathbf{v}}_{\text{ECG}} &= \text{LayerNorm}\left(\mathbf{v}_{\text{ECG}} + \text{MultiHead}(\mathbf{v}_{\text{ECG}}, \mathbf{v}_{\text{EEG}}, \mathbf{v}_{\text{EEG}})\right)
+\end{align}
+
+The attended embeddings are concatenated and projected through a linear layer to produce the fused representation:
+
+\begin{equation}
+\label{eq:fusion_proj}
+\mathbf{v}_{\text{fused}} = \mathbf{W}_{\text{fuse}}[\hat{\mathbf{v}}_{\text{EEG}} ; \hat{\mathbf{v}}_{\text{ECG}}] + \mathbf{b}_{\text{fuse}}, \quad \mathbf{v}_{\text{fused}} \in \mathbb{R}^{128}
+\end{equation}
+
+\noindent where $\mathbf{W}_{\text{fuse}} \in \mathbb{R}^{128 \times 256}$. The cross-attention module uses 4 attention heads and dropout of 0.1. Figure~\ref{fig:architecture} presents the complete NeuroFusionGPT architecture.
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    node distance=0.8cm,
-    layer/.style={rectangle, draw, fill=blue!8, text width=4.5cm, text centered, minimum height=0.9cm, font=\small},
+    node distance=0.7cm,
+    layer/.style={rectangle, draw, fill=blue!8, text width=5cm, text centered, minimum height=0.8cm, font=\small},
+    sublayer/.style={rectangle, draw, fill=green!8, text width=5cm, text centered, minimum height=0.8cm, font=\small},
+    fusionlayer/.style={rectangle, draw, fill=orange!12, text width=5cm, text centered, minimum height=0.8cm, font=\small},
     arrow/.style={->, thick, >=stealth}
 ]
-\node[layer] (input) {Input: $(B \times 20 \times 42)$};
-\node[layer, below=of input] (conv1) {1D-Conv (64, $k$=3) + BN + ReLU};
-\node[layer, below=of conv1] (pool1) {MaxPool (size=2)};
-\node[layer, below=of pool1] (conv2) {1D-Conv (128, $k$=3) + BN + ReLU};
-\node[layer, below=of conv2] (pool2) {MaxPool (size=2)};
-\node[layer, below=of pool2] (conv3) {1D-Conv (256, $k$=3) + BN + ReLU};
-\node[layer, below=of conv3] (flat) {Flatten + Reshape to Sequence};
-\node[layer, below=of flat] (lstm1) {LSTM Layer 1 (128 units)};
-\node[layer, below=of lstm1] (lstm2) {LSTM Layer 2 (128 units)};
-\node[layer, below=of lstm2] (drop2) {Dropout (0.3)};
-\node[layer, below=of drop2] (fc1) {Dense (64) + ReLU + Dropout(0.2)};
-\node[layer, below=of fc1] (fc2) {Dense (34) + Softmax};
+\node[layer] (eeg_in) {EEG Input: $(B, 16)$};
+\node[layer, below=of eeg_in] (eeg_emb) {Linear Embedding: $(B, 16, 128)$};
+\node[layer, below=of eeg_emb] (eeg_pe) {Sinusoidal Positional Encoding};
+\node[layer, below=of eeg_pe] (eeg_tx) {Transformer Encoder (3 layers, 8 heads)};
+\node[layer, below=of eeg_tx] (eeg_pool) {Mean Pooling + LayerNorm: $(B, 128)$};
 
-\draw[arrow] (input) -- (conv1);
-\draw[arrow] (conv1) -- (pool1);
-\draw[arrow] (pool1) -- (conv2);
-\draw[arrow] (conv2) -- (pool2);
-\draw[arrow] (pool2) -- (conv3);
-\draw[arrow] (conv3) -- (flat);
-\draw[arrow] (flat) -- (lstm1);
-\draw[arrow] (lstm1) -- (lstm2);
-\draw[arrow] (lstm2) -- (drop2);
-\draw[arrow] (drop2) -- (fc1);
-\draw[arrow] (fc1) -- (fc2);
+\node[sublayer, right=3cm of eeg_in] (ecg_in) {ECG Input: $(B, 187)$};
+\node[sublayer, below=of ecg_in] (ecg_l1) {Linear(187, 256) + BN + ReLU};
+\node[sublayer, below=of ecg_l1] (ecg_l2) {Linear(256, 128) + BN + ReLU};
+\node[sublayer, below=of ecg_l2] (ecg_drop) {Dropout(0.3): $(B, 128)$};
 
-\draw[decorate, decoration={brace, mirror, amplitude=8pt}] ([xshift=-0.4cm]conv1.north west) -- ([xshift=-0.4cm]flat.south west) node[midway, left=0.5cm, text width=1.5cm, text centered, font=\footnotesize] {CNN Module};
-\draw[decorate, decoration={brace, mirror, amplitude=8pt}] ([xshift=-0.4cm]lstm1.north west) -- ([xshift=-0.4cm]drop2.south west) node[midway, left=0.5cm, text width=1.5cm, text centered, font=\footnotesize] {LSTM Module};
+\node[fusionlayer, below=3.2cm of ecg_drop, xshift=-3cm] (fuse) {Bidirectional Cross-Attention (4 heads)};
+\node[fusionlayer, below=of fuse] (concat) {Concat + Linear$(256 \to 128)$};
+\node[layer, below=of concat] (cls1) {Linear(128, 256) + ReLU + Dropout(0.2)};
+\node[layer, below=of cls1] (cls2) {Linear(256, 5) + Softmax};
+
+\draw[arrow] (eeg_in) -- (eeg_emb);
+\draw[arrow] (eeg_emb) -- (eeg_pe);
+\draw[arrow] (eeg_pe) -- (eeg_tx);
+\draw[arrow] (eeg_tx) -- (eeg_pool);
+\draw[arrow] (eeg_pool) |- (fuse);
+\draw[arrow] (ecg_in) -- (ecg_l1);
+\draw[arrow] (ecg_l1) -- (ecg_l2);
+\draw[arrow] (ecg_l2) -- (ecg_drop);
+\draw[arrow] (ecg_drop) |- (fuse);
+\draw[arrow] (fuse) -- (concat);
+\draw[arrow] (concat) -- (cls1);
+\draw[arrow] (cls1) -- (cls2);
 
 \end{tikzpicture}
-\caption[CNN-LSTM hybrid architecture diagram]{Detailed architecture of the proposed CNN-LSTM hybrid model. The CNN module extracts spatial features through three convolutional blocks; the LSTM module captures temporal dependencies through two stacked layers; the classification head produces probabilities over 34 classes.}
+\caption[Detailed NeuroFusionGPT architecture]{Detailed architecture of the NeuroFusionGPT model. The EEG Transformer Encoder (left, blue) and ECG MLP Encoder (right, green) produce 128-dimensional embeddings that are fused by the bidirectional cross-attention module (orange). The classifier head produces a probability distribution over five stress classes.}
 \label{fig:architecture}
 \end{figure}
+
+\subsection{Classifier Head}
+\label{subsec:classifier}
+
+The classifier head is a two-layer MLP that maps the 128-dimensional fused representation to 5 class logits:
+
+\begin{equation}
+\label{eq:classifier}
+\hat{\mathbf{y}} = \mathbf{W}_3 \cdot \text{ReLU}\left(\text{Dropout}\left(\mathbf{W}_2 \cdot \mathbf{v}_{\text{fused}} + \mathbf{b}_2\right)\right) + \mathbf{b}_3
+\end{equation}
+
+\noindent where $\mathbf{W}_2 \in \mathbb{R}^{256 \times 128}$ and $\mathbf{W}_3 \in \mathbb{R}^{5 \times 256}$, with dropout rate 0.2. The softmax function converts logits to a probability distribution over the five stress classes:
+
+\begin{equation}
+\label{eq:softmax}
+P(y = c \mid \mathbf{x}_{\text{EEG}}, \mathbf{x}_{\text{ECG}}) = \frac{\exp(\hat{y}_c)}{\sum_{j=0}^{4} \exp(\hat{y}_j)}
+\end{equation}
 
 \section{Training Procedure}
 \label{sec:training}
 
-\subsection{Dataset Partitioning}
+\subsection{Loss Function}
+\label{subsec:loss}
 
-A temporally-ordered, stratified 70/15/15 split produces training, validation, and test sets, preserving class distributions and preventing data leakage from future flows into the training set.
+Training uses focal loss (Equation~\ref{eq:focal}) with the class weights from Table~\ref{tab:class_dist} and focusing parameter $\gamma = 2.0$. This loss formulation addresses class imbalance through both the frequency-based $\alpha_c$ weights, which increase the loss contribution of rare classes, and the $(1 - p_t)^{\gamma}$ focusing term, which down-weights easy examples and directs learning toward harder boundary cases.
 
-\subsection{Optimization and Hyperparameters}
+\subsection{Optimization}
+\label{subsec:optimization}
 
-The model is trained using the Adam optimizer~\cite{kingma2015} with a cosine annealing learning rate schedule~\cite{loshchilov2017}:
+The AdamW optimizer~\cite{loshchilov2019} is used with an initial learning rate of $3 \times 10^{-4}$ and weight decay of $0.01$. The learning rate is reduced by a factor of 0.5 when the validation macro F1-score does not improve for 5 consecutive epochs (ReduceLROnPlateau scheduler with minimum learning rate $10^{-5}$). Gradient clipping with maximum norm 1.0 prevents exploding gradients in the Transformer layers.
 
-\begin{equation}
-\label{eq:cosine_lr}
-\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos\left(\frac{T_{\text{cur}}}{T_i}\pi\right)\right)
-\end{equation}
-
-Table~\ref{tab:hyperparameters} summarizes the hyperparameter configuration.
+Table~\ref{tab:hyperparameters} summarizes the complete training configuration.
 
 \begin{table}[H]
 \centering
-\caption[Training hyperparameter configuration]{Hyperparameter configuration determined through grid search and established best practices.}
+\caption[Training hyperparameter configuration]{Complete hyperparameter configuration for NeuroFusionGPT training.}
 \label{tab:hyperparameters}
 \begin{tabular}{ll}
 \toprule
 \textbf{Hyperparameter} & \textbf{Value} \\
 \midrule
-Initial learning rate & $1 \times 10^{-3}$ \\
-LR schedule & Cosine annealing with warm restarts \\
-Batch size & 256 \\
-Max epochs & 100 \\
-Early stopping patience & 10 epochs \\
-Optimizer & Adam ($\beta_1=0.9$, $\beta_2=0.999$) \\
-CNN filters (layers 1/2/3) & 64 / 128 / 256 \\
-CNN kernel size & 3 \\
-LSTM hidden units & 128 / 128 \\
-LSTM dropout & 0.3 \\
-Dense units & 64 \\
-Dense dropout & 0.2 \\
-Window length ($T$) & 20 \\
-Loss function & Focal loss ($\gamma = 2.0$) \\
+Batch size & 128 \\
+Maximum epochs & 50 \\
+Optimizer & AdamW ($\beta_1=0.9$, $\beta_2=0.999$) \\
+Initial learning rate & $3 \times 10^{-4}$ \\
+Weight decay & 0.01 \\
+LR scheduler & ReduceLROnPlateau (factor=0.5, patience=5) \\
+Minimum learning rate & $1 \times 10^{-5}$ \\
+Loss function & Focal loss ($\gamma = 2.0$, class-weighted) \\
+Early stopping patience & 10 epochs (on macro F1) \\
 Gradient clipping & Max norm = 1.0 \\
-Weight initialization & Glorot uniform \\
+$d_{\text{model}}$ & 128 \\
+Transformer layers & 3 \\
+Attention heads (EEG) & 8 \\
+Attention heads (fusion) & 4 \\
+Feed-forward dimension & 256 \\
+EEG encoder dropout & 0.1 \\
+ECG encoder dropout & 0.3 \\
+Classifier dropout & 0.2 \\
+Total parameters & 679,557 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Gradient clipping prevents exploding gradients. Early stopping monitors validation loss and restores the best epoch's weights. Regularization combines dropout~\cite{srivastava2014}, batch normalization~\cite{ioffe2015}, and L2 weight decay ($10^{-5}$).
+\subsection{Early Stopping and Model Selection}
+\label{subsec:early_stopping}
+
+Early stopping monitors the validation macro F1-score and terminates training if no improvement is observed for 10 consecutive epochs. The model checkpoint with the highest validation macro F1-score is saved and used for final test evaluation. This strategy prevents overfitting while ensuring that the selected model generalizes well across all classes, not just the majority class. Macro F1 is chosen over accuracy as the monitoring metric because it equally weights per-class performance regardless of class frequency.
 
 \section{Evaluation Framework}
 \label{sec:eval_framework}
 
-\subsection{Performance Metrics}
+The evaluation employs multiple metrics to provide a comprehensive assessment of classification performance on the imbalanced dataset. Overall accuracy measures the proportion of correctly classified samples. Balanced accuracy computes the average of per-class recall values, giving equal weight to each class regardless of frequency. Macro F1-score computes the unweighted mean of per-class F1-scores:
 
-Per-class precision, recall, and F1-score are computed and aggregated via macro-averaging:
+\begin{equation}
+\label{eq:macro_f1}
+\text{Macro-F1} = \frac{1}{C}\sum_{c=0}^{C-1} \frac{2 \cdot \text{Precision}_c \cdot \text{Recall}_c}{\text{Precision}_c + \text{Recall}_c}
+\end{equation}
 
-\begin{align}
-\label{eq:precision}
-\text{Precision}_c &= \frac{TP_c}{TP_c + FP_c}, \quad
-\text{Recall}_c = \frac{TP_c}{TP_c + FN_c} \\
-\label{eq:f1}
-\text{F1}_c &= \frac{2 \cdot \text{Precision}_c \cdot \text{Recall}_c}{\text{Precision}_c + \text{Recall}_c}, \quad
-\text{Macro-F1} = \frac{1}{C}\sum_{c=1}^{C} \text{F1}_c
-\end{align}
+Per-class precision, recall, and F1-score are reported to identify class-specific performance patterns. The confusion matrix is visualized to reveal misclassification patterns between stress levels. ROC curves and per-class AUC values are computed using the one-versus-rest strategy.
 
-The Matthews Correlation Coefficient (MCC)~\cite{chicco2020}, the most informative single metric for imbalanced multi-class classification, is also reported.
+\section{LLM Integration}
+\label{sec:llm_integration}
 
-\subsection{Baseline Models}
-
-Baselines include Random Forest (200 estimators, depth 30), XGBoost (300 rounds, depth 8), MLP (three hidden layers: 256, 128, 64), standalone 1D-CNN, and standalone LSTM, all evaluated under identical preprocessing and partitioning conditions.
-
-\subsection{Computational Performance}
-
-Measurements include training time, inference latency, memory utilization, and throughput on an NVIDIA A100 server and an NVIDIA Jetson Xavier NX edge platform.
+The optional LLM feedback module uses the OpenRouter API with the Grok model (\texttt{x-ai/grok-4.1-fast}) to generate personalized wellness advice. After the NeuroFusionGPT model produces a stress prediction, the predicted label, confidence score, and full probability distribution are formatted into a structured prompt. The LLM is instructed to act as a wellness assistant, providing a brief interpretation of the result and one or two actionable stress management tips. The temperature is set to 0.7 to balance coherence and variability, and the maximum response length is 250 tokens for conciseness. The API key is stored as an environment variable and loaded via \texttt{python-dotenv}.
 
 
 % =========================================================================
@@ -708,235 +757,189 @@ Measurements include training time, inference latency, memory utilization, and t
 \chapter{Implementation and Results}
 \label{ch:results}
 
-This chapter presents implementation details and experimental results, covering the software environment, dataset analysis, preprocessing outcomes, training dynamics, classification performance, ablation studies, and computational efficiency.
+This chapter presents the implementation details, training dynamics, and experimental results of the NeuroFusionGPT framework.
 
 \section{Implementation Environment}
 \label{sec:implementation}
 
-The framework was implemented in Python 3.10 using PyTorch 2.0, with Pandas 2.0, NumPy 1.24, Scikit-learn 1.2, and Imbalanced-learn 0.10 for preprocessing. Training was conducted on a node with dual AMD EPYC 7763 processors (128 cores), 512 GB RAM, and four NVIDIA A100 40GB GPUs. Mixed-precision training via PyTorch AMP reduced memory consumption and accelerated computation. Edge benchmarking used an NVIDIA Jetson Xavier NX with TensorRT optimization.
+The framework was implemented in Python 3.10 using PyTorch 2.0 as the deep learning framework. Data preprocessing utilized Pandas 2.0, NumPy 1.24, and Scikit-learn 1.3. Visualization was performed with Matplotlib 3.7 and Seaborn 0.12. The LLM integration uses the \texttt{requests} library with the OpenRouter API. All model components were implemented as \texttt{nn.Module} subclasses with custom dataset classes implementing PyTorch's \texttt{Dataset} interface.
 
-\section{Dataset Analysis}
-\label{sec:data_analysis}
+Training was conducted in Google Colab with optional GPU acceleration. The model's compact size (679,557 parameters, approximately 2 MB checkpoint) enables training on free-tier Colab instances. Trained artifacts, including the model checkpoint (\texttt{best\_fusion\_model.pth}), preprocessing scalers (\texttt{scaler\_eeg.pkl}, \texttt{scaler\_ecg.pkl}), and configuration (\texttt{model\_config.json}), are saved to Google Drive for subsequent local deployment.
 
-The CIC-IoT2023 dataset comprises 169 CSV files totaling 28 GB. After concatenation and deduplication, 33,440,896 flow records are distributed across 34 classes. Table~\ref{tab:class_distribution} presents the distribution by attack family.
+\section{Training Dynamics}
+\label{sec:training_results}
+
+The model was trained for 37 epochs before early stopping was triggered. The best model, as determined by the highest validation macro F1-score of 0.801, was obtained at epoch 27. Table~\ref{tab:training_summary} summarizes key training milestones.
 
 \begin{table}[H]
 \centering
-\caption[Class distribution of the CIC-IoT2023 dataset]{Class distribution aggregated by attack family, illustrating severe imbalance with DDoS constituting nearly 59\% of malicious traffic.}
-\label{tab:class_distribution}
-\begin{tabular}{lrr}
+\caption[Training summary]{Summary of training dynamics for the NeuroFusionGPT model, including learning rate reductions triggered by the ReduceLROnPlateau scheduler.}
+\label{tab:training_summary}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Attack Family} & \textbf{Flow Records} & \textbf{Percentage} \\
+\textbf{Epoch} & \textbf{Train Loss} & \textbf{Val Acc.} & \textbf{Val Macro F1} & \textbf{Learning Rate} \\
 \midrule
-Benign & 1,098,437 & 3.28\% \\
-DDoS & 19,706,852 & 58.93\% \\
-DoS & 5,218,463 & 15.61\% \\
-Mirai & 4,892,145 & 14.63\% \\
-Reconnaissance & 1,256,893 & 3.76\% \\
-Spoofing & 687,421 & 2.06\% \\
-Brute Force & 412,356 & 1.23\% \\
-Web-based & 168,329 & 0.50\% \\
-\midrule
-\textbf{Total} & \textbf{33,440,896} & \textbf{100.00\%} \\
+1 & 0.3721 & 0.8828 & 0.664 & $3.0 \times 10^{-4}$ \\
+7 & 0.1747 & 0.8746 & 0.687 & $3.0 \times 10^{-4}$ \\
+12 & 0.1465 & 0.9175 & 0.736 & $3.0 \times 10^{-4}$ \\
+17 & 0.1223 & 0.9090 & 0.723 & $3.0 \times 10^{-4}$ \\
+18 & 0.1162 & 0.8845 & 0.696 & $1.5 \times 10^{-4}$ \\
+24 & 0.0994 & 0.9261 & 0.767 & $1.5 \times 10^{-4}$ \\
+\textbf{27} & \textbf{0.0898} & \textbf{0.9381} & \textbf{0.801} & $1.5 \times 10^{-4}$ \\
+33 & 0.0874 & 0.9243 & 0.758 & $7.5 \times 10^{-5}$ \\
+37 & 0.0662 & 0.9390 & 0.777 & $7.5 \times 10^{-5}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The largest individual attack type (DDoS-ICMP\_Flood) contains over 4.8 million records while the smallest (Web-based SQL\_Injection) contains fewer than 12,000, a ratio exceeding 400:1.
+The training dynamics reveal several notable patterns. The training loss decreased rapidly during the first 10 epochs (from 0.372 to 0.151), indicating that the model quickly learned dominant class boundaries. The validation macro F1 improved more gradually, reflecting the difficulty of improving performance on minority classes. The ReduceLROnPlateau scheduler triggered two learning rate reductions: from $3 \times 10^{-4}$ to $1.5 \times 10^{-4}$ at epoch 18, and from $1.5 \times 10^{-4}$ to $7.5 \times 10^{-5}$ at epoch 33. Each reduction was followed by a period of continued improvement, suggesting that the smaller learning rate allowed the optimizer to refine the decision boundaries for harder classes.
 
-\section{Preprocessing Results}
-\label{sec:preprocess_results}
-
-Preprocessing completed in approximately 45 minutes. The cleaning stage removed 23,847 duplicates (0.07\%) and 1,294 records with critical missing fields. Infinite values in 2.3\% of flow duration and inter-arrival time features were replaced with feature-specific medians. Feature selection reduced dimensionality from 46 to 38 base features; four engineered features produced a final dimensionality of 42.
-
-Figure~\ref{fig:correlation_matrix} visualizes the feature correlation structure after selection.
+Figure~\ref{fig:training_curves} illustrates the training and validation curves.
 
 \begin{figure}[H]
 \centering
 \fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
-\textbf{[Feature Correlation Heatmap]}\\[0.5cm]
-A heatmap showing pairwise Pearson correlations among 42 selected features, with colors from dark blue ($-1.0$) through white ($0.0$) to dark red ($+1.0$). After feature selection, no pairs exceed $|r| > 0.95$, while moderate correlations between related statistics are preserved.
+\textbf{[Training Curves: Loss, Accuracy, and F1 over Epochs]}\\[0.5cm]
+A three-panel figure showing: (Left) Training loss (blue) decreasing from 0.37 to 0.07, validation loss (orange) oscillating between 0.11 and 0.16. (Center) Validation accuracy increasing from 0.88 to 0.94, with the best model at epoch 27 reaching 0.938. (Right) Validation macro F1-score increasing from 0.66 to 0.80, peaking at epoch 27 (0.801) before plateauing.
 \vspace{1.5cm}}}
-\caption[Feature correlation matrix]{Pairwise Pearson correlation matrix for the 42 retained features, confirming successful removal of redundant features while preserving discriminative information.}
-\label{fig:correlation_matrix}
-\end{figure}
-
-Class balancing via square-root frequency scaling produced 4,987,312 training instances with a maximum-to-minimum class ratio of 18.7:1, reduced from the original 402.3:1.
-
-\section{Training Performance}
-\label{sec:training_results}
-
-The model trained for 67 epochs before early stopping, with the best model at epoch 57. Training required 14.2 GPU-hours on a single A100 (12.7 minutes per epoch). Peak memory utilization was 18.4 GB.
-
-Figure~\ref{fig:training_curves} presents the training dynamics.
-
-\begin{figure}[H]
-\centering
-\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
-\textbf{[Training and Validation Loss/Accuracy Curves]}\\[0.5cm]
-Dual-panel figure: (Left) Training loss (solid blue) and validation loss (dashed orange) vs.\ epoch. Both decrease rapidly initially; validation loss plateaus around epoch 45 and increases slightly after epoch 57. (Right) Validation accuracy (green) reaches 97.83\% at epoch 57 before slight decline.
-\vspace{1.5cm}}}
-\caption[Training and validation curves]{Training dynamics over 67 epochs. Divergence after epoch 57 triggered early stopping. Peak validation accuracy: 97.83\%.}
+\caption[Training and validation curves]{Training dynamics of NeuroFusionGPT over 37 epochs. The best model at epoch 27 achieves the highest validation macro F1-score of 0.801. Learning rate reductions at epochs 18 and 33 enable continued refinement.}
 \label{fig:training_curves}
 \end{figure}
 
-\section{Classification Performance}
-\label{sec:classification_results}
+\section{Test Set Classification Performance}
+\label{sec:test_results}
 
-\subsection{Overall Performance Comparison}
+\subsection{Overall Metrics}
 
-Table~\ref{tab:model_comparison} compares all models on the test set.
+Table~\ref{tab:test_metrics} presents the test set performance of the best model (epoch 27).
 
 \begin{table}[H]
 \centering
-\caption[Performance comparison of all models]{Comprehensive performance comparison on the CIC-IoT2023 test set. Bold values indicate best performance. The CNN-LSTM hybrid achieves the highest scores across all metrics.}
-\label{tab:model_comparison}
-\begin{tabular}{lcccccc}
+\caption[Test set overall metrics]{Overall classification metrics for the NeuroFusionGPT fusion model on the held-out test set. The model achieves 93.15\% accuracy and 91.33\% balanced accuracy, with a macro F1-score of 0.783.}
+\label{tab:test_metrics}
+\begin{tabular}{lr}
 \toprule
-\textbf{Model} & \textbf{Acc.} & \textbf{Mac-P} & \textbf{Mac-R} & \textbf{Mac-F1} & \textbf{W-F1} & \textbf{MCC} \\
+\textbf{Metric} & \textbf{Value} \\
 \midrule
-Random Forest & 95.12 & 0.903 & 0.907 & 0.920 & 0.950 & 0.919 \\
-XGBoost & 96.04 & 0.929 & 0.932 & 0.940 & 0.960 & 0.936 \\
-MLP & 94.56 & 0.886 & 0.891 & 0.893 & 0.941 & 0.902 \\
-CNN & 96.28 & 0.920 & 0.923 & 0.931 & 0.962 & 0.940 \\
-LSTM & 96.14 & 0.918 & 0.920 & 0.929 & 0.961 & 0.938 \\
-\textbf{CNN-LSTM} & \textbf{97.83} & \textbf{0.959} & \textbf{0.961} & \textbf{0.964} & \textbf{0.978} & \textbf{0.969} \\
+Accuracy & 0.9315 (93.15\%) \\
+Balanced Accuracy & 0.9133 (91.33\%) \\
+Macro F1-Score & 0.7826 \\
+Test Loss & 0.2053 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The CNN-LSTM's macro-F1 of 0.964 exceeds the standalone CNN (0.931) by 3.3 and LSTM (0.929) by 3.5 percentage points, confirming synergistic benefit. Among traditional baselines, XGBoost achieves the strongest performance (macro-F1: 0.940), consistent with gradient boosting's effectiveness on structured tabular data.
+The model achieves an overall accuracy of 93.15\%, which is a strong result given the five-class classification task. The balanced accuracy of 91.33\% is slightly lower, indicating some performance degradation on minority classes, but still demonstrates that the model maintains reasonably good recall across all classes. The gap between accuracy and balanced accuracy (1.82 percentage points) is modest, suggesting that the focal loss and class weighting strategy partially mitigates the class imbalance bias.
 
-\subsection{Per-Family Performance}
+The macro F1-score of 0.783 is lower than both the accuracy and balanced accuracy because it is disproportionately affected by low per-class F1-scores for the minority classes. As a metric that equally weights all classes regardless of size, macro F1 provides the most conservative and informative assessment of the model's ability to handle the full spectrum of stress levels.
 
-Table~\ref{tab:family_performance} presents per-family metrics for the CNN-LSTM model.
+\subsection{Per-Class Analysis}
+
+Table~\ref{tab:per_class} presents the per-class precision, recall, and F1-score, revealing the detailed performance profile across the five stress levels.
 
 \begin{table}[H]
 \centering
-\caption[Per-attack-family classification performance]{Per-family precision, recall, and F1-score for the CNN-LSTM model. Performance is consistently high, with the lowest F1-score (0.929) for the Web-based family.}
-\label{tab:family_performance}
-\begin{tabular}{lccc}
+\caption[Per-class classification metrics]{Per-class precision, recall, and F1-score for the NeuroFusionGPT model. Strong performance on Calm and Severe Stress classes contrasts with lower performance on the minority Mild Stress and High Stress classes.}
+\label{tab:per_class}
+\begin{tabular}{llccc}
 \toprule
-\textbf{Attack Family} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+\textbf{Class} & \textbf{Label} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
 \midrule
-Benign & 0.981 & 0.973 & 0.977 \\
-DDoS & 0.989 & 0.992 & 0.991 \\
-DoS & 0.976 & 0.969 & 0.972 \\
-Mirai & 0.983 & 0.980 & 0.982 \\
-Reconnaissance & 0.962 & 0.958 & 0.960 \\
-Spoofing & 0.949 & 0.941 & 0.945 \\
-Brute Force & 0.938 & 0.936 & 0.937 \\
-Web-based & 0.930 & 0.927 & 0.929 \\
+0 & Calm & 0.993 & 0.929 & 0.960 \\
+1 & Mild Stress & 0.362 & 0.815 & 0.501 \\
+2 & Moderate Stress & 0.821 & 0.954 & 0.882 \\
+3 & High Stress & 0.470 & 0.883 & 0.614 \\
+4 & Severe Stress & 0.927 & 0.986 & 0.956 \\
 \midrule
-\textbf{Macro Average} & \textbf{0.964} & \textbf{0.960} & \textbf{0.962} \\
+& \textbf{Macro Average} & \textbf{0.715} & \textbf{0.913} & \textbf{0.783} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The model achieves its highest F1-score for DDoS (0.991), expected given the large training set and distinctive volumetric patterns. Web-based attacks show the lowest F1 (0.929) due to fewer training instances and the difficulty of distinguishing application-layer attacks from legitimate web traffic using flow-level features alone. Error analysis reveals that primary misclassifications occur between semantically related types (e.g., SSH vs. FTP brute force) and between low-rate scanning and benign traffic.
+The per-class analysis reveals a clear pattern that correlates with class frequency. The two largest classes, Calm (F1: 0.960) and Severe Stress (F1: 0.956), achieve excellent performance with F1-scores above 0.95. Moderate Stress (F1: 0.882) also performs well. However, the two minority classes present a challenge: Mild Stress (F1: 0.501) and High Stress (F1: 0.614) exhibit substantially lower F1-scores.
 
-\subsection{Confusion Matrix and ROC Analysis}
+The per-class metrics reveal an informative precision-recall trade-off pattern. The minority classes achieve high recall (Mild Stress: 0.815, High Stress: 0.883) but low precision (0.362 and 0.470 respectively). This indicates that the focal loss and class weighting successfully encourage the model to detect minority-class instances (high recall), but at the cost of generating false positives from majority-class instances being misclassified into these minority categories (low precision). The Calm class shows the opposite pattern: very high precision (0.993) but somewhat lower recall (0.929), indicating that instances classified as Calm are almost always correct, but some Calm instances are misclassified into other categories.
 
-Figure~\ref{fig:confusion_matrix} presents the normalized confusion matrix and Figure~\ref{fig:roc_curves} shows multi-class ROC curves.
+\subsection{Confusion Matrix}
+
+Figure~\ref{fig:confusion_matrix} presents the confusion matrix, revealing the specific misclassification patterns.
 
 \begin{figure}[H]
 \centering
 \fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
-\textbf{[Normalized Confusion Matrix]}\\[0.5cm]
-An $8 \times 8$ heatmap showing strong diagonal dominance (0.927--0.992). Notable off-diagonal values: Spoofing$\rightarrow$Reconnaissance (0.031), Web-based$\rightarrow$Benign (0.028), DoS$\rightarrow$DDoS (0.018). Misclassifications occur between semantically related attack types.
+\textbf{[Confusion Matrix Heatmap]}\\[0.5cm]
+A $5 \times 5$ confusion matrix with true labels on the vertical axis and predicted labels on the horizontal axis. Key values: Calm correctly classified 16,830/18,118 (92.9\%), with 782 misclassified as Mild Stress and 267 as Moderate Stress. Mild Stress correctly classified 453/556 (81.5\%), with 80 misclassified as Calm. Moderate Stress correctly classified 1,381/1,448 (95.4\%), with 35 as High Stress. High Stress correctly classified 143/162 (88.3\%). Severe Stress correctly classified 1,586/1,608 (98.6\%).
 \vspace{1.5cm}}}
-\caption[Normalized confusion matrix]{Normalized confusion matrix for the CNN-LSTM model. Strong diagonal values confirm high accuracy; off-diagonal patterns reflect semantic similarity between certain attack families.}
+\caption[Confusion matrix for NeuroFusionGPT]{Confusion matrix showing prediction counts for each true-predicted class pair. The dominant misclassification pattern is Calm instances being classified as Mild Stress (782 instances), which accounts for the low precision of the Mild Stress class.}
 \label{fig:confusion_matrix}
 \end{figure}
+
+The confusion matrix reveals that the primary source of classification errors is the misclassification of Calm instances (Class 0) into neighboring stress levels, particularly Mild Stress (782 instances) and Moderate Stress (267 instances). This pattern is consistent with the inherent difficulty of distinguishing between adjacent stress levels, as the physiological boundaries between Calm and Mild Stress are likely continuous rather than discrete. These 782 false positives from Calm into Mild Stress directly explain the low precision (0.362) of the Mild Stress class: out of all instances predicted as Mild Stress, the majority are actually Calm instances. Similarly, 124 Calm instances are misclassified as High Stress, contributing to its low precision (0.470).
+
+The confusion matrix also shows that Severe Stress is the most reliably classified category, with only 22 out of 1,608 instances misclassified, reflecting the strong and distinctive physiological signature associated with severe stress states.
+
+\subsection{ROC Analysis}
+
+Figure~\ref{fig:roc_curves} presents the ROC curves for each class.
 
 \begin{figure}[H]
 \centering
 \fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
 \textbf{[Multi-class ROC Curves]}\\[0.5cm]
-One-versus-rest ROC curves for all 8 classes, tightly clustered in the upper-left corner. AUC values: DDoS (0.9994), Mirai (0.9987), Benign (0.9983), DoS (0.9976), Reconnaissance (0.9961), Spoofing (0.9942), Brute Force (0.9923), Web-based (0.9908). Macro-average AUC: 0.9959.
+ROC curves in one-versus-rest configuration for all five classes. All curves are well above the diagonal random-classifier baseline. Severe Stress and Calm achieve the highest AUC values ($>0.99$), while Mild Stress and High Stress achieve lower but still strong AUC values ($>0.95$), indicating that the model's probability estimates provide good discriminative ability even for minority classes.
 \vspace{1.5cm}}}
-\caption[Multi-class ROC curves]{ROC curves for each family in one-versus-rest configuration. All classes achieve AUC $>$ 0.99, indicating excellent discrimination.}
+\caption[ROC curves for NeuroFusionGPT]{ROC curves for each stress class in a one-versus-rest configuration. All classes achieve AUC values above 0.95, indicating strong discriminative capability of the model's probability estimates across the full threshold range.}
 \label{fig:roc_curves}
 \end{figure}
 
-\section{Ablation Study}
-\label{sec:ablation}
+The ROC analysis demonstrates that the model's probability estimates provide good discriminative ability across all classes, even those with lower F1-scores. This suggests that the low precision for minority classes is a threshold artifact: with calibrated threshold selection, the precision-recall trade-off could potentially be adjusted for specific deployment requirements.
 
-Table~\ref{tab:ablation} quantifies contributions of key components.
+\section{Confidence Analysis}
+\label{sec:confidence}
+
+Figure~\ref{fig:confidence} presents the model's prediction confidence patterns across correctly and incorrectly classified instances.
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
+\textbf{[Confidence Distribution Analysis]}\\[0.5cm]
+A distribution plot showing the predicted probability (confidence) for correctly classified instances (blue) and misclassified instances (red). Correctly classified instances are concentrated at high confidence ($>0.8$), while misclassified instances show a broader, lower-confidence distribution, indicating that the model's confidence is a useful indicator of prediction reliability.
+\vspace{1.5cm}}}
+\caption[Model confidence analysis]{Distribution of prediction confidence for correctly classified and misclassified instances. The separation between the distributions indicates that confidence scores can serve as a reliability indicator, enabling downstream applications to flag uncertain predictions.}
+\label{fig:confidence}
+\end{figure}
+
+The confidence analysis reveals that the model assigns higher confidence scores to correctly classified instances, with the distribution concentrated above 0.8, while misclassified instances show a broader, lower-confidence distribution. This separation suggests that the confidence score can serve as a useful reliability indicator in deployment scenarios, allowing the system to flag uncertain predictions for review or to modulate the certainty of the LLM-generated wellness feedback.
+
+\section{Model Architecture Summary}
+\label{sec:model_summary}
+
+Table~\ref{tab:model_summary} summarizes the key architectural properties of the deployed model.
 
 \begin{table}[H]
 \centering
-\caption[Ablation study results]{Ablation study showing the contribution of each component. All removals cause performance degradation.}
-\label{tab:ablation}
-\begin{tabular}{lccc}
+\caption[Model architecture summary]{Summary of the deployed NeuroFusionGPT model configuration and total parameter count, as stored in model\_config.json.}
+\label{tab:model_summary}
+\begin{tabular}{lr}
 \toprule
-\textbf{Configuration} & \textbf{Mac-F1} & \textbf{Accuracy} & \textbf{$\Delta$ F1} \\
+\textbf{Property} & \textbf{Value} \\
 \midrule
-Full model (CNN-LSTM) & 0.964 & 97.83\% & --- \\
-Remove CNN module & 0.929 & 96.14\% & $-$0.035 \\
-Remove LSTM module & 0.931 & 96.28\% & $-$0.033 \\
-Remove class balancing & 0.940 & 97.01\% & $-$0.024 \\
-Replace focal loss with CE & 0.951 & 97.34\% & $-$0.013 \\
-Reduce window to $T=5$ & 0.952 & 97.12\% & $-$0.012 \\
-Increase window to $T=50$ & 0.961 & 97.69\% & $-$0.003 \\
-Remove batch normalization & 0.953 & 97.21\% & $-$0.011 \\
+EEG input dimension & 16 \\
+ECG input dimension & 187 \\
+Embedding dimension ($d_{\text{model}}$) & 128 \\
+Number of stress classes & 5 \\
+Total parameters & 679,557 \\
+Model checkpoint size & $\sim$2 MB \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The CNN and LSTM modules make the largest individual contributions (F1 decreases of 0.035 and 0.033), confirming both spatial and temporal learning are essential. Class balancing is the third most impactful component ($-$0.024), primarily affecting minority class detection. The window length of $T = 20$ balances performance and computational cost, with $T = 5$ causing notable degradation and $T = 50$ offering only marginal improvement.
+\section{LLM Feedback Integration}
+\label{sec:llm_results}
 
-\section{Computational Efficiency}
-\label{sec:efficiency}
+The LLM integration module was tested with the OpenRouter API using the Grok model. Given a prediction of ``Moderate Stress'' with 87\% confidence, the system generates wellness feedback such as: ``Your readings suggest a moderate level of stress. Consider taking a short break to practice deep breathing or a brief walk outside. Even five minutes of focused relaxation can help reset your stress response.'' The feedback is contextually appropriate, concise, and actionable, fulfilling the design objective of translating numerical predictions into user-facing health guidance.
 
-Table~\ref{tab:computational} presents computational metrics across hardware platforms.
-
-\begin{table}[H]
-\centering
-\caption[Computational performance across platforms]{Computational performance on server (A100) and edge (Jetson Xavier NX) platforms. TensorRT provides $3.5\times$ speedup on edge.}
-\label{tab:computational}
-\begin{tabular}{lcc}
-\toprule
-\textbf{Metric} & \textbf{A100 (Server)} & \textbf{Xavier NX (Edge)} \\
-\midrule
-Training time (total) & 14.2 GPU-hours & N/A \\
-Training time (per epoch) & 12.7 minutes & N/A \\
-Inference latency (per flow) & 0.8 ms & 2.3 ms \\
-Inference latency (TensorRT) & 0.3 ms & 0.9 ms \\
-Peak memory (training) & 18.4 GB & N/A \\
-Peak memory (inference) & 2.1 GB & 1.4 GB \\
-Throughput (flows/sec) & 48,200 & 12,400 \\
-Throughput w/ TensorRT & 127,500 & 34,800 \\
-Model size (FP32 / FP16) & \multicolumn{2}{c}{10.9 MB / 5.5 MB} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-On edge hardware, inference latency of 2.3 ms per flow (0.9 ms with TensorRT) and throughput of 12,400 flows/sec (34,800 with TensorRT) are well within requirements for monitoring typical IoT gateway traffic volumes of hundreds to low thousands of flows per second. The compact 10.9 MB model fits comfortably within edge storage constraints.
-
-\section{Comparison with State-of-the-Art}
-\label{sec:sota_comparison}
-
-Table~\ref{tab:sota_comparison} contextualizes the results against recent published systems.
-
-\begin{table}[H]
-\centering
-\caption[Comparison with state-of-the-art]{Comparison with recent IDS methods. The proposed framework achieves competitive or superior performance with practical inference latency.}
-\label{tab:sota_comparison}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Method} & \textbf{Dataset} & \textbf{Accuracy} & \textbf{Mac-F1} & \textbf{Latency} \\
-\midrule
-Neto et al.\ (RF)~\cite{neto2023} & CIC-IoT2023 & 96.2\% & 0.921 & 0.5 ms \\
-Neto et al.\ (DNN)~\cite{neto2023} & CIC-IoT2023 & 95.8\% & 0.913 & 1.8 ms \\
-Ferrag et al.~\cite{ferrag2023} & Edge-IIoTset & 97.2\% & 0.948 & 3.1 ms \\
-Sarhan et al.~\cite{sarhan2023} & CIC-IoT2023 & 96.9\% & 0.937 & 2.7 ms \\
-\textbf{Proposed (CNN-LSTM)} & \textbf{CIC-IoT2023} & \textbf{97.83\%} & \textbf{0.964} & \textbf{2.3 ms} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The proposed framework achieves the highest accuracy and macro-F1 while maintaining competitive latency, with TensorRT reducing edge latency to 0.9 ms.
+The LLM module is designed as an optional, decoupled component. The core NeuroFusionGPT model operates independently and produces complete predictions (label, confidence, probability distribution) without requiring network connectivity or API access. The LLM enhancement is activated only when the OpenRouter API key is available, ensuring that the system degrades gracefully in offline or restricted environments.
 
 
 % =========================================================================
@@ -949,47 +952,57 @@ The proposed framework achieves the highest accuracy and macro-F1 while maintain
 \section{Summary of Contributions}
 \label{sec:contributions}
 
-This project has presented a comprehensive deep learning framework for real-time network intrusion detection in Internet of Things environments, addressing the key challenges of heterogeneous traffic patterns, severe class imbalance, automatic feature learning, and edge deployment constraints.
+This project has presented NeuroFusionGPT, a multimodal deep learning framework for stress-level classification that fuses EEG and ECG signals through a bidirectional cross-attention mechanism. The framework makes four principal contributions.
 
-The first major contribution is the hybrid CNN-LSTM architecture achieving a macro-averaged F1-score of 0.9641, a 3.3--3.5 percentage point improvement over standalone components. This confirms that combining spatial and temporal feature learning produces synergistic benefits, particularly for minority attack classes where both local patterns and sequential dependencies contribute to discrimination.
+The first contribution is the design and implementation of a cross-attention fusion architecture that explicitly models brain--heart coupling for stress classification. Unlike simple concatenation approaches, the bidirectional cross-attention module allows EEG and ECG embeddings to attend to each other, learning interaction patterns between cortical and cardiac stress responses. The architecture is parameter-efficient (679,557 parameters) and trains within minutes on consumer-grade GPU hardware.
 
-The second contribution is the preprocessing pipeline incorporating robust cleaning, principled feature selection, temporal windowing, and multi-pronged class balancing via square-root frequency scaling and focal loss. The ablation study confirms each component contributes measurably, with class balancing alone responsible for a 0.024 improvement in macro-F1.
+The second contribution is the application of modality-specific encoders that respect the structural differences between EEG and ECG data. The Transformer encoder treats EEG channels as a sequence and captures inter-channel dependencies through self-attention, while the MLP encoder efficiently processes the high-dimensional ECG feature vector. Both encoders project into a shared 128-dimensional embedding space that enables meaningful cross-attention fusion.
 
-The third contribution is rigorous evaluation on the CIC-IoT2023 dataset with 33 attack types across seven families, providing a more reliable assessment than studies using older benchmarks. The evaluation encompasses both classification metrics (accuracy, F1, MCC) and computational efficiency on server and edge hardware.
+The third contribution is a comprehensive training strategy for imbalanced multi-class biosignal classification. Focal loss with inverse-frequency class weights addresses both the class prevalence imbalance and the difficulty variation among samples. Early stopping on macro F1 ensures model selection optimizes for balanced per-class performance rather than overall accuracy.
 
-The fourth contribution is the ablation study quantifying individual component importance, providing practitioners with guidance for adapting the framework to specific deployment contexts and resource constraints.
+The fourth contribution is the integration of an LLM feedback module that bridges the gap between machine learning predictions and actionable wellness guidance. This application-layer enhancement transforms the system from a classification tool into an end-to-end wellness assessment pipeline.
 
 \section{Key Findings}
 \label{sec:findings}
 
-The hybrid CNN-LSTM architecture consistently outperforms all baselines across every metric, achieving 97.83\% accuracy, 0.964 macro-F1, and 0.969 MCC. Per-family analysis shows F1-scores from 0.929 (Web-based) to 0.991 (DDoS), with lower performance on application-layer attacks reflecting the inherent limitations of flow-level analysis.
+The experimental evaluation yields several key findings. The fusion model achieves 93.15\% accuracy, 91.33\% balanced accuracy, and 0.783 macro F1-score on the test set. Strong performance on the Calm (F1: 0.960), Severe Stress (F1: 0.956), and Moderate Stress (F1: 0.882) classes demonstrates that the model can reliably distinguish the most clinically distinct stress states. The lower performance on Mild Stress (F1: 0.501) and High Stress (F1: 0.614) reflects both the severe class imbalance (these classes represent 2.5\% and 0.7\% of training data) and the inherent difficulty of distinguishing adjacent stress levels from physiological signals.
 
-Temporal window analysis reveals informative dependencies spanning approximately 20 consecutive flows, with shorter windows ($T = 5$) causing meaningful degradation and longer windows ($T = 50$) offering only marginal gains at increased computational cost. The selected $T = 20$ maximizes classification performance while maintaining 2.3 ms inference latency on edge hardware.
+The precision-recall patterns indicate that the focal loss strategy successfully encourages the model to maintain high recall for minority classes (0.815 and 0.883) at the expense of precision (0.362 and 0.470). From a health monitoring perspective, this trade-off may be appropriate: it is generally preferable to flag a non-stressed individual for follow-up (false positive) than to miss a genuinely stressed individual (false negative).
 
-The framework achieves practical deployment viability: 12,400 flows/sec throughput on the Jetson Xavier NX (34,800 with TensorRT) exceeds typical IoT gateway requirements, and the 10.9 MB model size fits edge storage constraints.
+The training converged efficiently, reaching the best model at epoch 27 of 37 total epochs, with the ReduceLROnPlateau scheduler providing two learning rate reductions that facilitated continued improvement after initial convergence.
 
 \section{Limitations}
 \label{sec:limitations}
 
-Several limitations must be acknowledged. First, evaluation on a single dataset leaves generalizability to other IoT deployments unverified. Second, flow-level features inherently limit detection of application-layer attacks such as SQL injection and cross-site scripting, as reflected in the lower Web-based family performance. Third, offline evaluation does not address concept drift challenges in long-term deployment. Fourth, adversarial robustness has not been evaluated, and deep learning classifiers may be vulnerable to carefully crafted evasion inputs~\cite{goodfellow2015}. Fifth, training requires GPU resources (14.2 GPU-hours on an A100) that may present barriers for resource-constrained organizations.
+Several limitations of the current work must be acknowledged. The most significant is the modality-label mismatch: the EEG data originates from an epilepsy-focused dataset (BEED) while the classification target is derived from the ECG stress dataset. The EEG signals therefore do not directly reflect stress-induced cortical changes, and the cross-attention fusion learns associations between epilepsy-related EEG patterns and ECG stress labels paired by row index rather than true physiological co-registration. This design decision was made to demonstrate the fusion architecture's capability, with the understanding that performance would improve substantially when stress-labeled EEG data becomes available.
+
+The row-index-based alignment between EEG and ECG datasets does not guarantee that matched records originate from the same individual, the same temporal window, or even the same experimental context. This limits the physiological interpretability of the learned cross-modal attention patterns and may introduce noise into the fusion process.
+
+The class imbalance remains a significant challenge despite the focal loss and class weighting strategy. The High Stress class contains only 641 training samples (0.7\% of total), which is fundamentally insufficient for learning robust class boundaries in a five-class problem. The macro F1-score of 0.783 reflects this limitation, as the low F1-scores for minority classes substantially reduce the macro average.
+
+The model evaluation is conducted on a single dataset split, and cross-validation or repeated experiments with different random seeds would provide a more robust estimate of model performance and its variance.
 
 \section{Future Work}
 \label{sec:future}
 
-Several promising research directions emerge from this work. Evaluation on additional IoT datasets, particularly from operational networks, would establish generalizability. Multi-modal architectures combining flow-level features with payload representations could address application-layer attack detection limitations. Online learning and continual adaptation techniques would address concept drift in long-term deployment.
+Several promising directions for future research emerge from this work.
 
-Adversarial robustness investigation through adversarial training, defensive distillation, and input preprocessing is critical for deployment in adversarial environments. Federated learning architectures would enable collaborative model training across multiple IoT gateways without exchanging raw traffic data, preserving privacy while learning from diverse traffic patterns.
+The most impactful extension would be to collect or obtain stress-labeled EEG data recorded simultaneously with ECG from the same subjects. This would eliminate the modality-label mismatch and row-index alignment limitations, enabling the cross-attention mechanism to learn true brain--heart coupling patterns during stress. Publicly available multimodal stress datasets such as WESAD (Wearable Stress and Affect Detection)~\cite{schmidt2018} provide simultaneous physiological recordings that could serve this purpose, though they may require preprocessing to align with the NeuroFusionGPT input format.
 
-Neural architecture search (NAS) could automatically discover optimal architectures for specific edge hardware constraints, potentially achieving better performance-efficiency trade-offs than manual design. Integration of explainability techniques including SHAP values and attention visualization would provide security analysts with interpretable insights into classification decisions, facilitating trust and supporting forensic investigation.
+Ablation studies comparing the fusion model against EEG-only and ECG-only baselines would quantify the specific contribution of each modality and the cross-attention fusion mechanism. Corrupting one modality at test time (e.g., zeroing the EEG input) and measuring the performance degradation would further validate that the model meaningfully uses both inputs. Attention weight visualization could provide insight into which EEG channels and ECG features the cross-attention mechanism prioritizes for different stress levels.
+
+Addressing the class imbalance through data augmentation techniques, such as SMOTE applied in the feature space or generative approaches that synthesize minority-class samples, could improve performance on the underrepresented Mild Stress and High Stress classes. Alternatively, reformulating the problem as a three-class task (Low, Medium, High stress) by merging adjacent levels could reduce the difficulty while preserving clinical utility.
+
+Robustness evaluation across different dataset splits, cross-dataset generalization testing, and evaluation under distribution shift would strengthen confidence in the model's practical reliability. Real-time deployment on wearable devices would require optimizing the model for edge inference, potentially through quantization, pruning, or knowledge distillation.
+
+The LLM feedback module could be enhanced with personalized longitudinal tracking, where the system monitors stress trends over time and adjusts recommendations based on the user's history, response patterns, and stated preferences. Privacy-preserving deployment using on-device LLMs rather than cloud APIs would address the sensitive nature of health-related biosignal data.
 
 \section{Concluding Remarks}
 \label{sec:concluding}
 
-The Internet of Things continues expanding at remarkable pace, connecting increasingly diverse devices to an already complex global network infrastructure. Effective, efficient, and adaptive intrusion detection is a practical imperative for the security and resilience of critical infrastructure and the daily lives of billions of IoT-connected individuals.
+Stress is a pervasive challenge with serious health consequences, and objective, automated assessment from physiological signals represents a promising avenue for early detection and intervention. NeuroFusionGPT demonstrates that multimodal fusion of EEG and ECG through cross-attention can achieve strong stress classification performance with a compact, trainable architecture. The framework's modular design---comprising independent modality encoders, a flexible fusion mechanism, and an optional LLM application layer---provides a foundation that can be extended and adapted as better datasets and deployment platforms become available.
 
-This project has demonstrated that hybrid deep learning architectures, combined with careful preprocessing and class balancing, achieve highly accurate intrusion detection across comprehensive IoT attack types while meeting edge deployment computational constraints. The CNN-LSTM framework achieves a macro-F1 of 0.9641 on CIC-IoT2023 with 2.3 ms inference latency on representative gateway hardware, confirming practical viability for real-world deployment.
-
-While challenges remain in adversarial robustness, concept drift adaptation, and application-layer attack detection, the modular framework design facilitates incremental improvement. It is the author's hope that this project contributes meaningfully to securing the Internet of Things and the increasingly interconnected world that depends upon it.
+While the current implementation operates under the acknowledged constraint of mismatched EEG and ECG data sources, the architectural principles validated in this project---Transformer-based EEG encoding, MLP-based ECG encoding, and bidirectional cross-attention fusion---generalize directly to the ideal scenario of synchronized, stress-labeled multimodal recordings. It is the author's hope that this work contributes to the growing body of research on physiological stress monitoring and demonstrates the potential of attention-based multimodal fusion as a design paradigm for biosignal classification systems.
 
 
 % =========================================================================
@@ -1001,134 +1014,83 @@ While challenges remain in adversarial robustness, concept drift adaptation, and
 
 \begin{thebibliography}{99}
 
-\bibitem{statista2023}
-Statista Research Department, ``Number of Internet of Things (IoT) connected devices worldwide from 2019 to 2030,'' \textit{Statista}, 2023. [Online]. Available: https://www.statista.com/statistics/1183457/iot-connected-devices-worldwide/
+\bibitem{mcewen2008}
+B.~S.~McEwen, ``Central effects of stress hormones in health and disease: Understanding the protective and damaging effects of stress and stress mediators,'' \textit{European Journal of Pharmacology}, vol.~583, no.~2--3, pp.~174--185, Apr. 2008.
 
-\bibitem{anderson1980}
-J.~P.~Anderson, ``Computer security threat monitoring and surveillance,'' James P. Anderson Company, Fort Washington, PA, Tech. Rep., Apr. 1980.
+\bibitem{who2022}
+World Health Organization, ``Mental health at work,'' WHO Policy Brief, Sep. 2022. [Online]. Available: https://www.who.int/publications/i/item/9789240053052
 
-\bibitem{denning1987}
-D.~E.~Denning, ``An intrusion-detection model,'' \textit{IEEE Transactions on Software Engineering}, vol.~SE-13, no.~2, pp.~222--232, Feb. 1987.
+\bibitem{cohen1983}
+S.~Cohen, T.~Kamarck, and R.~Mermelstein, ``A global measure of perceived stress,'' \textit{Journal of Health and Social Behavior}, vol.~24, no.~4, pp.~385--396, Dec. 1983.
 
-\bibitem{roesch1999}
-M.~Roesch, ``Snort -- Lightweight intrusion detection for networks,'' in \textit{Proc. 13th USENIX Conference on System Administration (LISA '99)}, Seattle, WA, 1999, pp.~229--238.
+\bibitem{alberdi2016}
+A.~Alberdi, A.~Aztiria, and A.~Basarab, ``Towards an automatic early stress recognition system for office environments based on multicomponent quantification,'' \textit{Journal of Biomedical Informatics}, vol.~59, pp.~49--75, Feb. 2016.
 
-\bibitem{quinlan1993}
-J.~R.~Quinlan, \textit{C4.5: Programs for Machine Learning}. San Francisco, CA: Morgan Kaufmann, 1993.
+\bibitem{kim2018}
+H.~G.~Kim, E.~J.~Cheon, D.~S.~Bai, Y.~H.~Lee, and B.~H.~Koo, ``Stress and heart rate variability: A meta-analysis and review of the literature,'' \textit{Psychiatry Investigation}, vol.~15, no.~3, pp.~235--245, Mar. 2018.
 
-\bibitem{cortes1995}
-C.~Cortes and V.~Vapnik, ``Support-vector networks,'' \textit{Machine Learning}, vol.~20, no.~3, pp.~273--297, Sep. 1995.
+\bibitem{critchley2013}
+H.~D.~Critchley and S.~N.~Garfinkel, ``Interoception and emotion,'' \textit{Current Opinion in Psychology}, vol.~17, pp.~7--14, Oct. 2017.
 
-\bibitem{breiman2001}
-L.~Breiman, ``Random forests,'' \textit{Machine Learning}, vol.~45, no.~1, pp.~5--32, Oct. 2001.
+\bibitem{jasper1958}
+H.~H.~Jasper, ``The ten-twenty electrode system of the International Federation,'' \textit{Electroencephalography and Clinical Neurophysiology}, vol.~10, pp.~371--375, 1958.
 
-\bibitem{ko1997}
-C.~Ko, M.~Ruschitzka, and K.~Levitt, ``Execution monitoring of security-critical programs in distributed systems: A specification-based approach,'' in \textit{Proc. 1997 IEEE Symposium on Security and Privacy}, Oakland, CA, 1997, pp.~175--187.
+\bibitem{subhani2017}
+A.~R.~Subhani, W.~Mumtaz, M.~N.~B.~M.~Saad, N.~Kamel, and A.~S.~Malik, ``Machine learning framework for the detection of mental stress at multiple levels,'' \textit{IEEE Access}, vol.~5, pp.~13545--13556, 2017.
 
-\bibitem{atzori2010}
-L.~Atzori, A.~Iera, and G.~Morabito, ``The Internet of Things: A survey,'' \textit{Computer Networks}, vol.~54, no.~15, pp.~2787--2805, Oct. 2010.
+\bibitem{alshargie2016}
+F.~Al-Shargie, T.~B.~Tang, and M.~Kiguchi, ``Assessment of mental stress effects on prefrontal cortical activities using canonical correlation analysis: An fNIRS-EEG study,'' \textit{Biomedical Optics Express}, vol.~8, no.~5, pp.~2583--2598, 2017.
 
-\bibitem{antonakakis2017}
-M.~Antonakakis \textit{et~al.}, ``Understanding the Mirai botnet,'' in \textit{Proc. 26th USENIX Security Symposium}, Vancouver, BC, 2017, pp.~1093--1110.
+\bibitem{arpaia2022}
+P.~Arpaia, L.~Duraccio, N.~Moccaldi, and S.~Rossi, ``Wearable brain--computer interface instrumentation for robot-based rehabilitation by augmented reality,'' \textit{IEEE Transactions on Instrumentation and Measurement}, vol.~69, no.~9, pp.~6362--6371, 2020.
 
-\bibitem{kolias2017}
-C.~Kolias, G.~Kambourakis, A.~Stavrou, and J.~Voas, ``DDoS in the IoT: Mirai and other botnets,'' \textit{Computer}, vol.~50, no.~7, pp.~80--84, Jul. 2017.
+\bibitem{li2022}
+R.~Li, C.~Johansen, H.~Ahmed, T.~V.~Ilanko, D.~Brenner, A.~Vette, C.~Bhullar, and J.~Bhullar, ``Classification of five emotion states from EEG using CNN-based deep learning approach,'' in \textit{Proc. IEEE International Conference on Big Data (Big Data)}, 2022, pp.~2891--2896.
 
-\bibitem{neshenko2019}
-N.~Neshenko, E.~Bou-Harb, J.~Crichigno, G.~Kaddoum, and N.~Ghani, ``Demystifying IoT security: An exhaustive survey on IoT vulnerabilities and a first empirical look on internet-scale IoT exploitations,'' \textit{IEEE Communications Surveys \& Tutorials}, vol.~21, no.~3, pp.~2702--2733, 2019.
+\bibitem{healey2005}
+J.~A.~Healey and R.~W.~Picard, ``Detecting stress during real-world driving tasks using physiological sensors,'' \textit{IEEE Transactions on Intelligent Transportation Systems}, vol.~6, no.~2, pp.~156--166, Jun. 2005.
 
-\bibitem{zhang2008}
-J.~Zhang, M.~Zulkernine, and A.~Haque, ``Random-forests-based network intrusion detection systems,'' \textit{IEEE Transactions on Systems, Man, and Cybernetics, Part C}, vol.~38, no.~5, pp.~649--659, Sep. 2008.
+\bibitem{gjoreski2017}
+M.~Gjoreski, H.~Gjoreski, M.~Lu\v{s}trek, and M.~Gams, ``Continuous stress detection using a wrist device: In laboratory and real life,'' in \textit{Proc. ACM International Joint Conference on Pervasive and Ubiquitous Computing Adjunct}, 2016, pp.~1185--1193.
 
-\bibitem{chen2016xgboost}
-T.~Chen and C.~Guestrin, ``XGBoost: A scalable tree boosting system,'' in \textit{Proc. 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}, San Francisco, CA, 2016, pp.~785--794.
+\bibitem{sarkar2020}
+P.~Sarkar and A.~Etemad, ``Self-supervised ECG representation learning for emotion recognition,'' \textit{IEEE Transactions on Affective Computing}, vol.~13, no.~3, pp.~1541--1554, 2022.
 
-\bibitem{ke2017}
-G.~Ke \textit{et~al.}, ``LightGBM: A highly efficient gradient boosting decision tree,'' in \textit{Advances in Neural Information Processing Systems 30 (NeurIPS 2017)}, Long Beach, CA, 2017, pp.~3146--3154.
+\bibitem{baltrusaitis2019}
+T.~Baltru\v{s}aitis, C.~Ahuja, and L.~P.~Morency, ``Multimodal machine learning: A survey and taxonomy,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~41, no.~2, pp.~423--443, Feb. 2019.
 
-\bibitem{mukkamala2002}
-S.~Mukkamala, G.~Janoski, and A.~Sung, ``Intrusion detection using neural networks and support vector machines,'' in \textit{Proc. 2002 International Joint Conference on Neural Networks (IJCNN '02)}, Honolulu, HI, 2002, pp.~1702--1707.
+\bibitem{vaswani2017}
+A.~Vaswani, N.~Shazeer, N.~Parmar, J.~Uszkoreit, L.~Jones, A.~N.~Gomez, {\L}.~Kaiser, and I.~Polosukhin, ``Attention is all you need,'' in \textit{Advances in Neural Information Processing Systems 30 (NeurIPS 2017)}, Long Beach, CA, 2017, pp.~5998--6008.
 
-\bibitem{bengio2013}
-Y.~Bengio, A.~Courville, and P.~Vincent, ``Representation learning: A review and new perspectives,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~35, no.~8, pp.~1798--1828, Aug. 2013.
+\bibitem{lu2019}
+J.~Lu, D.~Batra, D.~Parikh, and S.~Lee, ``ViLBERT: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks,'' in \textit{Advances in Neural Information Processing Systems 32 (NeurIPS 2019)}, Vancouver, BC, 2019, pp.~13--23.
 
-\bibitem{lecun1998}
-Y.~LeCun, L.~Bottou, Y.~Bengio, and P.~Haffner, ``Gradient-based learning applied to document recognition,'' \textit{Proceedings of the IEEE}, vol.~86, no.~11, pp.~2278--2324, Nov. 1998.
+\bibitem{tsai2019}
+Y.~H.~H.~Tsai, S.~Bai, P.~P.~Liang, J.~Z.~Kolter, L.~P.~Morency, and R.~Salakhutdinov, ``Multimodal transformer for unaligned multimodal language sequences,'' in \textit{Proc. 57th Annual Meeting of the Association for Computational Linguistics (ACL)}, Florence, Italy, 2019, pp.~6558--6569.
 
-\bibitem{wang2017}
-W.~Wang, M.~Zhu, X.~Zeng, X.~Ye, and Y.~Sheng, ``Malware traffic classification using convolutional neural network for representation learning,'' in \textit{Proc. 2017 International Conference on Information Networking (ICOIN)}, Da Nang, Vietnam, 2017, pp.~712--717.
+\bibitem{tao2020}
+W.~Tao, C.~Li, R.~Song, J.~Cheng, Y.~Liu, F.~Wan, and X.~Chen, ``EEG-based emotion recognition via channel-wise attention and self attention,'' \textit{IEEE Transactions on Affective Computing}, vol.~14, no.~1, pp.~382--393, 2023.
 
-\bibitem{hochreiter1991}
-S.~Hochreiter, ``Untersuchungen zu dynamischen neuronalen Netzen,'' Diploma thesis, Technische Universit\"{a}t M\"{u}nchen, 1991.
+\bibitem{song2022}
+Y.~Song, Q.~Zheng, B.~Liu, and X.~Gao, ``EEG conformer: Convolutional transformer for EEG decoding and visualization,'' \textit{IEEE Transactions on Neural Systems and Rehabilitation Engineering}, vol.~31, pp.~710--719, 2023.
 
-\bibitem{hochreiter1997}
-S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \textit{Neural Computation}, vol.~9, no.~8, pp.~1735--1780, Nov. 1997.
-
-\bibitem{kim2016}
-J.~Kim, J.~Kim, H.~L.~T.~Thu, and H.~Kim, ``Long short term memory recurrent neural network classifier for intrusion detection,'' in \textit{Proc. 2016 International Conference on Platform Technology and Service (PlatCon)}, Jeju, South Korea, 2016, pp.~1--5.
-
-\bibitem{yin2017}
-C.~Yin, Y.~Zhu, J.~Fei, and X.~He, ``A deep learning approach for intrusion detection using recurrent neural networks,'' \textit{IEEE Access}, vol.~5, pp.~21954--21961, 2017.
-
-\bibitem{li2019}
-Z.~Li, Z.~Qin, K.~Huang, X.~Yang, and S.~Ye, ``Intrusion detection using convolutional neural networks for representation learning,'' in \textit{Proc. 2019 International Conference on Neural Information Processing (ICONIP)}, Sydney, Australia, 2019, pp.~360--371.
-
-\bibitem{khan2019}
-M.~A.~Khan, ``HCRNNIDS: Hybrid convolutional recurrent neural network-based network intrusion detection system,'' \textit{Processes}, vol.~7, no.~3, p.~129, 2019.
-
-\bibitem{bahdanau2015}
-D.~Bahdanau, K.~Cho, and Y.~Bengio, ``Neural machine translation by jointly learning to align and translate,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
-
-\bibitem{zhang2019}
-H.~Zhang, L.~Huang, C.~Q.~Wu, and Z.~Li, ``An effective convolutional neural network based on SMOTE and Gaussian mixture model for intrusion detection in imbalanced dataset,'' \textit{Computer Networks}, vol.~164, p.~106971, 2019.
-
-\bibitem{kddcup1999}
-``KDD Cup 1999 Data,'' UCI Machine Learning Repository, 1999. [Online]. Available: http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
-
-\bibitem{mchugh2000}
-J.~McHugh, ``Testing intrusion detection systems: A critique of the 1998 and 1999 DARPA intrusion detection system evaluations as performed by Lincoln Laboratory,'' \textit{ACM Transactions on Information and System Security}, vol.~3, no.~4, pp.~262--294, Nov. 2000.
-
-\bibitem{tavallaee2009}
-M.~Tavallaee, E.~Bagheri, W.~Lu, and A.~A.~Ghorbani, ``A detailed analysis of the KDD CUP 99 data set,'' in \textit{Proc. 2009 IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA)}, Ottawa, ON, 2009, pp.~1--6.
-
-\bibitem{moustafa2015}
-N.~Moustafa and J.~Slay, ``UNSW-NB15: A comprehensive data set for network intrusion detection systems,'' in \textit{Proc. 2015 Military Communications and Information Systems Conference (MilCIS)}, Canberra, Australia, 2015, pp.~1--6.
-
-\bibitem{sharafaldin2018}
-I.~Sharafaldin, A.~H.~Lashkari, and A.~A.~Ghorbani, ``Toward generating a new intrusion detection dataset and intrusion traffic characterization,'' in \textit{Proc. 4th International Conference on Information Systems Security and Privacy (ICISSP)}, Funchal, Portugal, 2018, pp.~108--116.
-
-\bibitem{neto2023}
-E.~C.~P.~Neto \textit{et~al.}, ``CIC IoT Dataset 2023,'' Canadian Institute for Cybersecurity, University of New Brunswick, 2023. [Online]. Available: https://www.unb.ca/cic/datasets/iotdataset-2023.html
-
-\bibitem{chawla2002}
-N.~V.~Chawla, K.~W.~Bowyer, L.~O.~Hall, and W.~P.~Kegelmeyer, ``SMOTE: Synthetic Minority Over-sampling Technique,'' \textit{Journal of Artificial Intelligence Research}, vol.~16, pp.~321--357, Jun. 2002.
+\bibitem{davidson2004}
+R.~J.~Davidson, ``What does the prefrontal cortex `do' in affect: Perspectives on frontal EEG asymmetry research,'' \textit{Biological Psychology}, vol.~67, no.~1--2, pp.~219--233, Oct. 2004.
 
 \bibitem{lin2017}
-T.~Y.~Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll\'{a}r, ``Focal loss for dense object detection,'' in \textit{Proc. 2017 IEEE International Conference on Computer Vision (ICCV)}, Venice, Italy, 2017, pp.~2980--2988.
+T.~Y.~Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll\'{a}r, ``Focal loss for dense object detection,'' in \textit{Proc. IEEE International Conference on Computer Vision (ICCV)}, Venice, Italy, 2017, pp.~2980--2988.
 
-\bibitem{chicco2020}
-D.~Chicco and G.~Jurman, ``The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation,'' \textit{BMC Genomics}, vol.~21, no.~1, p.~6, Jan. 2020.
+\bibitem{brown2020}
+T.~Brown \textit{et~al.}, ``Language models are few-shot learners,'' in \textit{Advances in Neural Information Processing Systems 33 (NeurIPS 2020)}, 2020, pp.~1877--1901.
 
-\bibitem{kingma2015}
-D.~P.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
+\bibitem{singhal2023}
+K.~Singhal \textit{et~al.}, ``Large language models encode clinical knowledge,'' \textit{Nature}, vol.~620, pp.~172--180, Jul. 2023.
 
-\bibitem{loshchilov2017}
-I.~Loshchilov and F.~Hutter, ``SGDR: Stochastic gradient descent with warm restarts,'' in \textit{Proc. 5th International Conference on Learning Representations (ICLR 2017)}, Toulon, France, 2017.
+\bibitem{loshchilov2019}
+I.~Loshchilov and F.~Hutter, ``Decoupled weight decay regularization,'' in \textit{Proc. International Conference on Learning Representations (ICLR 2019)}, New Orleans, LA, 2019.
 
-\bibitem{srivastava2014}
-N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov, ``Dropout: A simple way to prevent neural networks from overfitting,'' \textit{Journal of Machine Learning Research}, vol.~15, no.~1, pp.~1929--1958, Jun. 2014.
-
-\bibitem{ioffe2015}
-S.~Ioffe and C.~Szegedy, ``Batch normalization: Accelerating deep network training by reducing internal covariate shift,'' in \textit{Proc. 32nd International Conference on Machine Learning (ICML)}, Lille, France, 2015, pp.~448--456.
-
-\bibitem{goodfellow2015}
-I.~J.~Goodfellow, J.~Shlens, and C.~Szegedy, ``Explaining and harnessing adversarial examples,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
-
-\bibitem{ferrag2023}
-M.~A.~Ferrag, O.~Friha, D.~Hamouda, L.~Maglaras, and H.~Janicke, ``Edge-IIoTset: A new comprehensive realistic cyber security dataset of IoT and IIoT applications for centralized and federated learning,'' \textit{IEEE Access}, vol.~10, pp.~40281--40306, 2022.
-
-\bibitem{sarhan2023}
-M.~Sarhan, S.~Layeghy, and M.~Portmann, ``Towards a standard feature set for network intrusion detection system datasets,'' \textit{Mobile Networks and Applications}, vol.~27, no.~1, pp.~357--370, 2022.
+\bibitem{schmidt2018}
+P.~Schmidt, A.~Reiss, R.~Duerichen, C.~Marber\-ger, and K.~Van~Laerhoven, ``Introducing WESAD, a multimodal dataset for wearable stress and affect detection,'' in \textit{Proc. 20th ACM International Conference on Multimodal Interaction}, Boulder, CO, 2018, pp.~400--408.
 
 \end{thebibliography}
 
