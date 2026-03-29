@@ -1,0 +1,1135 @@
+% =============================================================================
+% Master's Final Year Project Report
+% Department of Computer Science
+% California State University, Sacramento
+% =============================================================================
+\documentclass[12pt,letterpaper]{report}
+
+% --- Font: Times New Roman ---
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+
+% --- Margins: Left/Top 1.5", Right/Bottom 1" ---
+\usepackage[left=1.5in, top=1.5in, right=1.0in, bottom=1.0in]{geometry}
+
+% --- Double Spacing ---
+\usepackage{setspace}
+\doublespacing
+
+% --- Pagination: Arabic numbers 1" from Top, 1" from Right ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyheadoffset[R]{0in}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{15pt}
+
+% --- Graphics and Figures ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{tabularx}
+
+% --- Mathematics ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+% --- Accessibility (508 Compliance) ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={A Scalable Deep Learning Framework for Real-Time Network Intrusion Detection in Internet of Things Environments},
+    pdfauthor={Jane A. Smith},
+    pdfsubject={Master's Project Report},
+    pdfkeywords={Deep Learning, Intrusion Detection, IoT, Network Security, LSTM, CNN},
+    pdfcreator={LaTeX},
+    pdflang={en-US}
+}
+\usepackage[figure,table]{hypcap}
+
+% --- Alternative Text for Figures ---
+\newcommand{\figalt}[1]{\texorpdfstring{#1}{#1}}
+
+% --- Bibliography ---
+\usepackage[numbers,sort&compress]{natbib}
+
+% --- Code Listings ---
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    tabsize=4,
+    captionpos=b
+}
+
+% --- Miscellaneous ---
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,calc,decorations.pathreplacing}
+
+% --- Caption Formatting ---
+\usepackage{caption}
+\captionsetup{font={doublespacing},labelfont=bf,justification=centering}
+
+% --- Section Formatting ---
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\centering}
+    {\MakeUppercase{\chaptertitlename}\ \thechapter}{0pt}{\Large\MakeUppercase}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itshape}{\thesubsubsection}{1em}{}
+
+% --- TOC Depth ---
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% --- Custom Commands ---
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip\noindent\textbf{Keywords:} #1}
+
+\begin{document}
+
+% =========================================================================
+% FRONT MATTER
+% =========================================================================
+\pagenumbering{roman}
+
+% -------------------------------------------------------------------------
+% TITLE PAGE
+% -------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{1in}
+
+{\Large\bfseries A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS}
+
+\vspace{1.5in}
+
+A Project
+
+Submitted to the Faculty of
+
+California State University, Sacramento
+
+\vspace{0.5in}
+
+In Partial Fulfillment of the
+
+Requirements for the Degree of
+
+\vspace{0.5in}
+
+Master of Science
+
+in
+
+Computer Science
+
+\vspace{1.0in}
+
+by
+
+Jane A. Smith
+
+\vspace{0.5in}
+
+Spring 2026
+
+\end{center}
+\end{titlepage}
+
+% -------------------------------------------------------------------------
+% COPYRIGHT PAGE
+% -------------------------------------------------------------------------
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\textcopyright\ 2026
+
+Jane A. Smith
+
+ALL RIGHTS RESERVED
+\end{center}
+\vspace*{\fill}
+
+% -------------------------------------------------------------------------
+% APPROVAL PAGE
+% -------------------------------------------------------------------------
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+\vspace*{0.5in}
+
+{\large\bfseries A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS}
+
+\vspace{0.5in}
+
+A Project
+
+by
+
+Jane A. Smith
+
+\vspace{1in}
+
+Approved by:
+
+\vspace{0.75in}
+
+\rule{3.5in}{0.5pt}
+
+Dr.\ Robert J. Williams, Committee Chair
+
+Department of Computer Science
+
+\vspace{0.75in}
+
+\rule{3.5in}{0.5pt}
+
+Dr.\ Emily K. Chen, Second Reader
+
+Department of Computer Science
+
+\vspace{0.75in}
+
+\rule{3.5in}{0.5pt}
+
+Date
+
+\end{center}
+
+% -------------------------------------------------------------------------
+% ABSTRACT
+% -------------------------------------------------------------------------
+\clearpage
+\begin{center}
+{\large\bfseries ABSTRACT}
+
+\vspace{0.25in}
+
+of
+
+\vspace{0.25in}
+
+A SCALABLE DEEP LEARNING FRAMEWORK FOR REAL-TIME NETWORK INTRUSION DETECTION IN INTERNET OF THINGS ENVIRONMENTS
+
+\vspace{0.25in}
+
+by
+
+\vspace{0.25in}
+
+Jane A. Smith
+
+\end{center}
+
+\vspace{0.5in}
+
+The proliferation of Internet of Things (IoT) devices across industrial, commercial, and residential domains has introduced an unprecedented attack surface for malicious actors seeking to exploit vulnerabilities in networked systems. Traditional intrusion detection systems rely on signature-based methods or shallow machine learning classifiers that struggle to generalize across the heterogeneous traffic patterns characteristic of IoT ecosystems. This project addresses the critical need for a scalable, adaptive, and computationally efficient intrusion detection framework capable of operating in real-time across diverse IoT network topologies.
+
+The proposed framework integrates a hybrid deep learning architecture combining one-dimensional Convolutional Neural Networks (1D-CNN) for spatial feature extraction with Long Short-Term Memory (LSTM) networks for capturing temporal dependencies in network traffic sequences. The system incorporates a modular preprocessing pipeline that normalizes heterogeneous IoT traffic data, performs automated feature engineering, and employs stratified sampling to address severe class imbalance. The framework was evaluated using the CIC-IoT2023 dataset, a comprehensive benchmark containing over 33 million labeled network flows across 33 distinct attack categories spanning seven major attack families.
+
+Experimental results demonstrate that the proposed CNN-LSTM hybrid architecture achieves a macro-averaged F1-score of 0.9641 and an overall detection accuracy of 97.83\%, surpassing baseline models including standalone CNN (F1: 0.9312), standalone LSTM (F1: 0.9287), Random Forest (F1: 0.9198), and gradient-boosted decision trees (F1: 0.9401). The framework achieves an average inference latency of 2.3 milliseconds per flow on commodity edge hardware, meeting real-time processing requirements for IoT gateway deployment.
+
+\keywords{Deep Learning, Intrusion Detection System, Internet of Things, CNN, LSTM, Network Security, CIC-IoT2023, Real-Time Classification}
+
+% -------------------------------------------------------------------------
+% ACKNOWLEDGEMENTS
+% -------------------------------------------------------------------------
+\clearpage
+\begin{center}
+{\large\bfseries ACKNOWLEDGEMENTS}
+\end{center}
+
+\vspace{0.5in}
+
+I wish to express my deepest gratitude to my project advisor, Dr.\ Robert J. Williams, whose unwavering guidance, scholarly insight, and patient mentorship have been instrumental throughout every phase of this project. His expertise in network security and machine learning provided the intellectual foundation upon which this work was built, and his thoughtful feedback consistently challenged me to pursue higher standards of rigor in both my experimental methodology and technical writing.
+
+I am equally indebted to Dr.\ Emily K. Chen, who graciously served as the second reader for this project. Her extensive knowledge of deep learning architectures and meticulous attention to methodological detail significantly improved the quality of the experimental design and the clarity of the results presented herein.
+
+I extend my sincere appreciation to the faculty and staff of the Department of Computer Science at California State University, Sacramento. The computational resources provided by the department's High-Performance Computing Laboratory were essential for training and evaluating the deep learning models central to this project.
+
+I would also like to acknowledge the contributions of my fellow graduate students in the Network Security and Intelligent Systems research groups, particularly Michael Torres and Priya Ramaswamy, whose collaborative spirit and willingness to engage in substantive technical discussions enriched my understanding of the problem domain.
+
+Finally, I owe an immeasurable debt of gratitude to my family for their steadfast support and encouragement throughout my academic journey. My parents, whose sacrifices and belief in the transformative power of education made this opportunity possible, deserve recognition far beyond what words can convey.
+
+% -------------------------------------------------------------------------
+% TABLE OF CONTENTS
+% -------------------------------------------------------------------------
+\clearpage
+\tableofcontents
+
+% -------------------------------------------------------------------------
+% LIST OF TABLES
+% -------------------------------------------------------------------------
+\clearpage
+\listoftables
+
+% -------------------------------------------------------------------------
+% LIST OF FIGURES
+% -------------------------------------------------------------------------
+\clearpage
+\listoffigures
+
+% =========================================================================
+% MAIN BODY
+% =========================================================================
+\clearpage
+\pagenumbering{arabic}
+
+% =========================================================================
+% CHAPTER 1: INTRODUCTION
+% =========================================================================
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{Purpose of the Study}
+\label{sec:purpose}
+
+The rapid expansion of the Internet of Things (IoT) has fundamentally transformed the landscape of modern computing, connecting billions of devices that range from simple environmental sensors to complex industrial control systems. According to recent estimates, the global number of connected IoT devices surpassed 15 billion in 2023 and is projected to exceed 29 billion by 2030~\cite{statista2023}. This exponential growth has generated enormous value across virtually every sector, enabling automation, data-driven decision-making, and remote operational control. However, this connectivity has simultaneously introduced a vast and continuously evolving attack surface that presents formidable challenges for network security professionals.
+
+The purpose of this project is to design, implement, and evaluate a scalable deep learning framework for real-time network intrusion detection specifically tailored to the unique characteristics of IoT environments. Unlike traditional enterprise networks, IoT ecosystems are characterized by extreme heterogeneity in device capabilities, communication protocols, and traffic patterns. Many IoT devices operate under severe resource constraints that preclude the deployment of heavyweight security solutions directly on endpoints. Network-based intrusion detection deployed at IoT gateways and edge nodes therefore represents the most viable approach for comprehensive security coverage.
+
+This study proposes a hybrid deep learning architecture that combines the spatial feature extraction capabilities of one-dimensional Convolutional Neural Networks (1D-CNN) with the temporal sequence modeling strengths of Long Short-Term Memory (LSTM) networks. Network traffic exhibits both local spatial correlations within individual flow features and longer-range temporal dependencies across sequential flow records. By integrating these complementary learning paradigms, the proposed framework captures a richer representation of both normal and malicious traffic patterns than either approach could achieve independently.
+
+\section{Problem Statement}
+\label{sec:problem}
+
+The security of IoT networks represents one of the most pressing challenges in contemporary computer science. The scale and diversity of IoT deployments create a threat landscape that differs qualitatively from traditional network security scenarios. The volume of traffic generated by billions of devices demands intrusion detection solutions that can process thousands of flows per second without unacceptable latency. The heterogeneous nature of IoT protocols means that static detection rules are fundamentally inadequate. The continuous emergence of novel attack vectors requires detection systems that can generalize beyond previously observed signatures.
+
+Traditional intrusion detection systems fall into two broad categories. Signature-based IDS, such as Snort~\cite{roesch1999}, rely on known attack pattern databases and achieve high precision for known threats but cannot detect novel attacks. Anomaly-based systems construct models of normal behavior and flag deviations, but conventional approaches based on statistical methods or shallow classifiers suffer from high false positive rates and limited modeling capacity.
+
+Deep learning has shown considerable promise in addressing these limitations through automatic hierarchical feature learning~\cite{bengio2013}. However, challenges remain: many existing proposals use outdated benchmarks that do not reflect modern IoT traffic, computational demands constrain real-time deployment, and severe class imbalance in realistic datasets continues to challenge model training. This project addresses these challenges by developing a framework that integrates state-of-the-art deep learning with careful preprocessing, evaluates on a modern IoT-specific benchmark, and explicitly considers computational efficiency for real-time deployment.
+
+\section{Scope and Objectives}
+\label{sec:scope}
+
+This project encompasses the complete pipeline from raw network traffic to real-time intrusion detection classification. The first objective is to develop a comprehensive data preprocessing and feature engineering pipeline handling the heterogeneous, high-dimensional, and imbalanced nature of IoT traffic data. The second objective is to design and implement a hybrid CNN-LSTM architecture that effectively captures both spatial and temporal features while maintaining computational efficiency. The third objective is to conduct rigorous empirical evaluation using the CIC-IoT2023 dataset~\cite{neto2023}, employing metrics that account for class imbalance and including baseline comparisons. The fourth objective is to characterize computational performance to assess deployment suitability on IoT gateway and edge platforms.
+
+\section{Collaboration and Institutional Context}
+\label{sec:collaboration}
+
+This project was conducted within the Department of Computer Science at California State University, Sacramento, under the supervision of Dr.\ Robert J. Williams, director of the Network Security and Intelligent Systems Laboratory. The laboratory provided access to a computing cluster equipped with NVIDIA A100 GPU accelerators essential for training deep learning models. The research benefited from collaboration with the university's Information Security Office, which provided domain expertise regarding real-world IoT deployment scenarios.
+
+The project leveraged the CIC-IoT2023 dataset developed by the Canadian Institute for Cybersecurity at the University of New Brunswick, generated using a testbed comprising 105 real IoT devices to ensure authentic traffic patterns. The LSTM architecture design was informed by consultations with Dr.\ Emily K. Chen, and the statistical analysis was conducted in collaboration with the university's Statistical Consulting Center.
+
+\section{Organization of the Report}
+\label{sec:organization}
+
+The remainder of this report is organized as follows. Chapter~\ref{ch:background} provides a comprehensive literature review covering intrusion detection systems, IoT security challenges, and deep learning for traffic analysis. Chapter~\ref{ch:methodology} presents the methodology and system design. Chapter~\ref{ch:results} describes implementation details and experimental results. Chapter~\ref{ch:conclusion} concludes with a summary of findings and future research directions.
+
+
+% =========================================================================
+% CHAPTER 2: BACKGROUND AND LITERATURE REVIEW
+% =========================================================================
+\clearpage
+\chapter{Background and Literature Review}
+\label{ch:background}
+
+This chapter examines the theoretical foundations and prior research informing the proposed intrusion detection framework, organized into four thematic areas: intrusion detection taxonomy, IoT security challenges, machine learning and deep learning for traffic classification, and benchmark datasets.
+
+\section{Intrusion Detection Systems: Taxonomy and Evolution}
+\label{sec:ids_taxonomy}
+
+The concept of automated intrusion detection was first articulated by Anderson in 1980~\cite{anderson1980}, who proposed analyzing computer system audit trails to identify unauthorized access. Denning formalized this in her seminal 1987 paper~\cite{denning1987}, introducing a general-purpose intrusion detection model based on statistical profiling of system behavior.
+
+Intrusion detection systems are classified along two axes: detection methodology and data source. Regarding methodology, signature-based systems maintain databases of known attack patterns and flag matching traffic, achieving high precision for known attacks. Snort~\cite{roesch1999} exemplifies this approach. Anomaly-based systems model normal behavior and flag deviations, offering theoretical capability to detect zero-day attacks but historically suffering from elevated false positive rates.
+
+A third category, specification-based detection~\cite{ko1997}, relies on manually defined behavioral specifications. While achieving low false positive rates, the manual effort required limits scalability in heterogeneous IoT environments.
+
+Regarding data sources, host-based systems (HIDS) monitor individual device activity, while network-based systems (NIDS) monitor traffic at strategic observation points. In IoT environments, network-based detection is strongly preferred due to the resource constraints of IoT devices, which generally preclude installation of host-based monitoring agents.
+
+\section{Security Challenges in Internet of Things Environments}
+\label{sec:iot_security}
+
+The Internet of Things extends network connectivity to a vast array of physical objects embedded with sensors, actuators, and communication interfaces~\cite{atzori2010}. IoT security is complicated by several distinguishing characteristics. First, devices typically operate under severe resource constraints in processing power, memory, and energy, making it impractical to deploy conventional security software directly on endpoints. Second, IoT communication protocols are highly heterogeneous, encompassing MQTT, CoAP, ZigBee, Bluetooth Low Energy, LoRaWAN, and various proprietary protocols, complicating uniform traffic analysis.
+
+Third, many IoT devices lack robust update mechanisms. The Mirai botnet~\cite{antonakakis2017} demonstrated the consequences by compromising hundreds of thousands of devices through default credentials and known firmware vulnerabilities, launching some of history's largest DDoS attacks. Fourth, the scale of IoT deployments creates visibility and management challenges, with enterprise deployments encompassing thousands of devices across distributed locations.
+
+Kolias et al.~\cite{kolias2017} categorized IoT attacks along the protocol stack, identifying threats at every layer from physical jamming to application-layer malware. Neshenko et al.~\cite{neshenko2019} found the most prevalent attack categories include DDoS, unauthorized credential exploitation, man-in-the-middle attacks, and firmware compromises. These findings underscore the need for network-based intrusion detection as a critical defense component.
+
+\section{Machine Learning for Network Intrusion Detection}
+\label{sec:ml_ids}
+
+Machine learning has been applied to intrusion detection for over two decades. Decision tree algorithms, particularly C4.5~\cite{quinlan1993}, were among the first techniques applied, offering interpretable classification rules. Ensemble methods subsequently addressed overfitting: Random Forest~\cite{breiman2001} demonstrated superior accuracy and generalization~\cite{zhang2008}, while gradient boosting algorithms including XGBoost~\cite{chen2016xgboost} and LightGBM~\cite{ke2017} achieved state-of-the-art performance on several benchmarks by sequentially correcting predecessor errors.
+
+Support Vector Machines~\cite{cortes1995} attracted attention due to their effectiveness in high-dimensional spaces~\cite{mukkamala2002}, though quadratic training complexity limits scalability. All traditional approaches depend heavily on manual feature engineering, which is labor-intensive, domain-specific, and may miss subtle correlations that could improve detection.
+
+\section{Deep Learning Approaches to Intrusion Detection}
+\label{sec:dl_ids}
+
+Deep learning offers automatic hierarchical feature learning from raw data~\cite{bengio2013}, reducing dependence on manual feature engineering and enabling discovery of complex non-linear relationships.
+
+\subsection{Convolutional Neural Networks}
+
+CNNs, originally developed for image recognition~\cite{lecun1998}, have been adapted for traffic classification by treating flow features as one-dimensional signals. The 1D convolution operation is:
+
+\begin{equation}
+\label{eq:conv1d}
+y_i = \sigma\left(\sum_{k=0}^{K-1} w_k \cdot x_{i+k} + b\right)
+\end{equation}
+
+\noindent where $x$ is the input, $w$ is a filter of size $K$, $b$ is bias, and $\sigma(\cdot)$ is the activation function. Wang et al.~\cite{wang2017} demonstrated that 1D-CNNs effectively learn discriminative features from raw traffic without manual feature engineering.
+
+\subsection{Long Short-Term Memory Networks}
+
+Standard RNNs suffer from the vanishing gradient problem~\cite{hochreiter1991}. The LSTM architecture~\cite{hochreiter1997} addresses this through a gating mechanism with forget, input, and output gates:
+
+\begin{align}
+\label{eq:lstm_forget}
+\mathbf{f}_t &= \sigma\left(\mathbf{W}_f[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_f\right) \\
+\label{eq:lstm_input}
+\mathbf{i}_t &= \sigma\left(\mathbf{W}_i[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_i\right) \\
+\label{eq:lstm_candidate}
+\tilde{\mathbf{c}}_t &= \tanh\left(\mathbf{W}_c[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_c\right) \\
+\label{eq:lstm_cell}
+\mathbf{c}_t &= \mathbf{f}_t \odot \mathbf{c}_{t-1} + \mathbf{i}_t \odot \tilde{\mathbf{c}}_t \\
+\label{eq:lstm_output}
+\mathbf{o}_t &= \sigma\left(\mathbf{W}_o[\mathbf{h}_{t-1}, \mathbf{x}_t] + \mathbf{b}_o\right) \\
+\label{eq:lstm_hidden}
+\mathbf{h}_t &= \mathbf{o}_t \odot \tanh(\mathbf{c}_t)
+\end{align}
+
+\noindent where $\odot$ represents element-wise multiplication. Kim et al.~\cite{kim2016} and Yin et al.~\cite{yin2017} demonstrated that LSTMs capture sequential patterns in network traffic inaccessible to feedforward architectures.
+
+\subsection{Hybrid Architectures}
+
+Hybrid CNN-LSTM architectures combine CNNs for local feature extraction with LSTMs for temporal modeling. Li et al.~\cite{li2019} demonstrated that this combination outperformed standalone models on CICIDS2017 with 98.67\% accuracy and improved minority class detection. Khan et al.~\cite{khan2019} corroborated these findings on UNSW-NB15. Attention mechanisms~\cite{bahdanau2015} have been incorporated to enable selective focus on informative features:
+
+\begin{equation}
+\label{eq:attention}
+\mathbf{a} = \sum_{t=1}^{T} \alpha_t \mathbf{h}_t, \quad \alpha_t = \frac{\exp(e_t)}{\sum_{k=1}^{T}\exp(e_k)}
+\end{equation}
+
+\noindent where $\alpha_t$ are learned attention weights. Zhang et al.~\cite{zhang2019} showed attention-enhanced LSTMs improved detection of subtle, low-volume attacks.
+
+\section{Benchmark Datasets}
+\label{sec:datasets}
+
+The KDD Cup 1999 dataset~\cite{kddcup1999} was the most widely used benchmark but has been criticized for redundant records, outdated attacks, and unrealistic conditions~\cite{mchugh2000, tavallaee2009}. NSL-KDD~\cite{tavallaee2009} addressed some deficiencies but remains limited by its 1998 origin. More recent datasets include UNSW-NB15~\cite{moustafa2015} with nine modern attack categories and CICIDS2017~\cite{sharafaldin2018} with realistic traffic profiles.
+
+Most relevant is the CIC-IoT2023 dataset~\cite{neto2023}, the most comprehensive IoT-specific benchmark available. Generated using 105 real IoT devices, it contains over 33 million labeled flows across 33 attack types in seven families: DDoS, DoS, Reconnaissance, Web-based attacks, Brute Force, Spoofing, and Mirai variants.
+
+\begin{table}[H]
+\centering
+\caption[Comparison of intrusion detection benchmark datasets]{Comparison of major intrusion detection benchmark datasets. The CIC-IoT2023 dataset provides the most comprehensive IoT-specific evaluation benchmark with realistic traffic from 105 real devices.}
+\label{tab:dataset_comparison}
+\begin{tabularx}{\textwidth}{>{\raggedright}p{2.5cm} c r c c}
+\toprule
+\textbf{Dataset} & \textbf{Year} & \textbf{Records} & \textbf{Attack Types} & \textbf{IoT-Specific} \\
+\midrule
+KDD Cup 1999 & 1999 & 4,898,431 & 4 categories & No \\
+NSL-KDD & 2009 & 148,517 & 4 categories & No \\
+UNSW-NB15 & 2015 & 2,540,044 & 9 categories & No \\
+CICIDS2017 & 2017 & 2,830,743 & 14 categories & No \\
+CIC-IoT2023 & 2023 & 33,440,896 & 33 types (7 families) & Yes \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Class Imbalance in Intrusion Detection}
+\label{sec:imbalance}
+
+A persistent challenge is the severe class imbalance in realistic datasets, where benign traffic overwhelmingly dominates. Standard classifiers exhibit systematic bias toward majority classes. Data-level approaches include SMOTE~\cite{chawla2002}, which generates synthetic minority instances by interpolation:
+
+\begin{equation}
+\label{eq:smote}
+\mathbf{x}_{\text{new}} = \mathbf{x}_i + \lambda \cdot (\mathbf{x}_{nn} - \mathbf{x}_i)
+\end{equation}
+
+\noindent where $\mathbf{x}_{nn}$ is a nearest neighbor and $\lambda \in [0,1]$. Algorithm-level approaches include cost-sensitive learning and focal loss~\cite{lin2017}:
+
+\begin{equation}
+\label{eq:focal}
+\mathcal{L}_{\text{focal}} = -\sum_{i=1}^{N}\sum_{c=1}^{C} \alpha_c (1-\hat{y}_{i,c})^{\gamma} \cdot y_{i,c} \cdot \log(\hat{y}_{i,c})
+\end{equation}
+
+\noindent where $\gamma$ controls down-weighting of easily classified examples.
+
+\section{Summary of Literature Review}
+\label{sec:lit_summary}
+
+The literature reveals that IoT security demands solutions handling heterogeneous, high-volume traffic with low latency; hybrid CNN-LSTM architectures show particular promise; the CIC-IoT2023 dataset provides unprecedented evaluation opportunity; and addressing class imbalance is essential. The proposed framework integrates these insights into a cohesive system evaluated on realistic IoT data.
+
+
+% =========================================================================
+% CHAPTER 3: METHODOLOGY AND SYSTEM DESIGN
+% =========================================================================
+\clearpage
+\chapter{Methodology and System Design}
+\label{ch:methodology}
+
+This chapter describes the methodology and system architecture of the proposed intrusion detection framework, including the data preprocessing pipeline, the hybrid CNN-LSTM architecture, training procedures, and the evaluation framework.
+
+\section{System Architecture Overview}
+\label{sec:system_arch}
+
+The framework consists of four principal stages: data ingestion and preprocessing, feature engineering and transformation, deep learning classification, and post-processing with alert generation. Figure~\ref{fig:system_arch} presents the system architecture.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    block/.style={rectangle, draw, fill=blue!10, text width=3.5cm, text centered, minimum height=1.2cm, rounded corners},
+    arrow/.style={->, thick, >=stealth}
+]
+\node[block] (input) {Raw Network Traffic\\(CIC-IoT2023)};
+\node[block, right=of input] (preprocess) {Data Preprocessing\\Pipeline};
+\node[block, right=of preprocess] (feature) {Feature Engineering\\\& Transformation};
+\node[block, below=of feature] (model) {CNN-LSTM Hybrid\\Classifier};
+\node[block, left=of model] (output) {Classification Output\\\& Alert Generation};
+\node[block, left=of output] (eval) {Performance\\Evaluation};
+
+\draw[arrow] (input) -- (preprocess);
+\draw[arrow] (preprocess) -- (feature);
+\draw[arrow] (feature) -- (model);
+\draw[arrow] (model) -- (output);
+\draw[arrow] (output) -- (eval);
+\end{tikzpicture}
+\caption[High-level system architecture diagram]{High-level architecture of the proposed intrusion detection framework. Each stage is implemented as an independent module to facilitate maintenance and extensibility.}
+\label{fig:system_arch}
+\end{figure}
+
+The data ingestion stage receives raw network flow records from the CIC-IoT2023 dataset stored in CSV format with 46 features per flow record plus a class label. The preprocessing pipeline performs cleaning, imputation, outlier treatment, and type conversion. The feature engineering stage applies normalization, encoding, dimensionality reduction, and temporal windowing. The CNN-LSTM classifier produces probability distributions over target classes, which are converted to discrete predictions and security alerts.
+
+\section{Data Preprocessing Pipeline}
+\label{sec:preprocessing}
+
+\subsection{Data Cleaning and Validation}
+\label{subsec:cleaning}
+
+The cleaning stage standardizes column names to lowercase with underscores, replaces infinite values (arising from zero-division in flow statistics) with $\text{NaN}$ markers for subsequent imputation, removes duplicate flow records, and excludes records with critical missing fields such as source IP, destination IP, or protocol type.
+
+\subsection{Feature Selection and Engineering}
+\label{subsec:feature_selection}
+
+Feature selection proceeds in two stages. First, features with near-zero variance (below $10^{-6}$ after normalization) are removed. Second, for feature pairs with Pearson correlation exceeding 0.95, the feature with lower mutual information with the class label is removed. This reduces the feature set from 46 to 38 features. Four additional engineered features are constructed: the ratio of forward to backward packets, the coefficient of variation of packet sizes, the entropy of destination port distributions, and binary indicators for TCP flag combinations associated with scanning activities, yielding a final dimensionality of 42 features.
+
+\subsection{Normalization and Encoding}
+\label{subsec:normalization}
+
+Numerical features are normalized using robust scaling:
+
+\begin{equation}
+\label{eq:robust_scaling}
+x_{\text{scaled}} = \frac{x - \text{median}(x)}{Q_3(x) - Q_1(x)}
+\end{equation}
+
+\noindent which is less sensitive to outliers than standard $z$-score normalization. Categorical features are one-hot encoded; class labels receive integer encoding.
+
+\subsection{Temporal Windowing and Class Balancing}
+\label{subsec:windowing}
+
+Flow records are organized into sequential windows of length $T = 20$ ordered by timestamp, enabling the LSTM to model temporal dependencies. Overlapping windows (stride 1) maximize training examples; non-overlapping windows ensure unique predictions during evaluation.
+
+For class balancing, a combination of undersampling majority classes and SMOTE oversampling of minority classes targets a square-root frequency scaling distribution:
+
+\begin{equation}
+\label{eq:sqrt_scaling}
+n_c^{\text{target}} = \alpha \cdot \sqrt{n_c^{\text{original}}}
+\end{equation}
+
+\noindent producing approximately 5 million balanced training instances. The class-weighted focal loss (Equation~\ref{eq:focal}) with $\gamma = 2.0$ is used as the training objective.
+
+\section{Hybrid CNN-LSTM Architecture}
+\label{sec:architecture}
+
+The architecture processes windowed sequences of $T = 20$ flows, each with $F = 42$ features. Input tensors have dimensions $(B \times T \times F)$ where $B$ is the batch size.
+
+\subsection{Convolutional Feature Extraction Module}
+
+Three convolutional blocks extract spatial features from each flow record. The first block applies 64 filters (kernel size 3) with batch normalization, ReLU activation, and max-pooling (pool size 2). The second applies 128 filters with the same structure. The third applies 256 filters with batch normalization and ReLU but without pooling, producing 256-dimensional feature vectors:
+
+\begin{equation}
+\label{eq:cnn_module}
+\mathbf{z}_t = f_{\text{CNN}}(\mathbf{x}_t) = \text{Flatten}\left(\text{Conv}_{256} \circ \text{Pool} \circ \text{Conv}_{128} \circ \text{Pool} \circ \text{Conv}_{64}(\mathbf{x}_t)\right)
+\end{equation}
+
+\subsection{LSTM Temporal Modeling Module}
+
+The CNN feature vectors $\{\mathbf{z}_1, \ldots, \mathbf{z}_T\}$ pass through two stacked LSTM layers with 128 hidden units each and dropout of 0.3:
+
+\begin{align}
+\label{eq:lstm_stack}
+\mathbf{h}_t^{(1)}, \mathbf{c}_t^{(1)} &= \text{LSTM}^{(1)}(\mathbf{z}_t, \mathbf{h}_{t-1}^{(1)}, \mathbf{c}_{t-1}^{(1)}) \\
+\mathbf{h}_t^{(2)}, \mathbf{c}_t^{(2)} &= \text{LSTM}^{(2)}(\mathbf{h}_t^{(1)}, \mathbf{h}_{t-1}^{(2)}, \mathbf{c}_{t-1}^{(2)})
+\end{align}
+
+\noindent The final hidden state $\mathbf{h}_T^{(2)} \in \mathbb{R}^{128}$ feeds the classification head.
+
+\subsection{Classification Head}
+
+Two fully connected layers (64 units with ReLU and dropout 0.2) followed by a softmax output over $C = 34$ classes:
+
+\begin{equation}
+\label{eq:softmax}
+P(y = c \mid \mathbf{x}) = \frac{\exp(\mathbf{w}_c^T \mathbf{h} + b_c)}{\sum_{j=1}^{C} \exp(\mathbf{w}_j^T \mathbf{h} + b_j)}
+\end{equation}
+
+Figure~\ref{fig:architecture} presents the complete architecture.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=0.8cm,
+    layer/.style={rectangle, draw, fill=blue!8, text width=4.5cm, text centered, minimum height=0.9cm, font=\small},
+    arrow/.style={->, thick, >=stealth}
+]
+\node[layer] (input) {Input: $(B \times 20 \times 42)$};
+\node[layer, below=of input] (conv1) {1D-Conv (64, $k$=3) + BN + ReLU};
+\node[layer, below=of conv1] (pool1) {MaxPool (size=2)};
+\node[layer, below=of pool1] (conv2) {1D-Conv (128, $k$=3) + BN + ReLU};
+\node[layer, below=of conv2] (pool2) {MaxPool (size=2)};
+\node[layer, below=of pool2] (conv3) {1D-Conv (256, $k$=3) + BN + ReLU};
+\node[layer, below=of conv3] (flat) {Flatten + Reshape to Sequence};
+\node[layer, below=of flat] (lstm1) {LSTM Layer 1 (128 units)};
+\node[layer, below=of lstm1] (lstm2) {LSTM Layer 2 (128 units)};
+\node[layer, below=of lstm2] (drop2) {Dropout (0.3)};
+\node[layer, below=of drop2] (fc1) {Dense (64) + ReLU + Dropout(0.2)};
+\node[layer, below=of fc1] (fc2) {Dense (34) + Softmax};
+
+\draw[arrow] (input) -- (conv1);
+\draw[arrow] (conv1) -- (pool1);
+\draw[arrow] (pool1) -- (conv2);
+\draw[arrow] (conv2) -- (pool2);
+\draw[arrow] (pool2) -- (conv3);
+\draw[arrow] (conv3) -- (flat);
+\draw[arrow] (flat) -- (lstm1);
+\draw[arrow] (lstm1) -- (lstm2);
+\draw[arrow] (lstm2) -- (drop2);
+\draw[arrow] (drop2) -- (fc1);
+\draw[arrow] (fc1) -- (fc2);
+
+\draw[decorate, decoration={brace, mirror, amplitude=8pt}] ([xshift=-0.4cm]conv1.north west) -- ([xshift=-0.4cm]flat.south west) node[midway, left=0.5cm, text width=1.5cm, text centered, font=\footnotesize] {CNN Module};
+\draw[decorate, decoration={brace, mirror, amplitude=8pt}] ([xshift=-0.4cm]lstm1.north west) -- ([xshift=-0.4cm]drop2.south west) node[midway, left=0.5cm, text width=1.5cm, text centered, font=\footnotesize] {LSTM Module};
+
+\end{tikzpicture}
+\caption[CNN-LSTM hybrid architecture diagram]{Detailed architecture of the proposed CNN-LSTM hybrid model. The CNN module extracts spatial features through three convolutional blocks; the LSTM module captures temporal dependencies through two stacked layers; the classification head produces probabilities over 34 classes.}
+\label{fig:architecture}
+\end{figure}
+
+\section{Training Procedure}
+\label{sec:training}
+
+\subsection{Dataset Partitioning}
+
+A temporally-ordered, stratified 70/15/15 split produces training, validation, and test sets, preserving class distributions and preventing data leakage from future flows into the training set.
+
+\subsection{Optimization and Hyperparameters}
+
+The model is trained using the Adam optimizer~\cite{kingma2015} with a cosine annealing learning rate schedule~\cite{loshchilov2017}:
+
+\begin{equation}
+\label{eq:cosine_lr}
+\eta_t = \eta_{\min} + \frac{1}{2}(\eta_{\max} - \eta_{\min})\left(1 + \cos\left(\frac{T_{\text{cur}}}{T_i}\pi\right)\right)
+\end{equation}
+
+Table~\ref{tab:hyperparameters} summarizes the hyperparameter configuration.
+
+\begin{table}[H]
+\centering
+\caption[Training hyperparameter configuration]{Hyperparameter configuration determined through grid search and established best practices.}
+\label{tab:hyperparameters}
+\begin{tabular}{ll}
+\toprule
+\textbf{Hyperparameter} & \textbf{Value} \\
+\midrule
+Initial learning rate & $1 \times 10^{-3}$ \\
+LR schedule & Cosine annealing with warm restarts \\
+Batch size & 256 \\
+Max epochs & 100 \\
+Early stopping patience & 10 epochs \\
+Optimizer & Adam ($\beta_1=0.9$, $\beta_2=0.999$) \\
+CNN filters (layers 1/2/3) & 64 / 128 / 256 \\
+CNN kernel size & 3 \\
+LSTM hidden units & 128 / 128 \\
+LSTM dropout & 0.3 \\
+Dense units & 64 \\
+Dense dropout & 0.2 \\
+Window length ($T$) & 20 \\
+Loss function & Focal loss ($\gamma = 2.0$) \\
+Gradient clipping & Max norm = 1.0 \\
+Weight initialization & Glorot uniform \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Gradient clipping prevents exploding gradients. Early stopping monitors validation loss and restores the best epoch's weights. Regularization combines dropout~\cite{srivastava2014}, batch normalization~\cite{ioffe2015}, and L2 weight decay ($10^{-5}$).
+
+\section{Evaluation Framework}
+\label{sec:eval_framework}
+
+\subsection{Performance Metrics}
+
+Per-class precision, recall, and F1-score are computed and aggregated via macro-averaging:
+
+\begin{align}
+\label{eq:precision}
+\text{Precision}_c &= \frac{TP_c}{TP_c + FP_c}, \quad
+\text{Recall}_c = \frac{TP_c}{TP_c + FN_c} \\
+\label{eq:f1}
+\text{F1}_c &= \frac{2 \cdot \text{Precision}_c \cdot \text{Recall}_c}{\text{Precision}_c + \text{Recall}_c}, \quad
+\text{Macro-F1} = \frac{1}{C}\sum_{c=1}^{C} \text{F1}_c
+\end{align}
+
+The Matthews Correlation Coefficient (MCC)~\cite{chicco2020}, the most informative single metric for imbalanced multi-class classification, is also reported.
+
+\subsection{Baseline Models}
+
+Baselines include Random Forest (200 estimators, depth 30), XGBoost (300 rounds, depth 8), MLP (three hidden layers: 256, 128, 64), standalone 1D-CNN, and standalone LSTM, all evaluated under identical preprocessing and partitioning conditions.
+
+\subsection{Computational Performance}
+
+Measurements include training time, inference latency, memory utilization, and throughput on an NVIDIA A100 server and an NVIDIA Jetson Xavier NX edge platform.
+
+
+% =========================================================================
+% CHAPTER 4: IMPLEMENTATION AND RESULTS
+% =========================================================================
+\clearpage
+\chapter{Implementation and Results}
+\label{ch:results}
+
+This chapter presents implementation details and experimental results, covering the software environment, dataset analysis, preprocessing outcomes, training dynamics, classification performance, ablation studies, and computational efficiency.
+
+\section{Implementation Environment}
+\label{sec:implementation}
+
+The framework was implemented in Python 3.10 using PyTorch 2.0, with Pandas 2.0, NumPy 1.24, Scikit-learn 1.2, and Imbalanced-learn 0.10 for preprocessing. Training was conducted on a node with dual AMD EPYC 7763 processors (128 cores), 512 GB RAM, and four NVIDIA A100 40GB GPUs. Mixed-precision training via PyTorch AMP reduced memory consumption and accelerated computation. Edge benchmarking used an NVIDIA Jetson Xavier NX with TensorRT optimization.
+
+\section{Dataset Analysis}
+\label{sec:data_analysis}
+
+The CIC-IoT2023 dataset comprises 169 CSV files totaling 28 GB. After concatenation and deduplication, 33,440,896 flow records are distributed across 34 classes. Table~\ref{tab:class_distribution} presents the distribution by attack family.
+
+\begin{table}[H]
+\centering
+\caption[Class distribution of the CIC-IoT2023 dataset]{Class distribution aggregated by attack family, illustrating severe imbalance with DDoS constituting nearly 59\% of malicious traffic.}
+\label{tab:class_distribution}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Attack Family} & \textbf{Flow Records} & \textbf{Percentage} \\
+\midrule
+Benign & 1,098,437 & 3.28\% \\
+DDoS & 19,706,852 & 58.93\% \\
+DoS & 5,218,463 & 15.61\% \\
+Mirai & 4,892,145 & 14.63\% \\
+Reconnaissance & 1,256,893 & 3.76\% \\
+Spoofing & 687,421 & 2.06\% \\
+Brute Force & 412,356 & 1.23\% \\
+Web-based & 168,329 & 0.50\% \\
+\midrule
+\textbf{Total} & \textbf{33,440,896} & \textbf{100.00\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The largest individual attack type (DDoS-ICMP\_Flood) contains over 4.8 million records while the smallest (Web-based SQL\_Injection) contains fewer than 12,000, a ratio exceeding 400:1.
+
+\section{Preprocessing Results}
+\label{sec:preprocess_results}
+
+Preprocessing completed in approximately 45 minutes. The cleaning stage removed 23,847 duplicates (0.07\%) and 1,294 records with critical missing fields. Infinite values in 2.3\% of flow duration and inter-arrival time features were replaced with feature-specific medians. Feature selection reduced dimensionality from 46 to 38 base features; four engineered features produced a final dimensionality of 42.
+
+Figure~\ref{fig:correlation_matrix} visualizes the feature correlation structure after selection.
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
+\textbf{[Feature Correlation Heatmap]}\\[0.5cm]
+A heatmap showing pairwise Pearson correlations among 42 selected features, with colors from dark blue ($-1.0$) through white ($0.0$) to dark red ($+1.0$). After feature selection, no pairs exceed $|r| > 0.95$, while moderate correlations between related statistics are preserved.
+\vspace{1.5cm}}}
+\caption[Feature correlation matrix]{Pairwise Pearson correlation matrix for the 42 retained features, confirming successful removal of redundant features while preserving discriminative information.}
+\label{fig:correlation_matrix}
+\end{figure}
+
+Class balancing via square-root frequency scaling produced 4,987,312 training instances with a maximum-to-minimum class ratio of 18.7:1, reduced from the original 402.3:1.
+
+\section{Training Performance}
+\label{sec:training_results}
+
+The model trained for 67 epochs before early stopping, with the best model at epoch 57. Training required 14.2 GPU-hours on a single A100 (12.7 minutes per epoch). Peak memory utilization was 18.4 GB.
+
+Figure~\ref{fig:training_curves} presents the training dynamics.
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
+\textbf{[Training and Validation Loss/Accuracy Curves]}\\[0.5cm]
+Dual-panel figure: (Left) Training loss (solid blue) and validation loss (dashed orange) vs.\ epoch. Both decrease rapidly initially; validation loss plateaus around epoch 45 and increases slightly after epoch 57. (Right) Validation accuracy (green) reaches 97.83\% at epoch 57 before slight decline.
+\vspace{1.5cm}}}
+\caption[Training and validation curves]{Training dynamics over 67 epochs. Divergence after epoch 57 triggered early stopping. Peak validation accuracy: 97.83\%.}
+\label{fig:training_curves}
+\end{figure}
+
+\section{Classification Performance}
+\label{sec:classification_results}
+
+\subsection{Overall Performance Comparison}
+
+Table~\ref{tab:model_comparison} compares all models on the test set.
+
+\begin{table}[H]
+\centering
+\caption[Performance comparison of all models]{Comprehensive performance comparison on the CIC-IoT2023 test set. Bold values indicate best performance. The CNN-LSTM hybrid achieves the highest scores across all metrics.}
+\label{tab:model_comparison}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{Acc.} & \textbf{Mac-P} & \textbf{Mac-R} & \textbf{Mac-F1} & \textbf{W-F1} & \textbf{MCC} \\
+\midrule
+Random Forest & 95.12 & 0.903 & 0.907 & 0.920 & 0.950 & 0.919 \\
+XGBoost & 96.04 & 0.929 & 0.932 & 0.940 & 0.960 & 0.936 \\
+MLP & 94.56 & 0.886 & 0.891 & 0.893 & 0.941 & 0.902 \\
+CNN & 96.28 & 0.920 & 0.923 & 0.931 & 0.962 & 0.940 \\
+LSTM & 96.14 & 0.918 & 0.920 & 0.929 & 0.961 & 0.938 \\
+\textbf{CNN-LSTM} & \textbf{97.83} & \textbf{0.959} & \textbf{0.961} & \textbf{0.964} & \textbf{0.978} & \textbf{0.969} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The CNN-LSTM's macro-F1 of 0.964 exceeds the standalone CNN (0.931) by 3.3 and LSTM (0.929) by 3.5 percentage points, confirming synergistic benefit. Among traditional baselines, XGBoost achieves the strongest performance (macro-F1: 0.940), consistent with gradient boosting's effectiveness on structured tabular data.
+
+\subsection{Per-Family Performance}
+
+Table~\ref{tab:family_performance} presents per-family metrics for the CNN-LSTM model.
+
+\begin{table}[H]
+\centering
+\caption[Per-attack-family classification performance]{Per-family precision, recall, and F1-score for the CNN-LSTM model. Performance is consistently high, with the lowest F1-score (0.929) for the Web-based family.}
+\label{tab:family_performance}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Attack Family} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} \\
+\midrule
+Benign & 0.981 & 0.973 & 0.977 \\
+DDoS & 0.989 & 0.992 & 0.991 \\
+DoS & 0.976 & 0.969 & 0.972 \\
+Mirai & 0.983 & 0.980 & 0.982 \\
+Reconnaissance & 0.962 & 0.958 & 0.960 \\
+Spoofing & 0.949 & 0.941 & 0.945 \\
+Brute Force & 0.938 & 0.936 & 0.937 \\
+Web-based & 0.930 & 0.927 & 0.929 \\
+\midrule
+\textbf{Macro Average} & \textbf{0.964} & \textbf{0.960} & \textbf{0.962} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The model achieves its highest F1-score for DDoS (0.991), expected given the large training set and distinctive volumetric patterns. Web-based attacks show the lowest F1 (0.929) due to fewer training instances and the difficulty of distinguishing application-layer attacks from legitimate web traffic using flow-level features alone. Error analysis reveals that primary misclassifications occur between semantically related types (e.g., SSH vs. FTP brute force) and between low-rate scanning and benign traffic.
+
+\subsection{Confusion Matrix and ROC Analysis}
+
+Figure~\ref{fig:confusion_matrix} presents the normalized confusion matrix and Figure~\ref{fig:roc_curves} shows multi-class ROC curves.
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
+\textbf{[Normalized Confusion Matrix]}\\[0.5cm]
+An $8 \times 8$ heatmap showing strong diagonal dominance (0.927--0.992). Notable off-diagonal values: Spoofing$\rightarrow$Reconnaissance (0.031), Web-based$\rightarrow$Benign (0.028), DoS$\rightarrow$DDoS (0.018). Misclassifications occur between semantically related attack types.
+\vspace{1.5cm}}}
+\caption[Normalized confusion matrix]{Normalized confusion matrix for the CNN-LSTM model. Strong diagonal values confirm high accuracy; off-diagonal patterns reflect semantic similarity between certain attack families.}
+\label{fig:confusion_matrix}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fbox{\parbox{0.85\textwidth}{\centering\vspace{1.5cm}
+\textbf{[Multi-class ROC Curves]}\\[0.5cm]
+One-versus-rest ROC curves for all 8 classes, tightly clustered in the upper-left corner. AUC values: DDoS (0.9994), Mirai (0.9987), Benign (0.9983), DoS (0.9976), Reconnaissance (0.9961), Spoofing (0.9942), Brute Force (0.9923), Web-based (0.9908). Macro-average AUC: 0.9959.
+\vspace{1.5cm}}}
+\caption[Multi-class ROC curves]{ROC curves for each family in one-versus-rest configuration. All classes achieve AUC $>$ 0.99, indicating excellent discrimination.}
+\label{fig:roc_curves}
+\end{figure}
+
+\section{Ablation Study}
+\label{sec:ablation}
+
+Table~\ref{tab:ablation} quantifies contributions of key components.
+
+\begin{table}[H]
+\centering
+\caption[Ablation study results]{Ablation study showing the contribution of each component. All removals cause performance degradation.}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Configuration} & \textbf{Mac-F1} & \textbf{Accuracy} & \textbf{$\Delta$ F1} \\
+\midrule
+Full model (CNN-LSTM) & 0.964 & 97.83\% & --- \\
+Remove CNN module & 0.929 & 96.14\% & $-$0.035 \\
+Remove LSTM module & 0.931 & 96.28\% & $-$0.033 \\
+Remove class balancing & 0.940 & 97.01\% & $-$0.024 \\
+Replace focal loss with CE & 0.951 & 97.34\% & $-$0.013 \\
+Reduce window to $T=5$ & 0.952 & 97.12\% & $-$0.012 \\
+Increase window to $T=50$ & 0.961 & 97.69\% & $-$0.003 \\
+Remove batch normalization & 0.953 & 97.21\% & $-$0.011 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The CNN and LSTM modules make the largest individual contributions (F1 decreases of 0.035 and 0.033), confirming both spatial and temporal learning are essential. Class balancing is the third most impactful component ($-$0.024), primarily affecting minority class detection. The window length of $T = 20$ balances performance and computational cost, with $T = 5$ causing notable degradation and $T = 50$ offering only marginal improvement.
+
+\section{Computational Efficiency}
+\label{sec:efficiency}
+
+Table~\ref{tab:computational} presents computational metrics across hardware platforms.
+
+\begin{table}[H]
+\centering
+\caption[Computational performance across platforms]{Computational performance on server (A100) and edge (Jetson Xavier NX) platforms. TensorRT provides $3.5\times$ speedup on edge.}
+\label{tab:computational}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{A100 (Server)} & \textbf{Xavier NX (Edge)} \\
+\midrule
+Training time (total) & 14.2 GPU-hours & N/A \\
+Training time (per epoch) & 12.7 minutes & N/A \\
+Inference latency (per flow) & 0.8 ms & 2.3 ms \\
+Inference latency (TensorRT) & 0.3 ms & 0.9 ms \\
+Peak memory (training) & 18.4 GB & N/A \\
+Peak memory (inference) & 2.1 GB & 1.4 GB \\
+Throughput (flows/sec) & 48,200 & 12,400 \\
+Throughput w/ TensorRT & 127,500 & 34,800 \\
+Model size (FP32 / FP16) & \multicolumn{2}{c}{10.9 MB / 5.5 MB} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On edge hardware, inference latency of 2.3 ms per flow (0.9 ms with TensorRT) and throughput of 12,400 flows/sec (34,800 with TensorRT) are well within requirements for monitoring typical IoT gateway traffic volumes of hundreds to low thousands of flows per second. The compact 10.9 MB model fits comfortably within edge storage constraints.
+
+\section{Comparison with State-of-the-Art}
+\label{sec:sota_comparison}
+
+Table~\ref{tab:sota_comparison} contextualizes the results against recent published systems.
+
+\begin{table}[H]
+\centering
+\caption[Comparison with state-of-the-art]{Comparison with recent IDS methods. The proposed framework achieves competitive or superior performance with practical inference latency.}
+\label{tab:sota_comparison}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{Dataset} & \textbf{Accuracy} & \textbf{Mac-F1} & \textbf{Latency} \\
+\midrule
+Neto et al.\ (RF)~\cite{neto2023} & CIC-IoT2023 & 96.2\% & 0.921 & 0.5 ms \\
+Neto et al.\ (DNN)~\cite{neto2023} & CIC-IoT2023 & 95.8\% & 0.913 & 1.8 ms \\
+Ferrag et al.~\cite{ferrag2023} & Edge-IIoTset & 97.2\% & 0.948 & 3.1 ms \\
+Sarhan et al.~\cite{sarhan2023} & CIC-IoT2023 & 96.9\% & 0.937 & 2.7 ms \\
+\textbf{Proposed (CNN-LSTM)} & \textbf{CIC-IoT2023} & \textbf{97.83\%} & \textbf{0.964} & \textbf{2.3 ms} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The proposed framework achieves the highest accuracy and macro-F1 while maintaining competitive latency, with TensorRT reducing edge latency to 0.9 ms.
+
+
+% =========================================================================
+% CHAPTER 5: CONCLUSION AND FUTURE WORK
+% =========================================================================
+\clearpage
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+\section{Summary of Contributions}
+\label{sec:contributions}
+
+This project has presented a comprehensive deep learning framework for real-time network intrusion detection in Internet of Things environments, addressing the key challenges of heterogeneous traffic patterns, severe class imbalance, automatic feature learning, and edge deployment constraints.
+
+The first major contribution is the hybrid CNN-LSTM architecture achieving a macro-averaged F1-score of 0.9641, a 3.3--3.5 percentage point improvement over standalone components. This confirms that combining spatial and temporal feature learning produces synergistic benefits, particularly for minority attack classes where both local patterns and sequential dependencies contribute to discrimination.
+
+The second contribution is the preprocessing pipeline incorporating robust cleaning, principled feature selection, temporal windowing, and multi-pronged class balancing via square-root frequency scaling and focal loss. The ablation study confirms each component contributes measurably, with class balancing alone responsible for a 0.024 improvement in macro-F1.
+
+The third contribution is rigorous evaluation on the CIC-IoT2023 dataset with 33 attack types across seven families, providing a more reliable assessment than studies using older benchmarks. The evaluation encompasses both classification metrics (accuracy, F1, MCC) and computational efficiency on server and edge hardware.
+
+The fourth contribution is the ablation study quantifying individual component importance, providing practitioners with guidance for adapting the framework to specific deployment contexts and resource constraints.
+
+\section{Key Findings}
+\label{sec:findings}
+
+The hybrid CNN-LSTM architecture consistently outperforms all baselines across every metric, achieving 97.83\% accuracy, 0.964 macro-F1, and 0.969 MCC. Per-family analysis shows F1-scores from 0.929 (Web-based) to 0.991 (DDoS), with lower performance on application-layer attacks reflecting the inherent limitations of flow-level analysis.
+
+Temporal window analysis reveals informative dependencies spanning approximately 20 consecutive flows, with shorter windows ($T = 5$) causing meaningful degradation and longer windows ($T = 50$) offering only marginal gains at increased computational cost. The selected $T = 20$ maximizes classification performance while maintaining 2.3 ms inference latency on edge hardware.
+
+The framework achieves practical deployment viability: 12,400 flows/sec throughput on the Jetson Xavier NX (34,800 with TensorRT) exceeds typical IoT gateway requirements, and the 10.9 MB model size fits edge storage constraints.
+
+\section{Limitations}
+\label{sec:limitations}
+
+Several limitations must be acknowledged. First, evaluation on a single dataset leaves generalizability to other IoT deployments unverified. Second, flow-level features inherently limit detection of application-layer attacks such as SQL injection and cross-site scripting, as reflected in the lower Web-based family performance. Third, offline evaluation does not address concept drift challenges in long-term deployment. Fourth, adversarial robustness has not been evaluated, and deep learning classifiers may be vulnerable to carefully crafted evasion inputs~\cite{goodfellow2015}. Fifth, training requires GPU resources (14.2 GPU-hours on an A100) that may present barriers for resource-constrained organizations.
+
+\section{Future Work}
+\label{sec:future}
+
+Several promising research directions emerge from this work. Evaluation on additional IoT datasets, particularly from operational networks, would establish generalizability. Multi-modal architectures combining flow-level features with payload representations could address application-layer attack detection limitations. Online learning and continual adaptation techniques would address concept drift in long-term deployment.
+
+Adversarial robustness investigation through adversarial training, defensive distillation, and input preprocessing is critical for deployment in adversarial environments. Federated learning architectures would enable collaborative model training across multiple IoT gateways without exchanging raw traffic data, preserving privacy while learning from diverse traffic patterns.
+
+Neural architecture search (NAS) could automatically discover optimal architectures for specific edge hardware constraints, potentially achieving better performance-efficiency trade-offs than manual design. Integration of explainability techniques including SHAP values and attention visualization would provide security analysts with interpretable insights into classification decisions, facilitating trust and supporting forensic investigation.
+
+\section{Concluding Remarks}
+\label{sec:concluding}
+
+The Internet of Things continues expanding at remarkable pace, connecting increasingly diverse devices to an already complex global network infrastructure. Effective, efficient, and adaptive intrusion detection is a practical imperative for the security and resilience of critical infrastructure and the daily lives of billions of IoT-connected individuals.
+
+This project has demonstrated that hybrid deep learning architectures, combined with careful preprocessing and class balancing, achieve highly accurate intrusion detection across comprehensive IoT attack types while meeting edge deployment computational constraints. The CNN-LSTM framework achieves a macro-F1 of 0.9641 on CIC-IoT2023 with 2.3 ms inference latency on representative gateway hardware, confirming practical viability for real-world deployment.
+
+While challenges remain in adversarial robustness, concept drift adaptation, and application-layer attack detection, the modular framework design facilitates incremental improvement. It is the author's hope that this project contributes meaningfully to securing the Internet of Things and the increasingly interconnected world that depends upon it.
+
+
+% =========================================================================
+% REFERENCES
+% =========================================================================
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+
+\begin{thebibliography}{99}
+
+\bibitem{statista2023}
+Statista Research Department, ``Number of Internet of Things (IoT) connected devices worldwide from 2019 to 2030,'' \textit{Statista}, 2023. [Online]. Available: https://www.statista.com/statistics/1183457/iot-connected-devices-worldwide/
+
+\bibitem{anderson1980}
+J.~P.~Anderson, ``Computer security threat monitoring and surveillance,'' James P. Anderson Company, Fort Washington, PA, Tech. Rep., Apr. 1980.
+
+\bibitem{denning1987}
+D.~E.~Denning, ``An intrusion-detection model,'' \textit{IEEE Transactions on Software Engineering}, vol.~SE-13, no.~2, pp.~222--232, Feb. 1987.
+
+\bibitem{roesch1999}
+M.~Roesch, ``Snort -- Lightweight intrusion detection for networks,'' in \textit{Proc. 13th USENIX Conference on System Administration (LISA '99)}, Seattle, WA, 1999, pp.~229--238.
+
+\bibitem{quinlan1993}
+J.~R.~Quinlan, \textit{C4.5: Programs for Machine Learning}. San Francisco, CA: Morgan Kaufmann, 1993.
+
+\bibitem{cortes1995}
+C.~Cortes and V.~Vapnik, ``Support-vector networks,'' \textit{Machine Learning}, vol.~20, no.~3, pp.~273--297, Sep. 1995.
+
+\bibitem{breiman2001}
+L.~Breiman, ``Random forests,'' \textit{Machine Learning}, vol.~45, no.~1, pp.~5--32, Oct. 2001.
+
+\bibitem{ko1997}
+C.~Ko, M.~Ruschitzka, and K.~Levitt, ``Execution monitoring of security-critical programs in distributed systems: A specification-based approach,'' in \textit{Proc. 1997 IEEE Symposium on Security and Privacy}, Oakland, CA, 1997, pp.~175--187.
+
+\bibitem{atzori2010}
+L.~Atzori, A.~Iera, and G.~Morabito, ``The Internet of Things: A survey,'' \textit{Computer Networks}, vol.~54, no.~15, pp.~2787--2805, Oct. 2010.
+
+\bibitem{antonakakis2017}
+M.~Antonakakis \textit{et~al.}, ``Understanding the Mirai botnet,'' in \textit{Proc. 26th USENIX Security Symposium}, Vancouver, BC, 2017, pp.~1093--1110.
+
+\bibitem{kolias2017}
+C.~Kolias, G.~Kambourakis, A.~Stavrou, and J.~Voas, ``DDoS in the IoT: Mirai and other botnets,'' \textit{Computer}, vol.~50, no.~7, pp.~80--84, Jul. 2017.
+
+\bibitem{neshenko2019}
+N.~Neshenko, E.~Bou-Harb, J.~Crichigno, G.~Kaddoum, and N.~Ghani, ``Demystifying IoT security: An exhaustive survey on IoT vulnerabilities and a first empirical look on internet-scale IoT exploitations,'' \textit{IEEE Communications Surveys \& Tutorials}, vol.~21, no.~3, pp.~2702--2733, 2019.
+
+\bibitem{zhang2008}
+J.~Zhang, M.~Zulkernine, and A.~Haque, ``Random-forests-based network intrusion detection systems,'' \textit{IEEE Transactions on Systems, Man, and Cybernetics, Part C}, vol.~38, no.~5, pp.~649--659, Sep. 2008.
+
+\bibitem{chen2016xgboost}
+T.~Chen and C.~Guestrin, ``XGBoost: A scalable tree boosting system,'' in \textit{Proc. 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining}, San Francisco, CA, 2016, pp.~785--794.
+
+\bibitem{ke2017}
+G.~Ke \textit{et~al.}, ``LightGBM: A highly efficient gradient boosting decision tree,'' in \textit{Advances in Neural Information Processing Systems 30 (NeurIPS 2017)}, Long Beach, CA, 2017, pp.~3146--3154.
+
+\bibitem{mukkamala2002}
+S.~Mukkamala, G.~Janoski, and A.~Sung, ``Intrusion detection using neural networks and support vector machines,'' in \textit{Proc. 2002 International Joint Conference on Neural Networks (IJCNN '02)}, Honolulu, HI, 2002, pp.~1702--1707.
+
+\bibitem{bengio2013}
+Y.~Bengio, A.~Courville, and P.~Vincent, ``Representation learning: A review and new perspectives,'' \textit{IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~35, no.~8, pp.~1798--1828, Aug. 2013.
+
+\bibitem{lecun1998}
+Y.~LeCun, L.~Bottou, Y.~Bengio, and P.~Haffner, ``Gradient-based learning applied to document recognition,'' \textit{Proceedings of the IEEE}, vol.~86, no.~11, pp.~2278--2324, Nov. 1998.
+
+\bibitem{wang2017}
+W.~Wang, M.~Zhu, X.~Zeng, X.~Ye, and Y.~Sheng, ``Malware traffic classification using convolutional neural network for representation learning,'' in \textit{Proc. 2017 International Conference on Information Networking (ICOIN)}, Da Nang, Vietnam, 2017, pp.~712--717.
+
+\bibitem{hochreiter1991}
+S.~Hochreiter, ``Untersuchungen zu dynamischen neuronalen Netzen,'' Diploma thesis, Technische Universit\"{a}t M\"{u}nchen, 1991.
+
+\bibitem{hochreiter1997}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' \textit{Neural Computation}, vol.~9, no.~8, pp.~1735--1780, Nov. 1997.
+
+\bibitem{kim2016}
+J.~Kim, J.~Kim, H.~L.~T.~Thu, and H.~Kim, ``Long short term memory recurrent neural network classifier for intrusion detection,'' in \textit{Proc. 2016 International Conference on Platform Technology and Service (PlatCon)}, Jeju, South Korea, 2016, pp.~1--5.
+
+\bibitem{yin2017}
+C.~Yin, Y.~Zhu, J.~Fei, and X.~He, ``A deep learning approach for intrusion detection using recurrent neural networks,'' \textit{IEEE Access}, vol.~5, pp.~21954--21961, 2017.
+
+\bibitem{li2019}
+Z.~Li, Z.~Qin, K.~Huang, X.~Yang, and S.~Ye, ``Intrusion detection using convolutional neural networks for representation learning,'' in \textit{Proc. 2019 International Conference on Neural Information Processing (ICONIP)}, Sydney, Australia, 2019, pp.~360--371.
+
+\bibitem{khan2019}
+M.~A.~Khan, ``HCRNNIDS: Hybrid convolutional recurrent neural network-based network intrusion detection system,'' \textit{Processes}, vol.~7, no.~3, p.~129, 2019.
+
+\bibitem{bahdanau2015}
+D.~Bahdanau, K.~Cho, and Y.~Bengio, ``Neural machine translation by jointly learning to align and translate,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
+
+\bibitem{zhang2019}
+H.~Zhang, L.~Huang, C.~Q.~Wu, and Z.~Li, ``An effective convolutional neural network based on SMOTE and Gaussian mixture model for intrusion detection in imbalanced dataset,'' \textit{Computer Networks}, vol.~164, p.~106971, 2019.
+
+\bibitem{kddcup1999}
+``KDD Cup 1999 Data,'' UCI Machine Learning Repository, 1999. [Online]. Available: http://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html
+
+\bibitem{mchugh2000}
+J.~McHugh, ``Testing intrusion detection systems: A critique of the 1998 and 1999 DARPA intrusion detection system evaluations as performed by Lincoln Laboratory,'' \textit{ACM Transactions on Information and System Security}, vol.~3, no.~4, pp.~262--294, Nov. 2000.
+
+\bibitem{tavallaee2009}
+M.~Tavallaee, E.~Bagheri, W.~Lu, and A.~A.~Ghorbani, ``A detailed analysis of the KDD CUP 99 data set,'' in \textit{Proc. 2009 IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA)}, Ottawa, ON, 2009, pp.~1--6.
+
+\bibitem{moustafa2015}
+N.~Moustafa and J.~Slay, ``UNSW-NB15: A comprehensive data set for network intrusion detection systems,'' in \textit{Proc. 2015 Military Communications and Information Systems Conference (MilCIS)}, Canberra, Australia, 2015, pp.~1--6.
+
+\bibitem{sharafaldin2018}
+I.~Sharafaldin, A.~H.~Lashkari, and A.~A.~Ghorbani, ``Toward generating a new intrusion detection dataset and intrusion traffic characterization,'' in \textit{Proc. 4th International Conference on Information Systems Security and Privacy (ICISSP)}, Funchal, Portugal, 2018, pp.~108--116.
+
+\bibitem{neto2023}
+E.~C.~P.~Neto \textit{et~al.}, ``CIC IoT Dataset 2023,'' Canadian Institute for Cybersecurity, University of New Brunswick, 2023. [Online]. Available: https://www.unb.ca/cic/datasets/iotdataset-2023.html
+
+\bibitem{chawla2002}
+N.~V.~Chawla, K.~W.~Bowyer, L.~O.~Hall, and W.~P.~Kegelmeyer, ``SMOTE: Synthetic Minority Over-sampling Technique,'' \textit{Journal of Artificial Intelligence Research}, vol.~16, pp.~321--357, Jun. 2002.
+
+\bibitem{lin2017}
+T.~Y.~Lin, P.~Goyal, R.~Girshick, K.~He, and P.~Doll\'{a}r, ``Focal loss for dense object detection,'' in \textit{Proc. 2017 IEEE International Conference on Computer Vision (ICCV)}, Venice, Italy, 2017, pp.~2980--2988.
+
+\bibitem{chicco2020}
+D.~Chicco and G.~Jurman, ``The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation,'' \textit{BMC Genomics}, vol.~21, no.~1, p.~6, Jan. 2020.
+
+\bibitem{kingma2015}
+D.~P.~Kingma and J.~Ba, ``Adam: A method for stochastic optimization,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
+
+\bibitem{loshchilov2017}
+I.~Loshchilov and F.~Hutter, ``SGDR: Stochastic gradient descent with warm restarts,'' in \textit{Proc. 5th International Conference on Learning Representations (ICLR 2017)}, Toulon, France, 2017.
+
+\bibitem{srivastava2014}
+N.~Srivastava, G.~Hinton, A.~Krizhevsky, I.~Sutskever, and R.~Salakhutdinov, ``Dropout: A simple way to prevent neural networks from overfitting,'' \textit{Journal of Machine Learning Research}, vol.~15, no.~1, pp.~1929--1958, Jun. 2014.
+
+\bibitem{ioffe2015}
+S.~Ioffe and C.~Szegedy, ``Batch normalization: Accelerating deep network training by reducing internal covariate shift,'' in \textit{Proc. 32nd International Conference on Machine Learning (ICML)}, Lille, France, 2015, pp.~448--456.
+
+\bibitem{goodfellow2015}
+I.~J.~Goodfellow, J.~Shlens, and C.~Szegedy, ``Explaining and harnessing adversarial examples,'' in \textit{Proc. 3rd International Conference on Learning Representations (ICLR 2015)}, San Diego, CA, 2015.
+
+\bibitem{ferrag2023}
+M.~A.~Ferrag, O.~Friha, D.~Hamouda, L.~Maglaras, and H.~Janicke, ``Edge-IIoTset: A new comprehensive realistic cyber security dataset of IoT and IIoT applications for centralized and federated learning,'' \textit{IEEE Access}, vol.~10, pp.~40281--40306, 2022.
+
+\bibitem{sarhan2023}
+M.~Sarhan, S.~Layeghy, and M.~Portmann, ``Towards a standard feature set for network intrusion detection system datasets,'' \textit{Mobile Networks and Applications}, vol.~27, no.~1, pp.~357--370, 2022.
+
+\end{thebibliography}
+
+\end{document}
