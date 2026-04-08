@@ -5,10 +5,15 @@ NeuroFusionGPT: Load trained model, predict stress from EEG+ECG row, get LLM fee
 Usage:
   1. Set OPENROUTER_API_KEY in environment (or .env with python-dotenv).
   2. Run:
-     python run_predict_and_feedback.py --eeg-row 100 --ecg-row 100
-     python run_predict_and_feedback.py --eeg-row 0 --ecg-row 0 --no-llm   # prediction only
+     python scripts/run_predict_and_feedback.py
+     python scripts/run_predict_and_feedback.py --no-llm   # prediction only
+     python scripts/run_predict_and_feedback.py --data-dir /custom/path
 
-Data: expects eeg_data.csv (or eed_data.csv) and ecg_train.csv in project root or --data-dir.
+Data: uses the REAL-WORLD held-out split files produced by prepare_datasets.py:
+  datasets/split/ecg_real.csv   (20% of combined ECG, never seen during training)
+  datasets/split/eeg_real.csv   (20% of EEG, never seen during training)
+
+Run  python scripts/prepare_datasets.py  first if these files do not exist yet.
 """
 
 import os
@@ -72,36 +77,43 @@ def load_model_and_scalers(models_dir: str, device: str = "cpu"):
 
 
 def load_eeg_data(data_dir: str):
-    """Load full EEG dataset and return data + total count."""
-    for name in ("eeg_data.csv", "eed_data.csv"):
-        path = os.path.join(data_dir, name)
-        if os.path.isfile(path):
-            import pandas as pd
-            df = pd.read_csv(path)
-            feat_cols = [c for c in df.columns if c != "y"]
-            X = df[feat_cols].values.astype(np.float32)
-            return X, len(X), name
-    raise FileNotFoundError(f"No eeg_data.csv or eed_data.csv in {data_dir}")
+    """Load real-world EEG split (eeg_real.csv) — never seen during training."""
+    import pandas as pd
+    real_path = os.path.join(data_dir, "eeg_real.csv")
+    if os.path.isfile(real_path):
+        df = pd.read_csv(real_path)
+        feat_cols = [c for c in df.columns if c != "y"]
+        X = df[feat_cols].values.astype(np.float32)
+        y = df["y"].values.astype(int) if "y" in df.columns else None
+        return X, len(X), "eeg_real.csv", y
+    raise FileNotFoundError(
+        f"eeg_real.csv not found in {data_dir}.\n"
+        "Run  python scripts/prepare_datasets.py  first."
+    )
 
 def load_eeg_row(data_dir: str, row: int) -> np.ndarray:
-    X, total, _ = load_eeg_data(data_dir)
+    X, total, _, _ = load_eeg_data(data_dir)
     if row < 0 or row >= total:
         raise IndexError(f"EEG row {row} out of range [0, {total-1}]")
     return X[row]
 
 
 def load_ecg_data(data_dir: str):
-    """Load ECG train dataset and return data + total count."""
-    path = os.path.join(data_dir, "ecg_train.csv")
-    if not os.path.isfile(path):
-        raise FileNotFoundError(f"ecg_train.csv not found in {data_dir}")
-    arr = np.loadtxt(path, delimiter=",")
+    """Load real-world ECG split (ecg_real.csv) — never seen during training."""
+    real_path = os.path.join(data_dir, "ecg_real.csv")
+    if not os.path.isfile(real_path):
+        raise FileNotFoundError(
+            f"ecg_real.csv not found in {data_dir}.\n"
+            "Run  python scripts/prepare_datasets.py  first."
+        )
+    arr = np.loadtxt(real_path, delimiter=",")
     n_features = 187
     X = arr[:, :n_features].astype(np.float32)
-    return X, len(X), "ecg_train.csv"
+    y = arr[:, n_features].astype(int)
+    return X, len(X), "ecg_real.csv", y
 
 def load_ecg_row(data_dir: str, row: int) -> np.ndarray:
-    X, total, _ = load_ecg_data(data_dir)
+    X, total, _, _ = load_ecg_data(data_dir)
     if row < 0 or row >= total:
         raise IndexError(f"ECG row {row} out of range [0, {total-1}]")
     return X[row]
@@ -146,8 +158,8 @@ def main():
     )
     parser.add_argument(
         "--data-dir",
-        default=os.path.join(_PROJECT_ROOT, "datasets"),
-        help="Directory containing eeg_data.csv / eed_data.csv and ecg_train.csv",
+        default=os.path.join(_PROJECT_ROOT, "datasets", "split"),
+        help="Directory containing ecg_real.csv and eeg_real.csv (produced by prepare_datasets.py)",
     )
     parser.add_argument(
         "--no-llm",
@@ -170,13 +182,14 @@ def main():
         args.models_dir, args.device
     )
     
-    # Load datasets to get row counts
-    print("\nLoading datasets...")
-    _, eeg_total, eeg_file = load_eeg_data(args.data_dir)
-    _, ecg_total, ecg_file = load_ecg_data(args.data_dir)
-    
+    # Load real-world datasets to get row counts
+    print("\nLoading real-world demo datasets (held-out 20%, never seen during training)...")
+    _, eeg_total, eeg_file, _ = load_eeg_data(args.data_dir)
+    _, ecg_total, ecg_file, _ = load_ecg_data(args.data_dir)
+
     print(f"  EEG dataset: {eeg_file} ({eeg_total:,} samples)")
     print(f"  ECG dataset: {ecg_file} ({ecg_total:,} samples)")
+    print(f"  Data dir   : {args.data_dir}")
     
     # Interactive input
     print("\n" + "-"*70)
