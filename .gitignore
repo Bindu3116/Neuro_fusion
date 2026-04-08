@@ -46,6 +46,7 @@ checkpoints/
 *.h5
 *.keras
 !checkpoints/.gitkeep
+models/
 
 # Logs
 *.log
